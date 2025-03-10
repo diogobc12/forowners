@@ -20,9 +20,12 @@ export function Navigation({ scrolled }: NavigationProps) {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden text-white focus:outline-none"
-          >
+            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+            title={isOpen ? "Close Menu" : "Open Menu"}
+        >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
+
 
           {/* Desktop menu */}
           <div className="hidden md:flex space-x-8">
