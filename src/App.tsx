@@ -6,6 +6,8 @@ import { ContactForm } from './components/ContactForm';
 import { Navigation } from './components/Navigation';
 import { GlobeAnimation } from './components/GlobeAnimation';
 import { PerformanceAnimation } from './components/PerformanceAnimation';
+import logo from "/src/assets/logo.png"; 
+
 
 function App() {
   const [scrolled, setScrolled] = useState(false);
@@ -157,7 +159,7 @@ function App() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-2xl font-bold mb-4">ForOwners</h3>
+              <img src={logo} alt="ForOwners Logo" className="h-5 w-auto mb-4" />
               <p className="text-slate-300 mb-4 max-w-md">
                 A premium digital consultancy focused on crafting exceptional digital experiences for modern brands.
               </p>
