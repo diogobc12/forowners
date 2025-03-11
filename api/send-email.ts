@@ -19,7 +19,7 @@ export default async function handler(request: Request) {
 
     const data = await resend.emails.send({
       from: 'ForOwners <onboarding@resend.dev>',
-      to: ['vengesociety@gmail.com'],
+      to: ['forownersagency@gmail.com'],
       subject: `New Contact Form Submission: ${topic}`,
       html: `
         <h2>New Contact Form Submission</h2>
