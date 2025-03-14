@@ -8,7 +8,6 @@ import { GlobeAnimation } from './components/GlobeAnimation';
 import { PerformanceAnimation } from './components/PerformanceAnimation';
 import logo from "/src/assets/logo.png"; 
 
-
 function App() {
   const [scrolled, setScrolled] = useState(false);
 
