@@ -69,7 +69,7 @@ function App() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-slate-800">
+      <section id="services" className="py-20 bg-slate-800 bg-cover bg-center" style={{ backgroundImage: "url('/src/assets/background2.jpeg')" }}>
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-4">Our Services</h2>
           <p className="text-slate-300 text-center mb-12 max-w-2xl mx-auto">
@@ -114,7 +114,7 @@ function App() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 bg-slate-800">
+      <section id="services" className="py-20 bg-slate-800 bg-cover bg-center" style={{ backgroundImage: "url('/src/assets/background1.png')" }}>
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-4">What Clients Say</h2>
           <p className="text-slate-300 text-center mb-12 max-w-2xl mx-auto">
