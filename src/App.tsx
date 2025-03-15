@@ -7,6 +7,53 @@ import { Navigation } from './components/Navigation';
 import { GlobeAnimation } from './components/GlobeAnimation';
 import { PerformanceAnimation } from './components/PerformanceAnimation';
 import logo from "/src/assets/logo.png"; 
+import './index.css'; // ou o caminho correto para o seu arquivo CSS
+
+function TypewriterText() {
+  const words = ['Brand', 'Presence', 'Design'];
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [displayText, setDisplayText] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const currentWord = words[currentWordIndex];
+    if (!currentWord) return;
+
+    const typeNextCharacter = () => {
+      if (isTyping) {
+        if (currentIndex < currentWord.length) {
+          setDisplayText(currentWord.substring(0, currentIndex + 1));
+          setCurrentIndex(prev => prev + 1);
+        } else {
+          setTimeout(() => {
+            setIsTyping(false);
+          }, 800);
+        }
+      } else {
+        if (currentIndex > 0) {
+          setDisplayText(currentWord.substring(0, currentIndex - 1));
+          setCurrentIndex(prev => prev - 1);
+        } else {
+          setTimeout(() => {
+            setIsTyping(true);
+            setCurrentWordIndex((prev) => (prev + 1) % words.length);
+          }, 800);
+        }
+      }
+    };
+
+    const timeout = setTimeout(typeNextCharacter, 100);
+    return () => clearTimeout(timeout);
+  }, [currentIndex, isTyping, currentWordIndex]);
+
+  return (
+    <span>
+      {displayText}
+      <span className="animate-pulse text-white">|</span>
+    </span>
+  );
+}
 
 function App() {
   const [scrolled, setScrolled] = useState(false);
@@ -43,18 +90,18 @@ function App() {
       author: "Emma Williams, Marketing Director"
     }
   ];
-
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
+    <div className="min-h-screen bg-[#050725] text-white">
       <Navigation scrolled={scrolled} />
-      
       {/* Hero Section */}
       <section id="hero" className="min-h-screen flex items-center pt-20">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Elevating Digital
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"> Excellence</span>
+            Empowering Your<br/>
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                <TypewriterText />
+                </span>
             </h1>
             <p className="text-xl text-slate-300 mb-8">Your brand, refined. Your website, perfected.</p>
             <a href="#contact" className="inline-flex items-center px-8 py-3 bg-cyan-500 hover:bg-cyan-600 transition-colors rounded-full text-white font-semibold">
@@ -68,9 +115,9 @@ function App() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-slate-800 bg-cover bg-center" style={{ backgroundImage: "url('/background2.jpeg')" }}>
+      <section id="services" className="py-20 bg-cover bg-gradient-to-t from-[#000000] to-[#050725]/50">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-4">Our Services</h2>
+          <h2 className="text-4xl font-bold text-center mb-4 mt-10">Our Services</h2>
           <p className="text-slate-300 text-center mb-12 max-w-2xl mx-auto">
             We provide comprehensive digital solutions to elevate your brand and online presence.
           </p>
@@ -83,13 +130,13 @@ function App() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section id="why-us" className="py-20">
-        <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-          <div>
+      <section id="why-us" className="py-20 bg-cover bg-top justify-center flex" style={{ backgroundImage: "url('/background2.jpeg')" }}>
+        <div className="container mx-2 auto p-8 grid md:grid-cols-2 gap-12 items-center relative w-full h-full bg-gradient-to-r from-[#060623]/50 via-[#000000]/60 to-[#060623]/50 rounded-2xl flex items-center justify-center overflow-hidden">
+        <div className=''>
             <PerformanceAnimation />
           </div>
-          <div>
-            <h2 className="text-4xl font-bold mb-8">Why Choose Us</h2>
+          <div className=''>
+            <h2 className="text-4xl font-bold mb-8 mt-7">Why Choose Us</h2>
             <ul className="space-y-4">
               <li className="flex items-start">
                 <ArrowRight className="w-6 h-6 text-cyan-400 mr-4 mt-1 flex-shrink-0" />
@@ -111,11 +158,10 @@ function App() {
           </div>
         </div>
       </section>
-
       {/* Testimonials Section */}
-      <section id="services" className="py-20 bg-slate-800 bg-cover bg-center" style={{ backgroundImage: "url('/background1.png')" }}>
+      <section id="testimonials" className="py-20 bg-cover bg-center bg-white" style={{ backgroundImage: "url('/background1.png')" }}>
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-4">What Clients Say</h2>
+          <h2 className="text-4xl font-bold text-center mb-4 mt-7">What Clients Say</h2>
           <p className="text-slate-300 text-center mb-12 max-w-2xl mx-auto">
             Don't just take our word for it. Here's what our clients have to say about our work.
           </p>
@@ -143,7 +189,7 @@ function App() {
       {/* Contact Section */}
       <section id="contact" className="py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-4">Contact Us</h2>
+          <h2 className="text-4xl font-bold text-center mb-4 mt-7">Contact Us</h2>
           <p className="text-slate-300 text-center mb-12 max-w-2xl mx-auto">
             Ready to start your project? Get in touch with us and we'll get back to you as soon as possible.
           </p>

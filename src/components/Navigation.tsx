@@ -11,11 +11,11 @@ export function Navigation({ scrolled }: NavigationProps) {
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      scrolled ? 'bg-slate-900/90 backdrop-blur-sm shadow-lg' : 'bg-slate-900'
+      scrolled ? 'bg-[#050725]/90 backdrop-blur-sm shadow-lg' : 'bg-[#050725] p-2'
     }`}>
       <div className="container mx-auto px-4 flex justify-between items-center h-20">
-        <a href="#" className="flex items-center">
-          <img src={logo} alt="ForOwners Logo" className="h-7 w-auto my-3" />
+        <a href="#hero" className="flex items-center">
+          <img src={logo} alt="ForOwners Logo" className="h-7 w-auto" />
         </a>
         
         {/* Mobile menu button */}
@@ -29,7 +29,7 @@ export function Navigation({ scrolled }: NavigationProps) {
         </button>
 
         {/* Desktop menu */}
-        <div className="hidden md:flex space-x-8 items-center mt-2">
+        <div className="hidden md:flex space-x-8 items-center">
           <a href="#services" className="text-white hover:text-cyan-400 transition-colors">Services</a>
           <a href="#why-us" className="text-white hover:text-cyan-400 transition-colors">Why Us</a>
           <a href="#testimonials" className="text-white hover:text-cyan-400 transition-colors">Testimonials</a>

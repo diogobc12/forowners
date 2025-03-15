@@ -2,7 +2,7 @@ import React from 'react';
 
 export function PerformanceAnimation() {
   return (
-    <div className="relative w-full h-[400px] bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-2xl flex items-center justify-center overflow-hidden">
+    <div className="">
       <div className="space-y-4 w-full px-8">
         {[1, 2, 3].map((i) => (
           <div key={i} className="h-4 bg-slate-800 rounded-full overflow-hidden">
