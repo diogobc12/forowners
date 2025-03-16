@@ -14,8 +14,8 @@ const Footer = () => {
               </p>
             </div>
             <div className='col-start-4'> 
-              <h4 className="text-xl font-semibold mb-4">Connect With Us</h4>
-              <div className="flex space-x-4">
+              <h4 className="text-xl font-semibold mb-4 text-center">Connect With Us</h4>
+              <div className="flex space-x-4 justify-center">
                 <a href="https://www.instagram.com/forowners" target="_blank" rel="noopener noreferrer" 
                    className="text-slate-300 hover:text-white transition-colors">
                   <Instagram className="w-6 h-6" />
