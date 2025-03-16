@@ -8,6 +8,16 @@ import { GlobeAnimation } from './components/GlobeAnimation';
 import { PerformanceAnimation } from './components/PerformanceAnimation';
 import logo from "/src/assets/logo.png"; 
 import './index.css'; // ou o caminho correto para o seu arquivo CSS
+import ClientCarousel from './components/ClientCarousel';
+
+function AppCarousel() {
+  return (
+    <div className="">
+      <ClientCarousel />
+    </div>
+  );
+}
+
 
 function TypewriterText() {
   const words = ['Brand', 'Presence', 'Design'];
@@ -55,6 +65,7 @@ function TypewriterText() {
   );
 }
 
+
 function App() {
   const [scrolled, setScrolled] = useState(false);
 
@@ -90,6 +101,7 @@ function App() {
       author: "Emma Williams, Marketing Director"
     }
   ];
+
   return (
     <div className="min-h-screen bg-[#050725] text-white">
       <Navigation scrolled={scrolled} />
@@ -130,11 +142,8 @@ function App() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section id="why-us" className="py-20 bg-cover bg-top justify-center flex" style={{ backgroundImage: "url('/background2.jpeg')" }}>
+      <section id="why-us" className="grid md:grid-rows-2 gap-4 pt-20 pb-0 bg-no-repeat bg-cover bg-black bg-center justify-center" style={{ backgroundImage: "url('/bg3.jpeg')"}}>
         <div className="container mx-2 auto p-8 grid md:grid-cols-2 gap-12 items-center relative w-full h-full bg-gradient-to-r from-[#060623]/50 via-[#000000]/60 to-[#060623]/50 rounded-2xl flex items-center justify-center overflow-hidden">
-        <div className=''>
-            <PerformanceAnimation />
-          </div>
           <div className=''>
             <h2 className="text-4xl font-bold mb-8 mt-7">Why Choose Us</h2>
             <ul className="space-y-4">
@@ -156,10 +165,19 @@ function App() {
               </li>
             </ul>
           </div>
+          <div>
+            <PerformanceAnimation />
+          </div>
         </div>
+        <div className="container grid grid-rows-3"> 
+        <div className='row-start-2'>
+        <AppCarousel/>
+        </div>
+          </div>
       </section>
+
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 bg-cover bg-center bg-white" style={{ backgroundImage: "url('/background1.png')" }}>
+      <section id="testimonials" className="pt-20 pb-40 bg-cover bg-center bg-gradient-to-b from-[#000000] via-[#050725]/50 to-[#050725]">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-4 mt-7">What Clients Say</h2>
           <p className="text-slate-300 text-center mb-12 max-w-2xl mx-auto">
@@ -174,7 +192,7 @@ function App() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-cyan-900 to-blue-900">
+      <section className="py-20 bg-[#050725]">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-5xl font-bold mb-6">Let's Build Something Great</h2>
           <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
