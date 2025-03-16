@@ -11,7 +11,3 @@
 html {
   scroll-behavior: smooth;
 }
-
-body {
-  @apply bg-slate-900 font-sans;
-}
