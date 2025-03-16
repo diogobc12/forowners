@@ -9,6 +9,7 @@ import { PerformanceAnimation } from './components/PerformanceAnimation';
 import logo from "/src/assets/logo.png"; 
 import './index.css'; // ou o caminho correto para o seu arquivo CSS
 import ClientCarousel from './components/ClientCarousel';
+import Footer from './components/Footer';
 
 function AppCarousel() {
   return (
@@ -169,7 +170,7 @@ function App() {
             <PerformanceAnimation />
           </div>
         </div>
-        <div className="container grid grid-rows-3"> 
+        <div className="container grid md:grid-rows-3 my-3"> 
         <div className='row-start-2'>
         <AppCarousel/>
         </div>
@@ -218,35 +219,8 @@ function App() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-800 py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <img src={logo} alt="ForOwners Logo" className="h-5 w-auto mb-4" />
-              <p className="text-slate-300 mb-4 max-w-md">
-                A premium digital consultancy focused on crafting exceptional digital experiences for modern brands.
-              </p>
-              <p className="text-slate-400">© 2025 ForOwners. All rights reserved.</p>
-            </div>
-            <div>
-              <h4 className="text-xl font-semibold mb-4">Connect With Us</h4>
-              <div className="flex space-x-4">
-                <a href="https://www.instagram.com/forowners" target="_blank" rel="noopener noreferrer" 
-                   className="text-slate-300 hover:text-white transition-colors">
-                  <Instagram className="w-6 h-6" />
-                </a>
-                <a href="https://www.linkedin.com/company/forowners/" target="_blank" rel="noopener noreferrer"
-                   className="text-slate-300 hover:text-white transition-colors">
-                  <Linkedin className="w-6 h-6" />
-                </a>
-                <a href="mailto:forownersagency@gmail.com"
-                   className="text-slate-300 hover:text-white transition-colors">
-                  <Mail className="w-6 h-6" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+      <footer>
+       <Footer /> 
       </footer>
     </div>
   );
