@@ -15,8 +15,8 @@ export function Navigation({ scrolled }: NavigationProps) {
     }`}>
           <div className="flex items-center justify-center bg-gradient-to-br from-[#050725] via-[#050F5A] to-[#050725] animate-gradient bg-500% p-3">
         <h1 className="text-white text-center text-sm">
-        <a href="" className="mx-2">
-        Get your Free Ebook Now! →
+        <a href="#contact" className="mx-2">
+        Let's Build Something Great →
           </a>
         </h1>
     </div>

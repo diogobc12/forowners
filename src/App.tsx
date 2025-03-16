@@ -91,15 +91,15 @@ function App() {
   const testimonials = [
     {
       text: "ForOwners transformed our digital presence completely. Their attention to detail and innovative approach set them apart.",
-      author: "Sarah Johnson, CEO of TechStart"
+      author: "Sarah Johnson, CEO of Make it Green"
     },
     {
       text: "The team's expertise in both design and development helped us achieve results beyond our expectations.",
-      author: "Michael Chen, Founder of GrowthLabs"
+      author: "Michael Chen, Founder of FitKet"
     },
     {
       text: "Working with ForOwners was a game-changer for our brand. They delivered exceptional results on time and within budget.",
-      author: "Emma Williams, Marketing Director"
+      author: "Emma Williams, Marketing Director of Atlantic Jewels"
     }
   ];
 
