@@ -51,7 +51,6 @@ export function Navigation({ scrolled }: NavigationProps) {
         <div className="px-2 pt-2 pb-4 space-y-4">
           <a href="#services" className="block text-white hover:text-cyan-400 transition-colors">Services</a>
           <a href="#why-us" className="block text-white hover:text-cyan-400 transition-colors">Why Us</a>
-          <a href="#testimonials" className="block text-white hover:text-cyan-400 transition-colors">Testimonials</a>
           <a href="#contact" className="block text-white hover:text-cyan-400 transition-colors">Contact</a>
           <a href="#contact" className="block px-4 py-2 bg-cyan-500 hover:bg-cyan-600 transition-colors rounded-full text-center">
             Get in Touch
