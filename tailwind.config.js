@@ -8,7 +8,7 @@ export default {
       },
       animation: {
         pulse: "pulse 1s infinite", // Certifique-se de que "pulse" está no seu tema
-        scroll: 'scroll 20s linear infinite',
+        scroll: 'scroll 30s linear infinite',
         gradient: 'gradient 12s ease-in-out infinite',
       },
       keyframes: {

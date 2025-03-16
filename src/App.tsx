@@ -169,7 +169,7 @@ function App() {
             <PerformanceAnimation />
           </div>
         </div>
-        <div className="container grid grid-rows-3"> 
+        <div className="container grid md:grid-rows-3 my-3"> 
         <div className='row-start-2'>
         <AppCarousel/>
         </div>
