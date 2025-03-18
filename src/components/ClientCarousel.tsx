@@ -34,19 +34,18 @@ export default function ClientCarousel() {
       <div className="mx-auto grid md:grid-cols-4 gap-0 items-center">
         {/* Texto à esquerda */}
         <div className="md:col-span-1 col-span-2 xl:px-20 pl-1 text-center md:text-left pr-1 py-5 md:py-0">
-          <h2 className="text-white md:text-base text-lg font-light">Companys</h2>
-          <h3 className="text-white md:text-base text-lg font-light">that <span className='text-cyan-400'>trusted</span> in us:</h3>
+          <h2 className="text-white md:text-base text-lg font-light">Companys that <span className='text-cyan-400'>trusted</span> in us:</h2>
         </div>
         
         {/* Animação à direita */}
-        <div className="md:col-span-3 col-span-2 relative overflow-hidden pb-4">
+        <div className="md:col-span-3 col-span-2 relative overflow-hidden pb-4 ">
           <div className="absolute left-0 top-0 z-10 h-full w-[100px] to-transparent"></div>
           <div className="absolute right-0 top-0 z-10 h-full w-[100px] to-transparent"></div>  
           <div className="flex space-x-2 animate-scroll ">
             {[...clients, ...clients, ...clients].map((client, index) => (
               <div 
                 key={`${client.id}-${index}`}
-                className="flex-none md:w-[200px] w-[120px] transition-all duration-500 ease-out">
+                className="flex-none md:w-[200px] w-[120px] transition-all duration-1000 ease-out">
                 <div className="bg-transparent md:h-32 h-16 flex items-center justify-center">
                   <img
                     src={client.logo}

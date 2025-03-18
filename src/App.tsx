@@ -80,12 +80,12 @@ function App() {
   }, []);
 
   const services = [
-    { icon: <Palette className="w-8 h-8" />, title: 'Branding', description: 'Crafting a unique identity' },
-    { icon: <Code2 className="w-8 h-8" />, title: 'Web Design', description: 'Sleek and intuitive interfaces' },
-    { icon: <Globe2 className="w-8 h-8" />, title: 'Web Development', description: 'High-performance, scalable solutions' },
-    { icon: <Play className="w-8 h-8" />, title: 'Graphic Motion', description: 'Engaging animations & visuals' },
-    { icon: <MapPin className="w-8 h-8" />, title: 'Google Maps Profile', description: 'Optimizing business visibility' },
-    { icon: <Headphones className="w-8 h-8" />, title: 'Online Consulting', description: 'Expert digital strategy guidance' },
+    { icon: <Palette className="md:w-8 md:h-8 w-6 h-6" />, title: 'Branding', description: 'Crafting a unique identity' },
+    { icon: <Code2 className="md:w-8 md:h-8 w-6 h-6" />, title: 'Web Design', description: 'Sleek and intuitive interfaces' },
+    { icon: <Globe2 className="md:w-8 md:h-8 w-6 h-6" />, title: 'Web Development', description: 'High-performance, scalable solutions' },
+    { icon: <Play className="md:w-8 md:h-8 w-6 h-6" />, title: 'Graphic Motion', description: 'Engaging animations & visuals' },
+    { icon: <MapPin className="md:w-8 md:h-8 w-6 h-6" />, title: 'Google Maps Profile', description: 'Optimizing business visibility' },
+    { icon: <Headphones className="md:w-8 md:h-8 w-6 h-6" />, title: 'Online Consulting', description: 'Expert digital strategy guidance' },
   ];
 
   const testimonials = [
@@ -134,7 +134,7 @@ function App() {
           <p className="text-slate-300 text-center mb-12 max-w-2xl mx-auto">
             We provide comprehensive digital solutions to elevate your brand and online presence.
           </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mx-4 md:mx-0">
             {services.map((service, index) => (
               <ServiceCard key={index} {...service} />
             ))}
