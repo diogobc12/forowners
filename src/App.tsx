@@ -184,7 +184,7 @@ function App() {
           <p className="text-slate-300 text-center mb-12 max-w-2xl mx-auto">
             Don't just take our word for it. Here's what our clients have to say about our work.
           </p>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 md:mx-0 mx-4">
             {testimonials.map((testimonial, index) => (
               <Testimonial key={index} {...testimonial} />
             ))}
