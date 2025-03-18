@@ -30,7 +30,7 @@ const clients = [
 
 export default function ClientCarousel() {
   return (
-    <section className="relative rounded-2xl mx-auto bg-gradient-to-r from-[#060623]/50 via-[#000000]/80 to-[#060623]/50 pl-2 pr-5 overflow-hidden">
+    <section className="relative md:rounded-2xl mx-auto bg-gradient-to-r from-[#060623]/50 via-[#000000]/80 to-[#060623]/50 pl-2 pr-5 overflow-hidden">
       <div className="mx-auto grid md:grid-cols-4 gap-0 items-center">
         {/* Texto à esquerda */}
         <div className="md:col-span-1 col-span-2 xl:px-20 pl-1 text-center md:text-left pr-1 py-5 md:py-0">
