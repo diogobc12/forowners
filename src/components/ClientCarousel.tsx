@@ -34,7 +34,7 @@ export default function ClientCarousel() {
       <div className="mx-auto grid md:grid-cols-4 gap-0 items-center">
         {/* Texto à esquerda */}
         <div className="md:col-span-1 col-span-2 xl:px-20 pl-1 text-center md:text-left pr-1 py-5 md:py-0">
-          <h2 className="text-white md:text-base text-lg font-light">Companys that <span className='text-cyan-400'>trusted</span> in us:</h2>
+          <h2 className="text-white md:text-base text-lg font-light">Companys that <span className='text-cyan-400'>trusted</span> in us</h2>
         </div>
         
         {/* Animação à direita */}
