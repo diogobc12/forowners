@@ -144,7 +144,7 @@ function App() {
 
       {/* Why Choose Us Section */}
       <section id="why-us" className="grid md:grid-rows-2 gap-4 pt-20 pb-0 bg-no-repeat bg-cover bg-black bg-center justify-center" style={{ backgroundImage: "url('/bg3.jpeg')"}}>
-        <div className="container auto p-8 grid md:grid-cols-2 gap-12 items-center relative w-full h-full bg-gradient-to-r from-[#060623]/50 via-[#000000]/60 to-[#060623]/50 sm:rounded-2xl flex items-center justify-center overflow-hidden">
+        <div className="container auto p-8 grid md:grid-cols-2 gap-12 items-center relative w-full h-full bg-gradient-to-r from-[#060623]/50 via-[#000000]/60 to-[#060623]/50 md:rounded-2xl flex items-center justify-center overflow-hidden">
           <div>
             <h2 className="text-4xl font-bold mb-8 mt-7">Why Choose Us</h2>
             <ul className="space-y-4">

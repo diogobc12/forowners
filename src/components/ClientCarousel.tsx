@@ -31,16 +31,16 @@ const clients = [
 export default function ClientCarousel() {
   return (
     <section className="relative sm:rounded-2xl mx-auto bg-gradient-to-r from-[#060623]/50 via-[#000000]/80 to-[#060623]/50 overflow-hidden">
-      <div className="mx-auto grid md:grid-cols-4 gap-0 items-center ">
+      <div className="mx-auto grid lg:grid-cols-4 gap-0 items-center ">
         {/* Texto à esquerda */}
-        <div className="md:col-span-1 sm:items-center sm:justify-center sm:flex col-span-2 xl:px-20 pl-1 text-center md:text-left pr-1 py-5 md:py-0 w-full h-full sm:bg-gradient-to-l sm:from-[#02020a] sm:to-[#060623]/50">
-          <h2 className="text-white md:text-base text-lg font-light">Companys that <span className='text-cyan-400'>trusted</span> in us</h2>
+        <div className="lg:col-span-1 lg:items-center lg:justify-center lg:flex col-span-2 xl:px-20 pl-1 text-center lg:text-left pr-1 py-5 lg:py-0 w-full h-full lg:bg-gradient-to-l lg:from-[#02020a] lg:to-[#060623]/50">
+          <h2 className="text-white lg:text-base text-lg font-light">Companys that <span className='text-cyan-400'>trusted</span> in us</h2>
         </div>
         
         {/* Animação à direita */}
-        <div className="md:col-span-3 col-span-2 relative overflow-hidden pb-4 ">
+        <div className="lg:col-span-3 col-span-2 relative overflow-hidden pb-4">
+        <div className="absolute right-0 top-0 z-10 h-full w-[100px]  sm:bg-gradient-to-l sm:from-[#02020a] sm:to-transparent lg:z-10 lg:bg-none"></div>
           <div className="absolute left-0 top-0 z-10 h-full w-[100px]  sm:bg-gradient-to-r sm:from-[#02020a] sm:to-transparent sm:z-10"></div>
-          <div className="absolute right-0 top-0 z-10 h-full w-[100px]  sm:bg-gradient-to-l sm:from-[#02020a] sm:to-transparent sm:z-10"></div>  
           <div className="flex space-x-2 animate-scroll ">
             {[...clients, ...clients, ...clients].map((client, index) => (
               <div 
