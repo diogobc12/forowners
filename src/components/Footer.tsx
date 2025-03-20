@@ -20,7 +20,7 @@ const Footer = () => {
                    className="text-slate-300 hover:text-white transition-colors">
                   <Instagram className="w-6 h-6" />
                 </a>
-                <a href="mailto:forownersagency@gmail.com"
+                <a href="mailto:agency@forowners.co"
                    className="text-slate-300 hover:text-white transition-colors">
                   <Mail className="w-6 h-6" />
                 </a>
