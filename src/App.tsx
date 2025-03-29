@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Globe2, Palette, Code2, Play, MapPin, Headphones, ChevronRight, Instagram, Linkedin, Mail, ArrowRight } from 'lucide-react';
+import { Globe2, Palette, Code2, Play, MapPin, Headphones, ChevronRight, Instagram, Linkedin, Mail, ArrowRight, TrendingUp } from 'lucide-react';
 import { Testimonial } from './components/Testimonial';
 import { ServiceCard } from './components/ServiceCard';
 import { ContactForm } from './components/ContactForm';
@@ -68,6 +68,11 @@ function TypewriterText() {
 
 
 function App() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, [])
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -105,7 +110,9 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#050725] text-white">
+      <div className='flex justify-center'>
       <Navigation scrolled={scrolled} />
+      </div>
       {/* Hero Section */}
       <section id="hero" className="min-h-screen flex items-center pt-20">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
@@ -121,9 +128,22 @@ function App() {
               Let's Talk <ChevronRight className="ml-2 w-5 h-5" />
             </a>
           </div>
-          <div className="hidden md:block">
-            <GlobeAnimation />
+{/* Right Column - Animated Arrow */}
+<div className="relative h-[500px] flex items-center justify-center hidden md:block">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1E3A8A]/20 to-[#3B82F6]/20 rounded-3xl blur-3xl"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transition: 'opacity 2s ease-out'
+            }}
+          />
+          
+          {/* Grid Background */}
+          <div className="absolute inset-0 grid grid-cols-6 grid-rows-6 gap-8 opacity-20">
+            {[...Array(36)].map((_, i) => (
+              <div key={i} className="border-[0.5px] border-[#60A5FA]/20 rounded-lg"></div>
+            ))}
           </div>
+        </div>
         </div>
       </section>
 
@@ -144,7 +164,7 @@ function App() {
 
       {/* Why Choose Us Section */}
       <section id="why-us" className="grid md:grid-rows-2 gap-4 pt-20 pb-0 bg-no-repeat bg-cover bg-black bg-center justify-center" style={{ backgroundImage: "url('/bg3.jpeg')"}}>
-        <div className="container auto p-8 grid md:grid-cols-2 gap-12 items-center relative w-full h-full bg-gradient-to-r from-[#060623]/50 via-[#000000]/60 to-[#060623]/50 md:rounded-2xl flex items-center justify-center overflow-hidden">
+        <div className="container auto p-8 grid md:grid-cols-2 gap-12 items-center row-start-1 relative w-full h-full bg-gradient-to-r from-[#060623]/50 via-[#000000]/60 to-[#060623]/50 md:rounded-2xl flex items-center justify-center overflow-hidden">
           <div>
             <h2 className="text-4xl font-bold mb-8 mt-7">Why Choose Us</h2>
             <ul className="space-y-4">
