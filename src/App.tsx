@@ -110,7 +110,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#050725] text-white">
-      <div className='flex justify-center'>
+      <div className='flex justify-center mx-2'>
       <Navigation scrolled={scrolled} />
       </div>
       {/* Hero Section */}
