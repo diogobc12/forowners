@@ -208,7 +208,6 @@ export function Forms() {
 <div>
             {currentStep > 0 && (
         <motion.button
-  
           onClick={handleStartOver}
           className=" text-white opacity-60 hover:opacity-100 
                    transition-opacity flex items-center space-x-2 p-2 rounded-lg

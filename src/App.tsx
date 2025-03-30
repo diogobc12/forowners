@@ -12,6 +12,9 @@ import Footer from './components/Footer';
 import { Forms } from './components/Forms';
 import { AnimatedNumber } from './components/AnimatedNumber';
 
+function testimonials() {
+  return <Testimonial />;
+}
 function AppCarousel() {
   return (
     <div className="">
@@ -91,20 +94,6 @@ function App() {
     { icon: <MapPin className="md:w-8 md:h-8 w-6 h-6" />, title: 'Google Maps Profile', description: 'Optimizing business visibility' },
   ];
 
-  const testimonials = [
-    {
-      text: "ForOwners transformed our digital presence completely. Their attention to detail and innovative approach set them apart.",
-      author: "Sarah Johnson, CEO of Make it Green"
-    },
-    {
-      text: "The team's expertise in both design and development helped us achieve results beyond our expectations.",
-      author: "Michael Chen, Founder of FitKet"
-    },
-    {
-      text: "Working with ForOwners was a game-changer for our brand. They delivered exceptional results on time and within budget.",
-      author: "Emma Williams, Marketing Director of Atlantic Jewels"
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-[#050725] text-white">
@@ -234,18 +223,10 @@ function App() {
         </div>
       </section>
 
-<section className='bg-gradient-to-b from-[#000000] to-[#050725] py-40'>
-<div className="container mx-auto px-4 content-center">
-          <h2 className="text-4xl font-bold text-center mb-4">What Clients Say</h2>
-          <p className="text-slate-300 text-center mb-12 max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what our clients have to say about our work.
-          </p>
-          <div className="grid md:grid-cols-3 gap-8 md:mx-0 mx-4">
-            {testimonials.map((testimonial, index) => (
-              <Testimonial key={index} {...testimonial} />
-            ))}
+<section>
+          <div>
+              <Testimonial />
           </div>
-        </div>
 </section>
 
       {/* Footer */}
