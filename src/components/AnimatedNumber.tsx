@@ -8,7 +8,7 @@ interface AnimatedNumberProps {
   suffix?: string;
 }
 
-export function AnimatedNumber({ end, duration = 2000, label, prefix = '', suffix = '' }: AnimatedNumberProps) {
+export function AnimatedNumber({ end, duration = 3000, label, prefix = '', suffix = '' }: AnimatedNumberProps) {
   const [count, setCount] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
