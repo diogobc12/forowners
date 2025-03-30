@@ -196,7 +196,7 @@ export function Forms() {
             </div>
 
             <div className="flex justify-between items-center">
-              <div className="h-1 bg-white bg-opacity-20 flex-1 rounded-full overflow-hidden">
+              <div className="mx-2 lg:mx-0 h-1 bg-white bg-opacity-20 flex-1 rounded-full overflow-hidden">
                 <div 
                   className="h-full bg-white transition-all duration-300"
                   style={{ width: `${((currentStep + 1) / questions.length) * 100}%` }}
