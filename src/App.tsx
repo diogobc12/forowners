@@ -212,11 +212,11 @@ function App() {
 
 <section className='mt-20 pb-10 bg-gradient-to-b from-[#050725] to-[#050F5A]'>
 <div className="flex flex-col items-center justify-center ">
-      <h1 className="lg:text-4xl text-3xl font-bold mb-16 text-center">
+      <h1 className="lg:text-4xl text-3xl font-bold mb-10 text-center">
       Elevate your <span className='bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent'>brand </span>!
       </h1>
-      <div className="grid gap-8 md:grid-cols-3">
-        <AnimatedNumber end={3} label="Searches happen daily on Google" prefix="+" suffix=" Billion"/>
+      <div className="grid lg:gap-8 gap-2 lg:grid-cols-3">
+        <AnimatedNumber end={3} label="searches happen daily on Google" prefix="+" suffix=" Billion"/>
         <AnimatedNumber end={70} label="of sales come from a good website" prefix="+" suffix="%" />
         <AnimatedNumber end={80} label="abandon slow websites" prefix="+" suffix="%"/>
       </div>
