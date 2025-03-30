@@ -10,7 +10,7 @@ const Footer = () => {
             <div className='col-span-2'>
               <img src={logo} alt="ForOwners Logo" className="h-5 w-auto mb-4" />
               <p className="text-slate-300 mb-4 max-w-md">
-                A premium digital consultancy focused on crafting exceptional digital experiences for modern brands.
+                ForOwners will make it happen again!
               </p>
             </div>
             <div className='col-start-4'> 
