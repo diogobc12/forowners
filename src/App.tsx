@@ -163,7 +163,7 @@ function App() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section id="why-us" className="grid md:grid-rows-3 gap-4 pt-20 pb-0 bg-no-repeat bg-cover bg-black bg-center justify-center " style={{ backgroundImage: "url('/bg3.jpeg')"}}>
+      <section id="why-us" className="grid md:grid-rows-3 gap-20 pt-20 pb-0 bg-no-repeat bg-cover bg-black bg-center justify-center " style={{ backgroundImage: "url('/bg3.jpeg')"}}>
         <div className="container mt-5 auto p-8 grid md:grid-cols-2 gap-12 items-center row-start-1 relative w-full bg-gradient-to-r from-[#060623]/50 via-[#000000]/60 to-[#060623]/50 md:rounded-2xl flex items-center justify-center overflow-hidden">
           <div>
             <h2 className="text-4xl font-bold mb-8 mt-7">Why Choose Us</h2>
@@ -190,8 +190,12 @@ function App() {
             <PerformanceAnimation />
           </div>
         </div>
-        <div className="container grid grid-rows-3 row-start-3 "> 
-        <div className='row-start-3 '>
+        <div>
+          
+        </div>
+
+        <div className="container content-end row-start-3"> 
+        <div className=''>
         <AppCarousel/>
         </div>
           </div>
@@ -208,8 +212,8 @@ function App() {
 
 <section className='mt-20 pb-10 bg-gradient-to-b from-[#050725] to-[#050F5A]'>
 <div className="flex flex-col items-center justify-center ">
-      <h1 className="text-4xl font-bold mb-16 text-center">
-      Elevate your brand!
+      <h1 className="lg:text-4xl text-3xl font-bold mb-16 text-center">
+      Elevate your <span className='bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent'>brand </span>!
       </h1>
       <div className="grid gap-8 md:grid-cols-3">
         <AnimatedNumber end={3} label="Searches happen daily on Google" prefix="+" suffix=" Billion"/>
@@ -220,7 +224,7 @@ function App() {
 </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-[#050F5A]">
+      <section className="py-20 bg-[#050F5A] ">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-5xl font-bold mb-6">Let's Build Something Great</h2>
           <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
@@ -232,10 +236,8 @@ function App() {
         </div>
       </section>
 
-      
-      {/* Testimonials Section */}
-      <section id="testimonials" className="pb-40 pt-10 bg-cover bg-center bg-gradient-to-t from-[#050725] to-[#050F5A]">
-        <div className="container mx-auto px-4">
+<section className='bg-gradient-to-b from-[#000000] to-[#050725] py-40'>
+<div className="container mx-auto px-4 content-center">
           <h2 className="text-4xl font-bold text-center mb-4">What Clients Say</h2>
           <p className="text-slate-300 text-center mb-12 max-w-2xl mx-auto">
             Don't just take our word for it. Here's what our clients have to say about our work.
@@ -246,8 +248,7 @@ function App() {
             ))}
           </div>
         </div>
-      </section>
-
+</section>
 
       {/* Footer */}
       <footer>

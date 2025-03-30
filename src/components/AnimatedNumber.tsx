@@ -62,7 +62,7 @@ export function AnimatedNumber({ end, duration = 3000, label, prefix = '', suffi
 
   return (
     <div ref={elementRef} className="text-center p-8">
-      <div className="text-5xl font-bold mb-2 text-white">
+      <div className="lg:text-5xl text-3xl font-bold mb-2 text-white">
         {prefix}{count}{suffix}
       </div>
       <div className="text-white/80">{label}</div>
