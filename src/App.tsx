@@ -206,8 +206,16 @@ function App() {
           </div>
       </section>
 
+
+      {/* Contact Section */}
+      <section id="contact" className='bg-gradient-to-b from-[#000000] via-[#050725]/50 to-[#050725]'>
+        <div className="container mx-auto min-h-screen  flex items-center justify-center p-4">
+      <Forms />
+        </div>
+      </section>
+
       {/* Testimonials Section */}
-      <section id="testimonials" className="pt-20 pb-40 bg-cover bg-center bg-gradient-to-b from-[#000000] via-[#050725]/50 to-[#050725]">
+      <section id="testimonials" className="pb-40 bg-cover bg-center">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-4 mt-7">What Clients Say</h2>
           <p className="text-slate-300 text-center mb-12 max-w-2xl mx-auto">
@@ -234,12 +242,6 @@ function App() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact">
-        <div className="container mx-auto min-h-screen flex items-center justify-center p-4">
-      <Forms />
-        </div>
-      </section>
 
       {/* Footer */}
       <footer>

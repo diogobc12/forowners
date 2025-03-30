@@ -24,7 +24,7 @@ const questions: Question[] = [
   {
     id: 'occasion',
     title: "WHAT'S THE OCCASION?",
-    subtitle: "Tik tak. Choose wisely.",
+    subtitle: "Contact us!",
     options: [
       { id: 'branding', label: 'Branding' },
       { id: 'webdesign', label: 'Web Design' }, 
