@@ -135,7 +135,7 @@ function App() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-cover bg-gradient-to-t from-[#000000] to-[#050725]/50">
+      <section id="services" className="pb-20 bg-cover bg-gradient-to-t from-[#000000] to-[#050725]/50">
         <div className="container mx-auto">
           <h2 className="text-4xl font-bold text-center mb-4 mt-10">Our Services</h2>
           <p className="text-slate-300 text-center mb-12 max-w-2xl mx-auto">
