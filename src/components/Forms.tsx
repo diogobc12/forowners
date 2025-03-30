@@ -172,7 +172,7 @@ export function Forms() {
                              disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <div className="w-4 h-4 lg:w-6 lg:h-6 rounded-full border-2 border-white flex-shrink-0" />
-                    <span className="lg:text-xl text-base">{option.label}</span>
+                    <span className="lg:text-xl  s text-base">{option.label}</span>
                   </button>
                 ))
               ) : (
