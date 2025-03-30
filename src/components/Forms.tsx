@@ -151,7 +151,7 @@ export function Forms() {
               </div>
             )}
 
-            <div className="space-y-4">
+            <div className="space-y-4 mx-4 lg:mx-0">
               {currentQuestion.options ? (
                 currentQuestion.options.map(option => (
                   <button
