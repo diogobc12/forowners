@@ -135,13 +135,13 @@ export function Forms() {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -50 }}
           transition={{ duration: 0.3 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
         >
           <div className="space-y-4">
-            <h1 className="text-6xl font-bold text-white">
+            <h1 className="lg:text-6xl text-4xl font-bold text-center lg:text-left text-white">
               {highlightText(currentQuestion.title, 'OCCASION')}
             </h1>
-            <p className="text-white text-xl opacity-80">{currentQuestion.subtitle}</p>
+            <p className="text-white text-xl opacity-80 text-center lg:text-left">{currentQuestion.subtitle}</p>
           </div>
 
           <div className="space-y-8">
@@ -162,7 +162,7 @@ export function Forms() {
                              text-white rounded-lg flex items-center space-x-3 transition-all
                              disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <div className="w-6 h-6 rounded-full border-2 border-white flex-shrink-0" />
+                    <div className="w-4 h-4 lg:w-6 lg:h-6 rounded-full border-2 border-white flex-shrink-0" />
                     <span className="text-xl">{option.label}</span>
                   </button>
                 ))
