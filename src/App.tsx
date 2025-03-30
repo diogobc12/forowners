@@ -11,15 +11,7 @@ import './index.css'; // ou o caminho correto para o seu arquivo CSS
 import ClientCarousel from './components/ClientCarousel';
 import Footer from './components/Footer';
 import { Forms } from './components/Forms';
-
-
-function forms() {
-  return (
-    <div className="min-h-screen bg-red-500 flex items-center justify-center p-4">
-      <Forms />
-    </div>
-  );
-}
+import { AnimatedNumber } from './components/AnimatedNumber';
 
 function AppCarousel() {
   return (
@@ -209,28 +201,27 @@ function App() {
 
       {/* Contact Section */}
       <section id="contact" className='bg-gradient-to-b from-[#000000] via-[#050725]/50 to-[#050725]'>
-        <div className="container mx-auto min-h-screen  flex items-center justify-center p-4">
+        <div className="container mx-auto min-h-screen  flex items-center justify-center p-4 pt-8 border-b border-gray-800">
       <Forms />
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section id="testimonials" className="pb-40 bg-cover bg-center">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-4 mt-7">What Clients Say</h2>
-          <p className="text-slate-300 text-center mb-12 max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what our clients have to say about our work.
-          </p>
-          <div className="grid md:grid-cols-3 gap-8 md:mx-0 mx-4">
-            {testimonials.map((testimonial, index) => (
-              <Testimonial key={index} {...testimonial} />
-            ))}
-          </div>
-        </div>
-      </section>
+
+<section className='mt-20 pb-10 bg-gradient-to-b from-[#050725] to-[#050F5A]'>
+<div className="flex flex-col items-center justify-center ">
+      <h1 className="text-4xl font-bold mb-16 text-center">
+      Elevate your brand!
+      </h1>
+      <div className="grid gap-8 md:grid-cols-3">
+        <AnimatedNumber end={3} label="Searches happen daily on Google" prefix="+" suffix=" Billion"/>
+        <AnimatedNumber end={70} label="of sales come from a good website" prefix="+" suffix="%" />
+        <AnimatedNumber end={80} label="abandon slow websites" prefix="+" suffix="%"/>
+      </div>
+    </div>
+</section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-[#050725]">
+      <section className="py-20 bg-[#050F5A]">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-5xl font-bold mb-6">Let's Build Something Great</h2>
           <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
@@ -239,6 +230,22 @@ function App() {
           <a href="#contact" className="inline-flex items-center px-8 py-3 bg-white text-slate-900 hover:bg-slate-100 transition-colors rounded-full font-semibold">
             Get in Touch <ChevronRight className="ml-2 w-5 h-5" />
           </a>
+        </div>
+      </section>
+
+      
+      {/* Testimonials Section */}
+      <section id="testimonials" className="pb-40 pt-10 bg-cover bg-center bg-gradient-to-t from-[#050725] to-[#050F5A]">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-4">What Clients Say</h2>
+          <p className="text-slate-300 text-center mb-12 max-w-2xl mx-auto">
+            Don't just take our word for it. Here's what our clients have to say about our work.
+          </p>
+          <div className="grid md:grid-cols-3 gap-8 md:mx-0 mx-4">
+            {testimonials.map((testimonial, index) => (
+              <Testimonial key={index} {...testimonial} />
+            ))}
+          </div>
         </div>
       </section>
 
