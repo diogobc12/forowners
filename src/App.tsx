@@ -88,9 +88,7 @@ function App() {
     { icon: <Palette className="md:w-8 md:h-8 w-6 h-6" />, title: 'Branding', description: 'Crafting a unique identity' },
     { icon: <Code2 className="md:w-8 md:h-8 w-6 h-6" />, title: 'Web Design', description: 'Sleek and intuitive interfaces' },
     { icon: <Globe2 className="md:w-8 md:h-8 w-6 h-6" />, title: 'Web Development', description: 'High-performance, scalable solutions' },
-    { icon: <Play className="md:w-8 md:h-8 w-6 h-6" />, title: 'Graphic Motion', description: 'Engaging animations & visuals' },
     { icon: <MapPin className="md:w-8 md:h-8 w-6 h-6" />, title: 'Google Maps Profile', description: 'Optimizing business visibility' },
-    { icon: <Headphones className="md:w-8 md:h-8 w-6 h-6" />, title: 'Online Consulting', description: 'Expert digital strategy guidance' },
   ];
 
   const testimonials = [
@@ -149,12 +147,12 @@ function App() {
 
       {/* Services Section */}
       <section id="services" className="py-20 bg-cover bg-gradient-to-t from-[#000000] to-[#050725]/50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto">
           <h2 className="text-4xl font-bold text-center mb-4 mt-10">Our Services</h2>
           <p className="text-slate-300 text-center mb-12 max-w-2xl mx-auto">
             We provide comprehensive digital solutions to elevate your brand and online presence.
           </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mx-4 md:mx-0">
+          <div className="grid lg:grid-cols-4 gap-8 mx-4 lg:mx-0">
             {services.map((service, index) => (
               <ServiceCard key={index} {...service} />
             ))}
@@ -224,7 +222,7 @@ function App() {
 </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-[#050F5A] ">
+      <section className="pt-40 bg-gradient-to-t from-[#000000] via-[#050725] to-[#050F5A]">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-5xl font-bold mb-6">Let's Build Something Great</h2>
           <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
