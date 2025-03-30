@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Globe2, Palette, Code2, Play, MapPin, Headphones, ChevronRight, Instagram, Linkedin, Mail, ArrowRight, TrendingUp } from 'lucide-react';
 import { Testimonial } from './components/Testimonial';
 import { ServiceCard } from './components/ServiceCard';
-import { ContactForm } from './components/ContactForm';
 import { Navigation } from './components/Navigation';
 import { GlobeAnimation } from './components/GlobeAnimation';
 import { PerformanceAnimation } from './components/PerformanceAnimation';

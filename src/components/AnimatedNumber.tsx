@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 interface AnimatedNumberProps {
   end: number;
@@ -10,8 +10,32 @@ interface AnimatedNumberProps {
 
 export function AnimatedNumber({ end, duration = 2000, label, prefix = '', suffix = '' }: AnimatedNumberProps) {
   const [count, setCount] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const elementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.1
+      }
+    );
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
     let startTime: number | null = null;
     let animationFrameId: number;
 
@@ -34,10 +58,10 @@ export function AnimatedNumber({ end, duration = 2000, label, prefix = '', suffi
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, [end, duration]);
+  }, [end, duration, isVisible]);
 
   return (
-    <div className="text-center p-8">
+    <div ref={elementRef} className="text-center p-8">
       <div className="text-5xl font-bold mb-2 text-white">
         {prefix}{count}{suffix}
       </div>
