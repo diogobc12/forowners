@@ -10,6 +10,16 @@ import logo from "/src/assets/logo.png";
 import './index.css'; // ou o caminho correto para o seu arquivo CSS
 import ClientCarousel from './components/ClientCarousel';
 import Footer from './components/Footer';
+import { Forms } from './components/Forms';
+
+
+function forms() {
+  return (
+    <div className="min-h-screen bg-red-500 flex items-center justify-center p-4">
+      <Forms />
+    </div>
+  );
+}
 
 function AppCarousel() {
   return (
@@ -18,7 +28,6 @@ function AppCarousel() {
     </div>
   );
 }
-
 
 function TypewriterText() {
   const words = ['Brand', 'Presence', 'Design'];
@@ -163,8 +172,8 @@ function App() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section id="why-us" className="grid md:grid-rows-2 gap-4 pt-20 pb-0 bg-no-repeat bg-cover bg-black bg-center justify-center" style={{ backgroundImage: "url('/bg3.jpeg')"}}>
-        <div className="container auto p-8 grid md:grid-cols-2 gap-12 items-center row-start-1 relative w-full h-full bg-gradient-to-r from-[#060623]/50 via-[#000000]/60 to-[#060623]/50 md:rounded-2xl flex items-center justify-center overflow-hidden">
+      <section id="why-us" className="grid md:grid-rows-3 gap-4 pt-20 pb-0 bg-no-repeat bg-cover bg-black bg-center justify-center " style={{ backgroundImage: "url('/bg3.jpeg')"}}>
+        <div className="container mt-5 auto p-8 grid md:grid-cols-2 gap-12 items-center row-start-1 relative w-full bg-gradient-to-r from-[#060623]/50 via-[#000000]/60 to-[#060623]/50 md:rounded-2xl flex items-center justify-center overflow-hidden">
           <div>
             <h2 className="text-4xl font-bold mb-8 mt-7">Why Choose Us</h2>
             <ul className="space-y-4">
@@ -190,8 +199,8 @@ function App() {
             <PerformanceAnimation />
           </div>
         </div>
-        <div className="container grid md:grid-rows-3 my-3"> 
-        <div className='row-start-2'>
+        <div className="container grid grid-rows-3 row-start-3 "> 
+        <div className='row-start-3 '>
         <AppCarousel/>
         </div>
           </div>
@@ -226,15 +235,9 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-4 mt-7">Contact Us</h2>
-          <p className="text-slate-300 text-center mb-12 max-w-2xl mx-auto">
-            Ready to start your project? Get in touch with us and we'll get back to you as soon as possible.
-          </p>
-          <div className="max-w-2xl mx-auto">
-            <ContactForm services={services.map(s => s.title)} />
-          </div>
+      <section id="contact">
+        <div className="container mx-auto min-h-screen flex items-center justify-center p-4">
+      <Forms />
         </div>
       </section>
 
