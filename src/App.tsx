@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Globe2, Palette, Code2, Play, MapPin, Headphones, ChevronRight, Instagram, Linkedin, Mail, ArrowRight, TrendingUp } from 'lucide-react';
+import { Globe2, Palette, Code2, MapPin, ChevronRight, ArrowRight } from 'lucide-react';
 import { Testimonial } from './components/Testimonial';
 import { ServiceCard } from './components/ServiceCard';
 import { Navigation } from './components/Navigation';
-import { GlobeAnimation } from './components/GlobeAnimation';
 import { PerformanceAnimation } from './components/PerformanceAnimation';
-import logo from "/src/assets/logo.png"; 
 import './index.css'; // ou o caminho correto para o seu arquivo CSS
 import ClientCarousel from './components/ClientCarousel';
 import Footer from './components/Footer';
 import { Forms } from './components/Forms';
 import { AnimatedNumber } from './components/AnimatedNumber';
 
-function testimonials() {
-  return <Testimonial />;
-}
 function AppCarousel() {
   return (
     <div className="">
