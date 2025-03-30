@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send } from 'lucide-react';
+import { Send, RotateCcw } from 'lucide-react';
 
 interface Option {
   id: string;
@@ -35,7 +35,7 @@ const questions: Question[] = [
   },
   {
     id: 'name',
-    title: "WHAT’S YOUR NAME?", 
+    title: "WHAT'S YOUR NAME?", 
     subtitle: "Nice to meet you!",
     type: 'text',
     placeholder: 'Type your name'
@@ -107,6 +107,14 @@ export function Forms() {
     }
   };
 
+  const handleStartOver = () => {
+    setCurrentStep(0);
+    setAnswers({});
+    setError(null);
+    setIsSuccess(false);
+    setIsSubmitting(false);
+  };
+
   const currentQuestion = questions[currentStep];
 
   const highlightText = (text: string, highlight: string) => {
@@ -127,7 +135,8 @@ export function Forms() {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto relative">
+
       <AnimatePresence mode="wait">
         <motion.div
           key={currentStep}
@@ -196,6 +205,19 @@ export function Forms() {
             </div>
 
             <div className="flex justify-between items-center">
+<div>
+            {currentStep > 0 && (
+        <motion.button
+  
+          onClick={handleStartOver}
+          className=" text-white opacity-60 hover:opacity-100 
+                   transition-opacity flex items-center space-x-2 p-2 rounded-lg
+                   hover:bg-white hover:bg-opacity-10"
+        >
+          <RotateCcw className="w-4 h-4" />
+        </motion.button>
+      )}
+</div>
               <div className="mx-2 lg:mx-0 h-1 bg-white bg-opacity-20 flex-1 rounded-full overflow-hidden">
                 <div 
                   className="h-full bg-white transition-all duration-300"
@@ -221,6 +243,7 @@ export function Forms() {
                   )}
                 </button>
               )}
+ 
             </div>
           </div>
         </motion.div>
