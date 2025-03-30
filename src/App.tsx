@@ -111,7 +111,7 @@ function App() {
                 </span>
             </h1>
             <p className="text-xl text-slate-300 mb-8">Your brand, refined. Your website, perfected.</p>
-            <a href="#contact" className="inline-flex items-center px-8 py-3 bg-cyan-500 hover:bg-cyan-600 transition-colors rounded-lg text-white font-semibold">
+            <a href="#contact" className="inline-flex items-center px-6 py-3 bg-cyan-500 hover:bg-cyan-600 transition-colors rounded-lg text-white font-semibold">
               Let's Talk <ChevronRight className="ml-2 w-5 h-5" />
             </a>
           </div>
