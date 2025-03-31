@@ -11,7 +11,7 @@ export function Navigation({ scrolled }: NavigationProps) {
 
   return (
     <nav className={`fixed z-50 transition-all duration-500 sm:p-5 mt-3 ${
-      scrolled ? 'bg-slate-900/90 backdrop-blur-sm shadow-lg mt-4 sm:mt-8 sm:w-[80%] w-[92%] sm:py-1 py-0 px-1 sm:px-2 rounded-lg mx-2' : 'bg-[#050725]' 
+      scrolled ? 'bg-slate-900/90 backdrop-blur-sm shadow-lg mt-4 sm:mt-8 sm:w-[80%] w-[92%] sm:py-1 py-0 px-1 sm:px-2 rounded-lg mx-2' : 'bg-none' 
     }`}>
       <div className="container mx-auto px-4 flex justify-between items-center h-20">
         <a href="#hero" className="flex items-center">
