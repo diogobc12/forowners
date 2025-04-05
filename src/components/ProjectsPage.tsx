@@ -6,16 +6,18 @@ interface ProjectCardProps {
   category: string;
   imageUrl: string;
   link?: string;
+  objectPosition?: string;
 }
 
-function ProjectCard({ category, imageUrl, link }: ProjectCardProps) {
+function ProjectCard({ category, imageUrl, link, objectPosition }: ProjectCardProps) {
   const content = (
     <div className="group relative overflow-hidden rounded-lg">
       <div className="aspect-[4/3] overflow-hidden">
         <img
           src={imageUrl}
           alt={category}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 object-left-top"
+          className={`h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 ${objectPosition || 'object-center'}`}
+
         />
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent">
@@ -42,18 +44,22 @@ const projects = [
     category: "Community & Website Moderator",
     imageUrl: "/top1.png",
     link: "https://top.gg/",
+    objectPosition: "object-left-top",
   },
   {
     category: "Chief Technology Officer",
     imageUrl: "/egcmedia1.png",
     link: "https://ecgmedia.org/",
+    objectPosition: "object-center",
   },
   {
     category: "Turkish Language Coordinator",
     imageUrl: "/medal1.png",
     link: "https://medal.tv/pt",
+    objectPosition: "object-left-top",
   },
 ];
+
 
 export const ProjectsPage = () => {
   return (
