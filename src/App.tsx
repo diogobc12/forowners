@@ -137,7 +137,7 @@ function App() {
           <p className="text-slate-300 text-center mb-12 max-w-2xl mx-auto">
             We provide comprehensive digital solutions to elevate your brand and online presence.
           </p>
-          <div className="grid lg:grid-cols-4 gap-8 mx-4 lg:mx-0">
+          <div className="grid lg:grid-cols-4 gap-8 mx-8 lg:mx-0">
             {services.map((service, index) => (
               <ServiceCard key={index} {...service} />
             ))}
