@@ -73,7 +73,7 @@ export const ProjectsPage = () => {
           </div>
         </div>
 
-        <div className="mt-10 lg:pt-20 pt-10 lg:mx-0 mx-5 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 border-t border-gray-800">
+        <div className="mt-10 lg:pt-20 pt-10 lg:mx-0 mx-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 border-t border-gray-800">
           {projects.map((project, index) => (
             <ProjectCard key={index} {...project} />
           ))}      

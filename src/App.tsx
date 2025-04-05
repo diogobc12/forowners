@@ -147,7 +147,7 @@ function App() {
 
       {/* Why Choose Us Section */}
       <section id="why-us" className="grid md:grid-rows-2 pt-20 pb-0 bg-no-repeat bg-cover bg-black bg-center justify-center " style={{ backgroundImage: "url('/bg3.jpeg')"}}>
-        <div className="container mt-5 auto p-8 grid md:grid-cols-2 gap-12 items-center row-start-1 relative w-full bg-gradient-to-r from-[#060623]/50 via-[#000000]/60 to-[#060623]/50 md:rounded-2xl flex items-center justify-center overflow-hidden">
+        <div className="container mt-5 auto p-8 grid md:grid-cols-2 gap-12 items-center row-start-1 relative w-full bg-none md:bg-gradient-to-r from-[#060623]/50 via-[#000000]/60 to-[#060623]/50 md:rounded-2xl flex items-center justify-center overflow-hidden">
           <div>
             <h2 className="text-4xl font-bold mb-8 mt-7">Why Choose Us</h2>
             <ul className="space-y-4">
@@ -169,11 +169,11 @@ function App() {
               </li>
             </ul>
           </div>
-          <div>
+          <div className='mt-20 lg:mt-0'>
             <PerformanceAnimation />
           </div>
         </div>
-        <div className='row-start-2 row-span-2 lg:my-20 mt-20 lg:mt-0'>
+        <div className='row-start-2 row-span-2 lg:my-20 mt-16 lg:mt-0'>
         <ProjectsPage />
         </div>
 
