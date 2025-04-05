@@ -149,7 +149,7 @@ function App() {
       <section id="why-us" className="grid md:grid-rows-2 pt-20 pb-0 bg-no-repeat bg-cover bg-black bg-center justify-center " style={{ backgroundImage: "url('/bg3.jpeg')"}}>
         <div className="lg:container mt-5 auto lg:p-8 grid lg:grid-cols-2 gap-12 items-center row-start-1 relative w-full bg-none lg:bg-gradient-to-r from-[#060623]/50 via-[#000000]/60 to-[#060623]/50 md:rounded-2xl flex items-center justify-center overflow-hidden">
           <div className='lg:bg-none bg-gradient-to-b from-[#060623]/50 via-[#000000]/60 to-transparent p-8'>
-            <h2 className="text-4xl font-bold mb-8 mt-7">Why Choose Us</h2>
+            <h2 className="text-4xl font-bold mb-8 mt-4">Why Choose Us</h2>
             <ul className="space-y-4">
               <li className="flex items-start">
                 <ArrowRight className="w-6 h-6 text-cyan-400 mr-4 mt-1 flex-shrink-0" />
