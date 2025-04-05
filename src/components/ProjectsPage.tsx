@@ -10,12 +10,12 @@ interface ProjectCardProps {
 
 function ProjectCard({ category, imageUrl, link }: ProjectCardProps) {
   const content = (
-    <div className="group relative overflow-hidden rounded-lg bg-white shadow-xl transition-all hover:shadow-2xl hover:opacity-100 opacity-60">
+    <div className="group relative overflow-hidden rounded-lg bg-white shadow-xl transition-all">
       <div className="aspect-[4/3] overflow-hidden">
         <img
           src={imageUrl}
           alt={category}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 object-left-top"
         />
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent">
@@ -40,17 +40,17 @@ function ProjectCard({ category, imageUrl, link }: ProjectCardProps) {
 const projects = [
   {
     category: "Community & Website Moderator",
-    imageUrl: "/topphoto.png",
+    imageUrl: "/top1.png",
     link: "https://top.gg/",
   },
   {
     category: "Chief Technology Officer",
-    imageUrl: "/egcmedia.png",
+    imageUrl: "/egcmedia1.png",
     link: "https://ecgmedia.org/",
   },
   {
     category: "Turkish Language Coordinator",
-    imageUrl: "/medalphoto.png",
+    imageUrl: "/medal1.png",
     link: "https://medal.tv/pt",
   },
 ];
