@@ -10,7 +10,7 @@ interface ProjectCardProps {
 
 function ProjectCard({ category, imageUrl, link }: ProjectCardProps) {
   const content = (
-    <div className="group relative overflow-hidden rounded-lg bg-white shadow-xl transition-all">
+    <div className="group relative overflow-hidden rounded-lg">
       <div className="aspect-[4/3] overflow-hidden">
         <img
           src={imageUrl}
