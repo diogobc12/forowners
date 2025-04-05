@@ -1,65 +1,57 @@
 import React from 'react';
 import { ArrowUpRight, Building2, Factory, Warehouse } from 'lucide-react';
+import { image } from 'framer-motion/client';
 
 interface ProjectCardProps {
-  title: string;
   category: string;
-  tags: string[];
   imageUrl: string;
+  link?: string;
 }
 
-function ProjectCard({ title, category, tags, imageUrl }: ProjectCardProps) {
-  return (
+function ProjectCard({ category, imageUrl, link }: ProjectCardProps) {
+  const content = (
     <div className="group relative overflow-hidden rounded-lg bg-white shadow-xl transition-all hover:shadow-2xl hover:opacity-100 opacity-60">
       <div className="aspect-[4/3] overflow-hidden">
         <img
           src={imageUrl}
-          alt={title}
+          alt={category}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent">
         <div className="absolute bottom-0 p-6">
-          <div className="mb-3 flex gap-2">
-            <span className="rounded-lg bg-white px-3 py-1 text-xs font-medium text-black font-bold">
-              {category}
-            </span>
-            {tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full bg-white/20 px-3 py-1 text-xs font-medium text-white"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-          <h3 className="text-xl font-semibold text-white group-hover:underline">
-            {title}
-          </h3>
+          <span className="rounded-lg bg-white px-3 py-1 text-xs font-medium text-black font-bold">
+            {category}
+          </span>
         </div>
       </div>
     </div>
+  );
+
+  return link ? (
+    <a href={link} target="_blank" rel="noopener noreferrer">
+      {content}
+    </a>
+  ) : (
+    content
   );
 }
 
 const projects = [
   {
-    title: "Automotiva",
-    category: "INDÚSTRIA",
-    tags: ["Automação", "IoT"],
-    imageUrl: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80",
+    category: "Community & Website Moderator",
+    imageUrl: "/topphoto.png",
+    link: "https://top.gg/",
   },
   {
-    title: "SVarejo",
-    category: "VAREJO",
-    tags: ["ERP", "Analytics"],
-    imageUrl: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80",
+    category: "Chief Technology Officer",
+    imageUrl: "/egcmedia.png",
+    link: "https://ecgmedia.org/",
   },
   {
-    title: "Webflow",
-    category: "Website",
-    tags: ["Development", "Design"],
-    imageUrl: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80",
+    category: "Turkish Language Coordinator",
+    imageUrl: "/medalphoto.png",
+    link: "https://medal.tv/pt",
   },
 ];
 
@@ -76,9 +68,9 @@ export const ProjectsPage = () => {
         </div>
 
         <div className="mt-10 lg:pt-20 pt-10 lg:mx-0 mx-5 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 border-t border-gray-800">
-          {projects.map((project) => (
-            <ProjectCard key={project.title} {...project} />
-          ))}
+          {projects.map((project, index) => (
+            <ProjectCard key={index} {...project} />
+          ))}      
         </div>
       </div>
     </div>
