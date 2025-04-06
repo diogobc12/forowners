@@ -171,7 +171,7 @@ export function Forms() {
                              text-white rounded-lg flex items-center space-x-3 transition-all
                              disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <div className="w-4 h-4 lg:w-6 lg:h-6 rounded-full border-2 border-white flex-shrink-0" />
+                    <div className="w-4 h-4 lg:w-6 lg:h-6 rounded-full border-2 border-cyan-400 flex-shrink-0" />
                     <span className="lg:text-xl text-base">{option.label}</span>
                   </button>
                 ))
@@ -219,7 +219,7 @@ export function Forms() {
 </div>
               <div className="mx-2 lg:mx-0 h-1 bg-white bg-opacity-20 flex-1 rounded-full overflow-hidden">
                 <div 
-                  className="h-full bg-white transition-all duration-300"
+                  className="h-full bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300"
                   style={{ width: `${((currentStep + 1) / questions.length) * 100}%` }}
                 />
               </div>
