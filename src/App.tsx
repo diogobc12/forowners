@@ -137,7 +137,7 @@ function App() {
           <p className="text-slate-300 text-center mb-12 max-w-2xl mx-auto">
             We provide comprehensive digital solutions to elevate your brand and online presence.
           </p>
-          <div className="grid lg:grid-cols-4 gap-8 mx-6 lg:mx-0">
+          <div className="grid lg:grid-cols-4 gap-8 mx-4 lg:mx-0">
             {services.map((service, index) => (
               <ServiceCard key={index} {...service} />
             ))}
@@ -146,10 +146,13 @@ function App() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section id="why-us" className="grid md:grid-rows-2 pt-20 pb-0 bg-no-repeat bg-cover bg-black bg-center justify-center " style={{ backgroundImage: "url('/bg3.jpeg')"}}>
-        <div className="lg:container mt-5 auto lg:p-8 grid lg:grid-cols-2 gap-12 items-center row-start-1 relative w-full bg-none lg:bg-gradient-to-r from-[#060623]/50 via-[#000000]/60 to-[#060623]/50 md:rounded-2xl flex items-center justify-center overflow-hidden">
-          <div className='lg:bg-none bg-gradient-to-b from-[#060623]/50 via-[#000000]/60 to-transparent p-8'>
-            <h2 className="text-4xl font-bold mb-8 mt-4">Why Choose Us</h2>
+      <section id="why-us" className="pb-0 bg-no-repeat bg-cover bg-black bg-center justify-center " style={{ backgroundImage: "url('/bg3.jpeg')"}}>
+        <div></div>
+        <div className='bg-gradient-to-b from-black to-[#060623]/50 p-10'></div>
+        <div className='bg-gradient-to-b from-[#060623]/50 via-[#000000]/60 to-transparent'>
+        <div className="lg:container auto p-8 grid lg:grid-cols-2 items-center row-start-1 relative w-full md:rounded-2xl flex items-center justify-center overflow-hidden">
+          <div>
+            <h2 className="text-4xl font-bold mb-8 mt-7">Why Choose Us</h2>
             <ul className="space-y-4">
               <li className="flex items-start">
                 <ArrowRight className="w-6 h-6 text-cyan-400 mr-4 mt-1 flex-shrink-0" />
@@ -169,18 +172,19 @@ function App() {
               </li>
             </ul>
           </div>
-          <div className='mt-20 lg:mt-0'>
+          <div className='pt-20'>
             <PerformanceAnimation />
           </div>
         </div>
-        <div className='row-start-2 row-span-2 lg:my-20 mt-16 lg:mt-0'>
+        <div className='mb-16'>
         <ProjectsPage />
         </div>
 
-        <div className="container row-start-4 lg:mt-10"> 
+        <div className="lg:container row-start-4"> 
         <div className=''>
         <AppCarousel/>
         </div>
+          </div>
           </div>
       </section>
 
