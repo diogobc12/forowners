@@ -15,7 +15,7 @@ function AnimatedNumberBase({
   label, 
   prefix = '', 
   suffix = '', 
-  delay = 600 
+  delay = 0 
 }: AnimatedNumberProps) {
   const [displayValue, setDisplayValue] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
