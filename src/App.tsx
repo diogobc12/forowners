@@ -102,7 +102,7 @@ function App() {
       <section id="hero" className="min-h-screen flex items-center pt-16 sm:pt-20">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <div className="relative z-10">
-            <div className="absolute -top-20 -left-20 w-64 h-64 bg-blue-500/10 rounded-full filter blur-3xl animate-pulse"></div>
+            <div className="absolute -top-20 -left-20 w-64 h-64 bg-blue-500/10 rounded-full filter blur-3xl animate-pulse will-change-[filter,opacity] transform-gpu"></div>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6">
               Empowering Your<br/>
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
@@ -121,7 +121,7 @@ function App() {
           </div>
           {/* Right Column - Hero Animation */}
           <div className="relative h-[500px] flex items-center justify-center hidden md:block">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#1E3A8A]/20 to-[#3B82F6]/20 rounded-3xl blur-3xl"
+            <div className="absolute inset-0 bg-gradient-to-br from-[#1E3A8A]/20 to-[#3B82F6]/20 rounded-3xl blur-3xl will-change-[opacity,transform] transform-gpu"
               style={{
                 opacity: isVisible ? 1 : 0,
                 transition: 'opacity 2s ease-out'

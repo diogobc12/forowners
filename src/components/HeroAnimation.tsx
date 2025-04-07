@@ -1,24 +1,37 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import { Palette, Code, Layout, Monitor, Smartphone, Layers, Eye, Zap } from 'lucide-react';
 
 export const HeroAnimation: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const animationFrameRef = useRef<number>();
+  const lastMousePosition = useRef({ x: 0, y: 0 });
 
-  useEffect(() => {
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    if (!containerRef.current) return;
+
     const container = containerRef.current;
-    if (!container) return;
+    const containerRect = container.getBoundingClientRect();
+    
+    // Calculate mouse position relative to container center
+    const centerX = containerRect.left + containerRect.width / 2;
+    const centerY = containerRect.top + containerRect.height / 2;
+    const mouseX = e.clientX - centerX;
+    const mouseY = e.clientY - centerY;
 
-    const handleMouseMove = (e: MouseEvent) => {
+    // Only update if mouse position changed significantly
+    if (Math.abs(mouseX - lastMousePosition.current.x) < 5 && 
+        Math.abs(mouseY - lastMousePosition.current.y) < 5) {
+      return;
+    }
+
+    lastMousePosition.current = { x: mouseX, y: mouseY };
+
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current);
+    }
+
+    animationFrameRef.current = requestAnimationFrame(() => {
       const items = container.querySelectorAll('.animated-item');
-      const containerRect = container.getBoundingClientRect();
-      
-      // Calculate mouse position relative to container center
-      const centerX = containerRect.left + containerRect.width / 2;
-      const centerY = containerRect.top + containerRect.height / 2;
-      const mouseX = e.clientX - centerX;
-      const mouseY = e.clientY - centerY;
-      
-      // Apply movement to each item based on its data-speed attribute
       items.forEach((item) => {
         const element = item as HTMLElement;
         const speed = parseFloat(element.getAttribute('data-speed') || '0.05');
@@ -26,26 +39,32 @@ export const HeroAnimation: React.FC = () => {
         const x = mouseX * speed;
         const y = mouseY * speed;
         
-        element.style.transform = `translate(${x}px, ${y}px)`;
+        element.style.transform = `translate3d(${x}px, ${y}px, 0)`;
       });
-    };
-    
-    document.addEventListener('mousemove', handleMouseMove);
+    });
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener('mousemove', handleMouseMove, { passive: true });
     
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
     };
-  }, []);
+  }, [handleMouseMove]);
 
   return (
     <div 
       ref={containerRef}
-      className="relative w-full h-full overflow-hidden"
+      className="relative w-full h-full overflow-hidden will-change-transform"
     >
       {/* Website mockup in the center */}
       <div 
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 animated-item" 
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 animated-item will-change-transform"
         data-speed="0.02"
+        style={{ transform: 'translate3d(0, 0, 0)' }}
       >
         <div className="w-64 h-48 bg-gradient-to-br from-blue-600 to-cyan-400 rounded-lg shadow-2xl p-1 opacity-90">
           <div className="w-full h-6 bg-gray-800 rounded-t-sm flex items-center px-2">

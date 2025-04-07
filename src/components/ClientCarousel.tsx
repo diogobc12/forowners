@@ -66,8 +66,10 @@ export default function ClientCarousel() {
                     <img
                       src={client.logo}
                       alt={client.name}
-                      className="max-h-full max-w-full object-contain filter brightness-110 transform-gpu"
+                      className="max-h-full max-w-full object-contain filter brightness-110 transform-gpu will-change-[transform,filter]"
                       loading="lazy"
+                      decoding="async"
+                      fetchPriority="low"
                     />
                   </div>
                   <div className="text-center mt-3">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 
 interface AnimatedNumberProps {
   end: number;
@@ -15,6 +15,25 @@ export function AnimatedNumber({ end, duration = 3000, label, prefix = '', suffi
   const elementRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number>();
   const startTimeRef = useRef<number | null>(null);
+
+  const animate = useCallback((timestamp: number) => {
+    if (!startTimeRef.current) {
+      startTimeRef.current = timestamp;
+    }
+
+    const runtime = timestamp - startTimeRef.current;
+    const relativeProgress = runtime / duration;
+
+    if (relativeProgress < 1) {
+      const easeOutQuint = 1 - Math.pow(1 - relativeProgress, 5);
+      const currentValue = Math.min(Math.floor(easeOutQuint * end), end);
+      
+      setCount(currentValue);
+      animationRef.current = requestAnimationFrame(animate);
+    } else {
+      setCount(end);
+    }
+  }, [end, duration]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -40,26 +59,6 @@ export function AnimatedNumber({ end, duration = 3000, label, prefix = '', suffi
   useEffect(() => {
     if (!isVisible) return;
 
-    const animate = (timestamp: number) => {
-      if (!startTimeRef.current) {
-        startTimeRef.current = timestamp;
-      }
-
-      const runtime = timestamp - startTimeRef.current;
-      const relativeProgress = runtime / duration;
-
-      if (relativeProgress < 1) {
-        const easeOutQuint = 1 - Math.pow(1 - relativeProgress, 5);
-        const currentValue = Math.min(Math.floor(easeOutQuint * end), end);
-        
-        setCount(currentValue);
-        animationRef.current = requestAnimationFrame(animate);
-      } else {
-        setCount(end);
-      }
-    };
-
-    // Add delay before starting animation
     const timeout = setTimeout(() => {
       animationRef.current = requestAnimationFrame(animate);
     }, delay);
@@ -71,10 +70,10 @@ export function AnimatedNumber({ end, duration = 3000, label, prefix = '', suffi
       }
       startTimeRef.current = null;
     };
-  }, [isVisible, end, duration, delay]);
+  }, [isVisible, animate, delay]);
 
   return (
-    <div ref={elementRef} className="text-center">
+    <div ref={elementRef} className="text-center will-change-[transform,opacity] transform-gpu">
       <div className="lg:text-5xl text-3xl font-light text-white flex items-baseline justify-center">
         <span className="text-white/90">{prefix}</span>
         <span>{count}</span>
