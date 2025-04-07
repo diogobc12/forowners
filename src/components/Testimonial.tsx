@@ -134,22 +134,28 @@ export const Testimonial = () => {
   const animationVariants = {
     initial: (direction: number) => ({
       opacity: 0,
-      x: direction > 0 ? isMobile ? 50 : 100 : isMobile ? -50 : -100,
+      x: direction > 0 ? isMobile ? 20 : 100 : isMobile ? -20 : -100,
+      scale: isMobile ? 0.95 : 1,
     }),
     animate: {
       opacity: 1,
       x: 0,
+      scale: 1,
     },
     exit: (direction: number) => ({
       opacity: 0,
-      x: direction > 0 ? isMobile ? -50 : -100 : isMobile ? 50 : 100,
+      x: direction > 0 ? isMobile ? -20 : -100 : isMobile ? 20 : 100,
+      scale: isMobile ? 0.95 : 1,
     }),
   };
 
   // Duração mais curta em dispositivos móveis
   const transition = {
-    duration: isMobile ? 0.3 : 0.5,
-    ease: "easeInOut"
+    duration: isMobile ? 0.4 : 0.5,
+    ease: "easeInOut",
+    scale: {
+      duration: isMobile ? 0.3 : 0.4,
+    }
   };
 
   return (
