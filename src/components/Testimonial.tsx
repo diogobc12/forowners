@@ -15,7 +15,7 @@ const testimonials: Testimonial[] = [
   {
     id: 1,
     text: "The level of professionalism and expertise they brought to our project was outstanding. They delivered beyond our expectations.",
-    author: "Rachid Laceb",
+    author: "Raden Torth",
     role: "Founder",
     rating: 5,
     company: "French 'G"
