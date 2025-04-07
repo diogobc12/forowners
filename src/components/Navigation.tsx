@@ -14,21 +14,21 @@ export function Navigation({ scrolled }: NavigationProps) {
   }, []);
 
   return (
-    <nav className="fixed z-50 transition-all duration-300 sm:p-5 mt-3 flex justify-center w-full transform-gpu will-change-transform">
+    <nav className="fixed z-50 transition-all duration-300 sm:p-5 mt-3 flex justify-center w-full transform-gpu">
       <div 
-        className={`transition-all duration-300 flex flex-col justify-between items-center transform-gpu backface-hidden ${
+        className={`transition-all duration-300 flex flex-col justify-between items-center transform-gpu ${
           scrolled ? 'bg-slate-900/90 backdrop-blur-sm shadow-lg w-[95%] sm:w-[80%] sm:py-1 py-0 px-6 sm:px-8 rounded-lg scale-100 origin-center' : 'bg-transparent w-[90%] sm:w-[70%] scale-95 origin-center' 
         }`}
       >
         <div className="container mx-auto px-2 sm:px-4 flex justify-between items-center h-16 sm:h-20 relative w-full">
-          <a href="#hero" className="flex items-center transform-gpu">
+          <a href="#hero" className="flex items-center">
             <img src={logo} alt="ForOwners Logo" className="h-5 sm:h-7 w-auto" />
           </a>
           
           {/* Mobile menu button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden text-white focus:outline-none transform-gpu"
+            className="md:hidden text-white focus:outline-none"
             aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
             title={isOpen ? "Close Menu" : "Open Menu"}
           >

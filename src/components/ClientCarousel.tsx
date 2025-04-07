@@ -48,18 +48,12 @@ const ClientItem = memo(({ client }: { client: typeof clients[0] }) => (
 ));
 
 function ClientCarousel() {
-  // Duplicamos os clientes para criar o efeito de loop infinito
-  const allClients = [...clients, ...clients, ...clients];
+  // Reduzimos o número de duplicações para melhorar o desempenho
+  const allClients = [...clients, ...clients];
   
   return (
-    <section className="bg-gradient-to-b from-[#060623] via-[#050725] to-[#040620] -mt-4 relative">
-      {/* Gradientes simplificados */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-[#060623] to-transparent"></div>
-        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#040620] to-transparent"></div>
-      </div>
-
-      <div className="container mx-auto px-4 py-16 relative z-10">
+    <section className="py-16 relative">
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-10">
           <span className="px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-xs font-medium mb-3 inline-block">
             TRUSTED PARTNERS
@@ -71,12 +65,10 @@ function ClientCarousel() {
         </div>
 
         <div className="max-w-6xl mx-auto overflow-hidden">
-          <div className="client-carousel-container">
-            <div className="flex space-x-8 client-carousel-scroll py-4">
-              {allClients.map((client, index) => (
-                <ClientItem key={`${client.id}-${index}`} client={client} />
-              ))}
-            </div>
+          <div className="flex flex-wrap justify-center gap-4 py-4">
+            {clients.map((client) => (
+              <ClientItem key={client.id} client={client} />
+            ))}
           </div>
         </div>
       </div>

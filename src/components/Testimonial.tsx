@@ -11,6 +11,7 @@ interface Testimonial {
   company: string;
 }
 
+// Reduzir o número de depoimentos para melhorar o desempenho
 const testimonials: Testimonial[] = [
   {
     id: 1,
@@ -33,30 +34,6 @@ const testimonials: Testimonial[] = [
     text: "Their innovative solutions and dedication to our success made all the difference. We've seen significant growth since working with them.",
     author: "Emma Rodriguez",
     role: "Founder",
-    rating: 5,
-    company: "Atlantic Jewels"
-  },
-  {
-    id: 4,
-    text: "The team's ability to understand our vision and translate it into a stunning digital presence was remarkable. They exceeded all our expectations.",
-    author: "David Wilson",
-    role: "CTO",
-    rating: 5,
-    company: "FitKet"
-  },
-  {
-    id: 5,
-    text: "From start to finish, the experience was seamless. Their expertise in web development and design helped us achieve our business goals.",
-    author: "Lisa Anderson",
-    role: "Product Manager",
-    rating: 5,
-    company: "Make it green"
-  },
-  {
-    id: 6,
-    text: "Working with this team transformed our online presence. Their strategic approach and technical expertise were invaluable to our success.",
-    author: "Robert Taylor",
-    role: "Operations Director",
     rating: 5,
     company: "Atlantic Jewels"
   }
@@ -95,46 +72,29 @@ export const Testimonial = () => {
   const [direction, setDirection] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Otimização: usando useCallback para funções
-  const handleResize = useCallback(() => {
-    setIsMobile(window.innerWidth < 1024);
-  }, []);
-
+  // Otimização: tratamento de resize mais simples
   useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [handleResize]);
+  }, []);
 
   const nextTestimonial = useCallback(() => {
     setDirection(1);
-    setCurrentIndex((prev) => {
-      const maxIndex = isMobile ? testimonials.length - 1 : Math.floor(testimonials.length / 3) - 1;
-      return prev === maxIndex ? 0 : prev + 1;
-    });
-  }, [isMobile]);
+    setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+  }, []);
 
   const prevTestimonial = useCallback(() => {
     setDirection(-1);
-    setCurrentIndex((prev) => {
-      const maxIndex = isMobile ? testimonials.length - 1 : Math.floor(testimonials.length / 3) - 1;
-      return prev === 0 ? maxIndex : prev - 1;
-    });
-  }, [isMobile]);
+    setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+  }, []);
 
-  const getCurrentTestimonials = useCallback(() => {
-    if (isMobile) {
-      return [testimonials[currentIndex]];
-    }
-    const startIndex = currentIndex * 3;
-    return testimonials.slice(startIndex, startIndex + 3);
-  }, [currentIndex, isMobile]);
-
-  // Variaveis de animação com configurações mais leves para mobile
+  // Simplificação significativa das variantes de animação
   const animationVariants = {
     initial: (direction: number) => ({
       opacity: 0,
-      x: direction > 0 ? isMobile ? 50 : 100 : isMobile ? -50 : -100,
+      x: direction > 0 ? 50 : -50,
     }),
     animate: {
       opacity: 1,
@@ -142,13 +102,13 @@ export const Testimonial = () => {
     },
     exit: (direction: number) => ({
       opacity: 0,
-      x: direction > 0 ? isMobile ? -50 : -100 : isMobile ? 50 : 100,
+      x: direction < 0 ? 50 : -50,
     }),
   };
 
-  // Duração mais curta em dispositivos móveis
+  // Duração mais curta para melhor desempenho
   const transition = {
-    duration: isMobile ? 0.3 : 0.5,
+    duration: 0.3,
     ease: "easeInOut"
   };
 
@@ -175,11 +135,15 @@ export const Testimonial = () => {
               exit="exit"
               variants={animationVariants}
               transition={transition}
-              className="grid lg:grid-cols-3 gap-8"
+              className={isMobile ? "" : "grid md:grid-cols-3 gap-8"}
             >
-              {getCurrentTestimonials().map((testimonial) => (
-                <TestimonialCard key={testimonial.id} testimonial={testimonial} />
-              ))}
+              {isMobile ? (
+                <TestimonialCard key={testimonials[currentIndex].id} testimonial={testimonials[currentIndex]} />
+              ) : (
+                testimonials.map((testimonial) => (
+                  <TestimonialCard key={testimonial.id} testimonial={testimonial} />
+                ))
+              )}
             </motion.div>
           </AnimatePresence>
 
@@ -192,21 +156,23 @@ export const Testimonial = () => {
               <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-blue-300" />
             </button>
             
-            <div className="flex gap-2">
-              {[...Array(isMobile ? testimonials.length : Math.ceil(testimonials.length / 3))].map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    setDirection(index > currentIndex ? 1 : -1);
-                    setCurrentIndex(index);
-                  }}
-                  aria-label={`Go to testimonial slide ${index + 1}`}
-                  className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-colors ${
-                    index === currentIndex ? 'bg-blue-300' : 'bg-white/10'
-                  }`}
-                />
-              ))}
-            </div>
+            {isMobile && (
+              <div className="flex gap-2">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      setDirection(index > currentIndex ? 1 : -1);
+                      setCurrentIndex(index);
+                    }}
+                    aria-label={`Go to testimonial slide ${index + 1}`}
+                    className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-colors ${
+                      index === currentIndex ? 'bg-blue-300' : 'bg-white/10'
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
             
             <button
               onClick={nextTestimonial}

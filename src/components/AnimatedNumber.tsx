@@ -22,7 +22,7 @@ function AnimatedNumberBase({
   const elementRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<number | null>(null);
   
-  // Verifica se é dispositivo móvel
+  // Verifica se é dispositivo móvel - usando uma abordagem mais leve
   const isMobile = useMemo(() => {
     if (typeof window !== 'undefined') {
       return window.innerWidth < 768;
@@ -30,28 +30,29 @@ function AnimatedNumberBase({
     return false;
   }, []);
   
-  // Ajusta duração com base no dispositivo
-  const actualDuration = useMemo(() => {
-    return isMobile ? Math.min(1000, duration / 2.5) : duration;
-  }, [duration, isMobile]);
-  
-  // Calcula número de steps com base no valor final
-  const totalSteps = useMemo(() => {
-    // Em dispositivos móveis, usamos menos steps para melhor performance
-    if (isMobile) {
-      return end <= 10 ? end : Math.min(20, Math.ceil(end / 5));
-    }
-    return end <= 10 ? end : Math.min(40, Math.ceil(end / 3));
-  }, [end, isMobile]);
-  
-  // Calcula o valor de incremento e o intervalo
-  const { stepSize, intervalTime } = useMemo(() => {
+  // Valores otimizados para performance vs. suavidade visual
+  const { actualDuration, totalSteps, stepSize, intervalTime } = useMemo(() => {
+    // Em dispositivos móveis, usamos sempre uma animação mais rápida
+    const actualDuration = isMobile ? Math.min(800, duration / 3) : duration;
+    
+    // Reduzimos o número de steps para valores maiores
+    const totalSteps = end <= 10 ? end : Math.min(20, Math.ceil(end / (isMobile ? 10 : 5)));
+    
     const stepSize = Math.ceil(end / totalSteps);
     const intervalTime = actualDuration / totalSteps;
-    return { stepSize, intervalTime };
-  }, [end, totalSteps, actualDuration]);
+    
+    return { actualDuration, totalSteps, stepSize, intervalTime };
+  }, [end, duration, isMobile]);
   
   useEffect(() => {
+    // Se o IntersectionObserver não for suportado, inicie a animação imediatamente após o delay
+    if (typeof IntersectionObserver === 'undefined') {
+      const timer = setTimeout(() => {
+        setHasStarted(true);
+      }, delay);
+      return () => clearTimeout(timer);
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasStarted) {
@@ -61,7 +62,7 @@ function AnimatedNumberBase({
           observer.disconnect();
         }
       },
-      { threshold: 0.1, rootMargin: '50px' }
+      { threshold: 0.1 }
     );
 
     if (elementRef.current) {
@@ -83,7 +84,7 @@ function AnimatedNumberBase({
     setDisplayValue(0);
     let currentValue = 0;
     
-    // Usa setInterval em vez de requestAnimationFrame para melhor controle em mobile
+    // Usa setInterval com intervalos maiores em dispositivos móveis
     timerRef.current = window.setInterval(() => {
       // Calcula o próximo valor
       currentValue = Math.min(currentValue + stepSize, end);
@@ -110,11 +111,9 @@ function AnimatedNumberBase({
   }, [hasStarted, end, stepSize, intervalTime]);
   
   return (
-    <div ref={elementRef} className="text-center" aria-live="polite">
+    <div ref={elementRef} className="text-center">
       <div 
         className="lg:text-5xl text-3xl font-light text-white flex items-baseline justify-center"
-        role="text"
-        aria-label={`${prefix}${displayValue}${suffix}`}
       >
         <span className="text-white/90">{prefix}</span>
         <span>{displayValue}</span>
