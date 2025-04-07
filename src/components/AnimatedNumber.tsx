@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, memo } from 'react';
+import React, { useEffect, useState, useRef, memo, useMemo } from 'react';
 
 interface AnimatedNumberProps {
   end: number;
@@ -22,6 +22,26 @@ function AnimatedNumberBase({
   const elementRef = useRef<HTMLDivElement>(null);
   const animationFrameRef = useRef<number | null>(null);
   const startTimeRef = useRef<number | null>(null);
+  const previousTimestampRef = useRef<number | null>(null);
+  const accumulatedDelayRef = useRef<number>(0);
+  
+  // Verifica se é dispositivo móvel e ajusta duração
+  const isMobile = useMemo(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth < 768;
+    }
+    return false;
+  }, []);
+  
+  // Ajusta a duração para mobile (mais rápido) e desktop
+  const actualDuration = useMemo(() => {
+    return isMobile ? Math.min(1500, duration / 1.8) : duration;
+  }, [duration, isMobile]);
+  
+  // Ajusta o intervalo para evitar bugs em dispositivos mais lentos
+  const throttleInterval = useMemo(() => {
+    return isMobile ? 12 : 0; // 12ms throttle em mobile para performance melhor
+  }, [isMobile]);
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -54,6 +74,8 @@ function AnimatedNumberBase({
     // Reset to start
     setDisplayValue(0);
     startTimeRef.current = null;
+    previousTimestampRef.current = null;
+    accumulatedDelayRef.current = 0;
     
     // Force numbers to increment exactly one by one
     let currentValue = 0;
@@ -62,26 +84,50 @@ function AnimatedNumberBase({
     const animateCounter = (timestamp: number) => {
       if (!startTimeRef.current) {
         startTimeRef.current = timestamp;
+        previousTimestampRef.current = timestamp;
       }
       
+      // Calcula o tempo decorrido
       const elapsed = timestamp - startTimeRef.current;
       
-      // Calculate how many numbers we should have counted up to by now
-      // This is based on a linear progression through the duration
+      // Limita a taxa de atualização para evitar bugs em dispositivos móveis
+      const deltaTime = timestamp - (previousTimestampRef.current || timestamp);
+      accumulatedDelayRef.current += deltaTime;
+      
+      // Se estiver usando throttle, verifica se passou tempo suficiente
+      if (throttleInterval > 0 && accumulatedDelayRef.current < throttleInterval) {
+        previousTimestampRef.current = timestamp;
+        animationFrameRef.current = requestAnimationFrame(animateCounter);
+        return;
+      }
+      
+      // Reseta o acumulador de atraso
+      accumulatedDelayRef.current = 0;
+      previousTimestampRef.current = timestamp;
+      
+      // Calcula o incremento de forma dinâmica com base no número final
+      // Números menores têm incremento menor para manter animação suave
+      const increment = end > 100 ? Math.max(1, Math.floor(end / 60)) : 1;
+      
+      // Calcula o valor alvo com base no tempo decorrido
       const targetValue = Math.min(
         end,
-        Math.floor((elapsed / duration) * end)
+        Math.floor((elapsed / actualDuration) * end)
       );
       
-      // If we need to increase the displayed value by exactly 1
+      // Se precisamos aumentar o valor exibido
       if (currentValue < targetValue) {
-        currentValue += 1;
+        // Incrementa pelo valor calculado, mas não ultrapassa o targetValue
+        currentValue = Math.min(currentValue + increment, targetValue);
         setDisplayValue(currentValue);
       }
       
-      // Continue animation if we haven't reached the end value
+      // Continua a animação se não alcançamos o valor final
       if (currentValue < end) {
         animationFrameRef.current = requestAnimationFrame(animateCounter);
+      } else {
+        // Garante que o valor final seja exatamente igual ao esperado
+        setDisplayValue(end);
       }
     };
     
@@ -94,7 +140,7 @@ function AnimatedNumberBase({
         animationFrameRef.current = null;
       }
     };
-  }, [hasStarted, end, duration]);
+  }, [hasStarted, end, actualDuration, throttleInterval]);
   
   return (
     <div ref={elementRef} className="text-center" aria-live="polite">
