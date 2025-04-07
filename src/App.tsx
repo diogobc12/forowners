@@ -445,7 +445,7 @@ function App() {
                   end={87} 
                   prefix="" 
                   suffix="%" 
-                  delay={300}
+                  delay={0}
                   duration={2000}
                   label={
                     <div className="text-center mt-3">
@@ -461,7 +461,7 @@ function App() {
                   end={92} 
                   prefix="" 
                   suffix="%" 
-                  delay={600}
+                  delay={0}
                   duration={2200}
                   label={
                     <div className="text-center mt-3">
