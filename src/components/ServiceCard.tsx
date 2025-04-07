@@ -27,20 +27,6 @@ export function ServiceCard({ icon, title, description }: ServiceCardProps) {
         
         <h3 className="text-base sm:text-lg font-semibold mb-1 sm:mb-2 group-hover:text-cyan-300 transition-colors duration-300">{title}</h3>
         <p className="text-xs sm:text-sm text-slate-300 group-hover:text-slate-200 transition-colors duration-300 flex-grow">{description}</p>
-        
-        {/* Learn more link */}
-        <div className="mt-2 sm:mt-3 pt-2 border-t border-slate-800/50">
-          <a 
-            href="#" 
-            className="text-[10px] sm:text-xs text-cyan-400 hover:text-cyan-300 transition-colors inline-flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-sm" 
-            aria-label={`Learn more about ${title}`}
-          >
-            Learn more
-            <svg className="w-2 h-2 sm:w-3 sm:h-3 ml-1 transform transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
       </div>
     </div>
   );
