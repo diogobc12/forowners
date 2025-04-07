@@ -1,0 +1,28 @@
+/* Correção para problema de overflow horizontal */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #060623;
+}
+
+/* Garante que todos os elementos dentro não causem overflow */
+#root {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+/* Correção para telas móveis */
+@media screen and (max-width: 768px) {
+  body {
+    position: relative;
+    overflow-x: clip;
+  }
+  
+  #root {
+    position: relative;
+    overflow-x: clip;
+  }
+} 

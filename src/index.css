@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  color-scheme: dark;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+  background-color: #060623;
+  color: #ffffff;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+#root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 @keyframes growWidth {
   0%, 100% { width: 0; }
   50% { width: 100%; }

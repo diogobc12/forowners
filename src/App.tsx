@@ -94,7 +94,7 @@ function App() {
 
 
   return (
-    <div className="min-h-screen bg-[#050725] text-white">
+    <div className="min-h-screen bg-[#050725] text-white overflow-hidden w-full max-w-[100vw]">
       <div className='flex justify-center'>
         <Navigation scrolled={scrolled} />
       </div>
