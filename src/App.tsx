@@ -446,7 +446,7 @@ function App() {
                   prefix="" 
                   suffix="%" 
                   delay={0}
-                  duration={2000}
+                  duration={1000}
                   label={
                     <div className="text-center mt-3">
                       <div className="text-white/70 text-sm">Website-Driven Sales</div>
@@ -462,7 +462,7 @@ function App() {
                   prefix="" 
                   suffix="%" 
                   delay={0}
-                  duration={2200}
+                  duration={1000}
                   label={
                     <div className="text-center mt-3">
                       <div className="text-white/70 text-sm">Performance Matters</div>
