@@ -166,7 +166,7 @@ export const Testimonial = () => {
             TESTIMONIALS
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mb-3">
-            What Our <span className="text-blue-500">Clients</span> Say
+            What Our <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Clients</span> Say
           </h2>
           <div className="w-20 h-1 bg-blue-400/20 mx-auto"></div>
         </div>
