@@ -88,7 +88,7 @@ export const ProjectsPage = () => {
         >
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl text-center">
-              Projects made by <span className='bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent'>Forowners</span>
+              Projects made by <span className='bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent'>ForOwners</span>
             </h2>
             <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
               A showcase of successful collaborations and projects developed with passion and expertise.
