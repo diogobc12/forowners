@@ -11,7 +11,7 @@ interface AnimatedNumberProps {
 
 function AnimatedNumberBase({ 
   end, 
-  duration = 2000, 
+  duration = 1000, 
   label, 
   prefix = '', 
   suffix = '', 
