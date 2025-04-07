@@ -86,10 +86,10 @@ function App() {
   }, []);
 
   const services = [
-    { icon: <Palette className="md:w-8 md:h-8 w-6 h-6" />, title: 'Branding', description: 'Crafting a unique identity' },
-    { icon: <Code2 className="md:w-8 md:h-8 w-6 h-6" />, title: 'Web Design', description: 'Sleek and intuitive interfaces' },
-    { icon: <Globe2 className="md:w-8 md:h-8 w-6 h-6" />, title: 'Web Development', description: 'High-performance, scalable solutions' },
-    { icon: <MapPin className="md:w-8 md:h-8 w-6 h-6" />, title: 'Google Maps Profile', description: 'Optimizing business visibility' },
+    { icon: <Palette className="md:w-7 md:h-7 w-6 h-6" />, title: 'Branding', description: 'Unique identity for your business' },
+    { icon: <Code2 className="md:w-7 md:h-7 w-6 h-6" />, title: 'Web Design', description: 'Sleek, intuitive interfaces' },
+    { icon: <Globe2 className="md:w-7 md:h-7 w-6 h-6" />, title: 'Web Development', description: 'High-performance solutions' },
+    { icon: <MapPin className="md:w-7 md:h-7 w-6 h-6" />, title: 'Maps Profile', description: 'Boost local visibility' },
   ];
 
 
@@ -142,17 +142,17 @@ function App() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-16 bg-cover bg-gradient-to-t from-[#000000] to-[#050725]/50">
+      <section id="services" className="py-10 sm:py-16 bg-cover bg-gradient-to-t from-[#000000] to-[#050725]/50">
         <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <span className="px-4 py-1 rounded-full bg-blue-500/10 text-blue-400 text-sm font-medium mb-3 inline-block">WHAT WE OFFER</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-3">Our Services</h2>
-            <p className="text-slate-300 text-center mb-3 max-w-2xl mx-auto">
+          <div className="text-center mb-6 sm:mb-10">
+            <span className="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs sm:text-sm font-medium mb-2 sm:mb-3 inline-block">WHAT WE OFFER</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-center mb-2 sm:mb-3">Our Services</h2>
+            <p className="text-slate-300 text-center mb-3 max-w-2xl mx-auto text-sm sm:text-base px-4">
               We provide comprehensive digital solutions to elevate your brand and online presence.
             </p>
-            <div className="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto"></div>
+            <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto"></div>
           </div>
-          <div className="grid lg:grid-cols-4 gap-6 mx-4 lg:mx-0">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 mx-4 lg:mx-auto max-w-6xl">
             {services.map((service, index) => (
               <ServiceCard key={index} {...service} />
             ))}
