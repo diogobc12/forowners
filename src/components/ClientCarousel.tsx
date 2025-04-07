@@ -46,14 +46,14 @@ export default function ClientCarousel() {
             TRUSTED PARTNERS
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mb-3">
-            Our <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Clients</span>
+            Our <span className="text-blue-300">Clients</span>
           </h2>
           <div className="w-20 h-1 bg-blue-400/20 mx-auto"></div>
         </div>
 
         <div className="max-w-7xl mx-auto overflow-hidden">
-          <div className="relative">
-            <div className="flex space-x-16 animate-scroll py-8">
+          <div className="client-carousel-container">
+            <div className="flex space-x-16 client-carousel-scroll py-8">
               {[...clients, ...clients, ...clients].map((client, index) => (
                 <motion.div 
                   key={`${client.id}-${index}`}
