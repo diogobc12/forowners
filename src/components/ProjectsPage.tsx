@@ -77,8 +77,8 @@ const projects = [
 
 export const ProjectsPage = () => {
   return (
-    <div className="overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <div className="overflow-hidden relative">
+      <div className="mx-auto max-w-7xl px-4 py-16 pb-32 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -110,6 +110,13 @@ export const ProjectsPage = () => {
           ))}      
         </div>
       </div>
+      
+      {/* Enhanced gradient transition to the Clients section */}
+      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-b from-transparent via-[#060623]/90 to-[#060623] opacity-100 pointer-events-none"></div>
+      
+      {/* Additional side gradients for smoother transition */}
+      <div className="absolute bottom-0 right-0 w-1/3 h-full bg-gradient-to-l from-[#060623] to-transparent opacity-30 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-1/3 h-full bg-gradient-to-r from-[#060623] to-transparent opacity-30 pointer-events-none"></div>
     </div>
   );
 };

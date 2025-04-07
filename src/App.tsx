@@ -172,42 +172,34 @@ function App() {
               className="text-center mb-12"
             >
               <h2 className="text-4xl font-bold mb-3">
-                Why Choose <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Us</span>
+                Where <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Innovation</span> Meets Execution
               </h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">
-                We combine innovation, expertise, and dedication to deliver exceptional results for our clients
-              </p>
+              <div className="w-16 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-8"></div>
             </motion.div>
             
-            <div className="grid lg:grid-cols-2 items-center gap-10 lg:gap-16">
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 max-w-5xl mx-auto">
               <motion.div 
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="space-y-8"
               >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-6">
                   {[
                     {
                       icon: <Zap className="w-8 h-8 text-cyan-400" />,
                       title: "Performance-Driven",
-                      description: "Optimized solutions that deliver speed and efficiency"
+                      description: "Optimised for speed, design and user experience — because first impressions are everything"
                     },
                     {
                       icon: <PenTool className="w-8 h-8 text-cyan-400" />,
-                      title: "Creative Design",
-                      description: "Stunning visuals that captivate your audience"
+                      title: "Creative Process",
+                      description: "A blend of strategic thinking with innovation, delivering websites that not only function, they convert"
                     },
                     {
                       icon: <Lightbulb className="w-8 h-8 text-cyan-400" />,
-                      title: "Innovative Approach",
-                      description: "Forward-thinking strategies for digital success"
-                    },
-                    {
-                      icon: <Users className="w-8 h-8 text-cyan-400" />,
-                      title: "Client-Focused",
-                      description: "Your vision and goals are our top priority"
+                      title: "Tailored Solutions",
+                      description: "Digital solutions that reflect your brand identity and drive measurable results"
                     }
                   ].map((item, index) => (
                     <motion.div 
@@ -216,20 +208,29 @@ function App() {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: 0.1 * index }}
                       viewport={{ once: true }}
-                      className="bg-white/5 p-5 rounded-xl hover:bg-white/10 transition-colors border border-white/5"
+                      className="flex items-start bg-white/5 p-5 rounded-xl border border-white/5"
                     >
-                      <div className="mb-3 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 p-3 inline-block rounded-lg">
+                      <div className="mr-4 p-3 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-lg flex-shrink-0">
                         {item.icon}
                       </div>
-                      <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                      <p className="text-gray-400 text-sm">{item.description}</p>
+                      <div>
+                        <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                        <p className="text-gray-400 text-sm">{item.description}</p>
+                      </div>
                     </motion.div>
                   ))}
                 </div>
-                
-                <div className="space-y-4">
-                  <h3 className="text-2xl font-bold">Our Commitment</h3>
-                  <ul className="space-y-4">
+              </motion.div>
+              
+              <motion.div 
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                <div className="space-y-6">
+                  <h3 className="text-2xl font-bold mb-4">Why Trust Us</h3>
+                  <ul className="space-y-6">
                     <motion.li 
                       className="flex items-start" 
                       initial={{ opacity: 0, x: -20 }}
@@ -240,7 +241,10 @@ function App() {
                       <div className="w-6 h-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mr-4 mt-1 flex-shrink-0 flex items-center justify-center">
                         <ArrowRight className="w-4 h-4 text-white" />
                       </div>
-                      <p className="text-white">Custom digital solutions for modern brands</p>
+                      <div>
+                        <h4 className="text-white font-medium mb-1">Trusted Across Industries</h4>
+                        <p className="text-gray-400 text-sm">From visionary startups to established companies</p>
+                      </div>
                     </motion.li>
                     <motion.li 
                       className="flex items-start"
@@ -252,7 +256,10 @@ function App() {
                       <div className="w-6 h-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mr-4 mt-1 flex-shrink-0 flex items-center justify-center">
                         <ArrowRight className="w-4 h-4 text-white" />
                       </div>
-                      <p className="text-white">Built for performance, design, and user experience</p>
+                      <div>
+                        <h4 className="text-white font-medium mb-1">Results-Focused Approach</h4>
+                        <p className="text-gray-400 text-sm">We prioritize your goals and create solutions that drive real business outcomes</p>
+                      </div>
                     </motion.li>
                     <motion.li 
                       className="flex items-start"
@@ -264,7 +271,10 @@ function App() {
                       <div className="w-6 h-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mr-4 mt-1 flex-shrink-0 flex items-center justify-center">
                         <ArrowRight className="w-4 h-4 text-white" />
                       </div>
-                      <p className="text-white">Trusted by businesses across multiple industries</p>
+                      <div>
+                        <h4 className="text-white font-medium mb-1">Modern Digital Excellence</h4>
+                        <p className="text-gray-400 text-sm">Leveraging the latest technologies to keep your brand ahead of the curve</p>
+                      </div>
                     </motion.li>
                     <motion.li 
                       className="flex items-start"
@@ -276,60 +286,12 @@ function App() {
                       <div className="w-6 h-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mr-4 mt-1 flex-shrink-0 flex items-center justify-center">
                         <ArrowRight className="w-4 h-4 text-white" />
                       </div>
-                      <p className="text-white">Our approach combines <span className="text-cyan-400">innovative design</span> with <span className="text-cyan-400">cutting-edge technology</span> to deliver solutions that not only meet but <span className="text-cyan-400">exceed expectations</span></p>
+          <div>
+                        <h4 className="text-white font-medium mb-1">Collaborative Partnership</h4>
+                        <p className="text-gray-400 text-sm">We work closely with you at every step, ensuring your vision is realized with precision and care</p>
+                      </div>
                     </motion.li>
-                  </ul>
-                </div>
-              </motion.div>
-              
-              <motion.div 
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                viewport={{ once: true }}
-                className="relative"
-              >
-                <div className="relative z-10 bg-white/5 p-6 rounded-2xl border border-white/10 backdrop-blur-sm">
-                  <div className="mb-8 text-center">
-                    <h3 className="text-2xl font-bold mb-2">Our Expertise</h3>
-                    <div className="h-1 w-20 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto"></div>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-6">
-                    {[
-                      { icon: <Award className="w-6 h-6" />, title: "Quality", value: "Premium" },
-                      { icon: <Clock className="w-6 h-6" />, title: "Delivery", value: "On Time" },
-                      { icon: <Shield className="w-6 h-6" />, title: "Security", value: "Top Level" },
-                      { icon: <Briefcase className="w-6 h-6" />, title: "Innovation", value: "Cutting-Edge" }
-                    ].map((stat, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3, delay: 0.1 * index }}
-                        viewport={{ once: true }}
-                        className="flex flex-col items-center text-center p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all"
-                      >
-                        <div className="p-3 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mb-3">
-                          {stat.icon}
-                        </div>
-                        <h4 className="text-lg font-medium mb-1">{stat.title}</h4>
-                        <p className="text-cyan-400 font-bold">{stat.value}</p>
-                      </motion.div>
-                    ))}
-                  </div>
-                  
-                  <div className="mt-8 bg-gradient-to-r from-cyan-400/10 to-blue-500/10 p-4 rounded-lg">
-                    <div className="flex items-center space-x-4">
-                      <div className="bg-gradient-to-r from-cyan-400 to-blue-500 p-3 rounded-full">
-                        <Users className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-semibold">Trusted by 200+ clients</h4>
-                        <p className="text-sm text-gray-400">From startups to enterprises worldwide</p>
-                      </div>
-                    </div>
-                  </div>
+            </ul>
                 </div>
               </motion.div>
             </div>
@@ -416,23 +378,25 @@ function App() {
           </div>
         </div>
         
-        <div className='pt-20'>
-          <ProjectsPage />
+        <div className='pt-16'>
+        <ProjectsPage />
         </div>
-        </div>
-        
-        {/* Transition to Companies */}
-        <div className="bg-gradient-to-b from-[#060623]/80 via-[#050725] to-[#050725]">
-          <div className="w-full"> 
-            <AppCarousel/>
-          </div>
         </div>
       </section>
 
+      {/* Our Clients section with smooth gradient transition */}
+      <section className="bg-gradient-to-b from-[#060623] via-[#050725] to-[#040620] relative -mt-24">
+        {/* Smooth transition overlay */}
+        <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-[#060623]/90 to-transparent z-10"></div>
+        
+        <div className="container mx-auto relative z-20"> 
+        <AppCarousel/>
+          </div>
+      </section>
 
       {/* Contact Section */}
       <section id="contact" className='bg-gradient-to-b from-[#000000] via-[#050725]/50 to-[#050725]'>
-        <div className="container mx-auto min-h-screen  flex items-center justify-center p-4 pt-8 border-b border-gray-800">
+        <div className="container mx-auto min-h-screen flex items-center justify-center p-4 pt-8 border-b border-gray-800">
       <Forms />
         </div>
       </section>
