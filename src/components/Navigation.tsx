@@ -11,11 +11,11 @@ export function Navigation({ scrolled }: NavigationProps) {
 
   return (
     <nav className={`fixed z-50 transition-all duration-500 sm:p-5 mt-3 ${
-      scrolled ? 'bg-slate-900/90 backdrop-blur-sm shadow-lg mt-4 sm:mt-8 sm:w-[80%] w-[92%] sm:py-1 py-0 px-1 sm:px-2 rounded-lg mx-2' : 'bg-none' 
+      scrolled ? 'bg-slate-900/90 backdrop-blur-sm shadow-lg mt-4 sm:mt-8 w-[95%] sm:w-[80%] sm:py-1 py-0 px-1 sm:px-2 rounded-lg' : 'bg-none' 
     }`}>
-      <div className="container mx-auto px-4 flex justify-between items-center h-20">
+      <div className="container mx-auto px-2 sm:px-4 flex justify-between items-center h-16 sm:h-20">
         <a href="#hero" className="flex items-center">
-          <img src={logo} alt="ForOwners Logo" className="h-7 w-auto" />
+          <img src={logo} alt="ForOwners Logo" className="h-5 sm:h-7 w-auto" />
         </a>
         
         {/* Mobile menu button */}

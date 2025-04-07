@@ -95,26 +95,26 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#050725] text-white">
-      <div className='flex justify-center mx-2'>
+      <div className='flex justify-center'>
         <Navigation scrolled={scrolled} />
       </div>
       {/* Hero Section */}
-      <section id="hero" className="min-h-screen flex items-center pt-20">
+      <section id="hero" className="min-h-screen flex items-center pt-16 sm:pt-20">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <div className="relative z-10">
             <div className="absolute -top-20 -left-20 w-64 h-64 bg-blue-500/10 rounded-full filter blur-3xl animate-pulse"></div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6">
               Empowering Your<br/>
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                 <TypewriterText />
               </span>
             </h1>
-            <p className="text-xl text-slate-300 mb-8 max-w-md">Your brand, refined. Your website, perfected. Transform your digital identity today.</p>
+            <p className="text-lg sm:text-xl text-slate-300 mb-8 max-w-md">Your brand, refined. Your website, perfected. Transform your digital identity today.</p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#contact" className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 rounded-lg text-white font-semibold shadow-lg shadow-blue-500/20">
+              <a href="#contact" className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 rounded-lg text-white font-semibold shadow-lg shadow-blue-500/20">
                 Let's Talk <ChevronRight className="ml-2 w-5 h-5" />
               </a>
-              <a href="#services" className="inline-flex items-center px-6 py-3 bg-transparent border border-cyan-500/30 hover:bg-cyan-500/10 transition-all duration-300 rounded-lg text-white font-semibold">
+              <a href="#services" className="inline-flex items-center justify-center px-6 py-3 bg-transparent border border-cyan-500/30 hover:bg-cyan-500/10 transition-all duration-300 rounded-lg text-white font-semibold">
                 Our Services <ArrowDown className="ml-2 w-5 h-5" />
               </a>
             </div>
@@ -139,11 +139,6 @@ function App() {
             <HeroAnimation />
           </div>
         </div>
-        {/* Scroll indicator */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce hidden md:flex">
-          <span className="text-slate-400 text-sm mb-2">Scroll Down</span>
-          <ArrowDown className="w-5 h-5 text-cyan-400" />
-        </div>
       </section>
 
       {/* Services Section */}
@@ -166,7 +161,7 @@ function App() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section id="why-us" className="pb-0 bg-no-repeat bg-cover bg-black bg-center justify-center" style={{ backgroundImage: "url('/bg3.jpeg')"}}>
+      <section id="why-us" className="pb-0 bg-no-repeat bg-cover bg-center justify-center" style={{ backgroundImage: "url('/bg3.jpeg')"}}>
         <div className='bg-gradient-to-b from-black to-[#060623]/80 py-16'>
           <div className="container mx-auto px-4">
             <motion.div 
@@ -294,7 +289,6 @@ function App() {
                 viewport={{ once: true }}
                 className="relative"
               >
-                <div className="absolute -top-20 -right-20 w-64 h-64 bg-cyan-500/20 rounded-full blur-3xl"></div>
                 <div className="relative z-10 bg-white/5 p-6 rounded-2xl border border-white/10 backdrop-blur-sm">
                   <div className="mb-8 text-center">
                     <h3 className="text-2xl font-bold mb-2">Our Expertise</h3>
@@ -306,7 +300,7 @@ function App() {
                       { icon: <Award className="w-6 h-6" />, title: "Quality", value: "Premium" },
                       { icon: <Clock className="w-6 h-6" />, title: "Delivery", value: "On Time" },
                       { icon: <Shield className="w-6 h-6" />, title: "Security", value: "Top Level" },
-                      { icon: <Briefcase className="w-6 h-6" />, title: "Experience", value: "10+ Years" }
+                      { icon: <Briefcase className="w-6 h-6" />, title: "Innovation", value: "Cutting-Edge" }
                     ].map((stat, index) => (
                       <motion.div
                         key={index}
@@ -340,14 +334,96 @@ function App() {
               </motion.div>
             </div>
           </div>
+        
+        {/* Technologies We Use Section */}
+        <div className="container mx-auto px-4 pt-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="text-center mb-10"
+          >
+            <h3 className="text-2xl font-bold mb-2">
+              Professional <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Tools</span> We Use
+            </h3>
+            <p className="text-gray-400 max-w-xl mx-auto text-sm">
+              Leveraging industry-leading software to deliver exceptional quality
+            </p>
+          </motion.div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-10 max-w-4xl mx-auto">
+            {[
+              {
+                name: "Adobe Illustrator",
+                icon: "/adobe-illustrator.png", 
+                fallbackIcon: "Ai",
+                color: "from-[#FF9A00] to-[#FF7C00]"
+              },
+              {
+                name: "Adobe Photoshop",
+                icon: "/adobe-photoshop.png",
+                fallbackIcon: "Ps",
+                color: "from-[#31A8FF] to-[#0077FF]"
+              },
+              {
+                name: "Adobe Lightroom",
+                icon: "/adobe-lightroom.png",
+                fallbackIcon: "Lr",
+                color: "from-[#ADD5EC] to-[#31A8FF]"
+              },
+              {
+                name: "Adobe Premiere Pro",
+                icon: "/adobe-premiere.png",
+                fallbackIcon: "Pr",
+                color: "from-[#9999FF] to-[#6363FF]"
+              }
+            ].map((tool, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="flex flex-col items-center p-4"
+              >
+                <div className={`w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br ${tool.color} flex items-center justify-center mb-3 shadow-lg`}>
+                  {tool.icon ? (
+                    <img 
+                      src={tool.icon} 
+                      alt={tool.name} 
+                      className="w-10 h-10 md:w-12 md:h-12 object-contain"
+                      onError={(e) => {
+                        const imgElement = e.currentTarget as HTMLImageElement;
+                        imgElement.style.display = 'none';
+                        const nextElement = imgElement.nextElementSibling as HTMLElement;
+                        if (nextElement) {
+                          nextElement.style.display = 'block';
+                        }
+                      }}
+                    />
+                  ) : null}
+                  <span 
+                    className="text-white font-bold text-xl md:text-2xl" 
+                    style={{ display: 'none' }}
+                  >
+                    {tool.fallbackIcon}
+                  </span>
+                </div>
+                <p className="text-white font-medium text-center text-sm md:text-base">{tool.name}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
         
-        <div className='mb-16'>
+        <div className='pt-20'>
           <ProjectsPage />
         </div>
-
-        <div className="lg:container"> 
-          <div>
+        </div>
+        
+        {/* Transition to Companies */}
+        <div className="bg-gradient-to-b from-[#060623]/80 via-[#050725] to-[#050725]">
+          <div className="w-full"> 
             <AppCarousel/>
           </div>
         </div>
