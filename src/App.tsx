@@ -443,7 +443,7 @@ function App() {
               <div className="flex flex-col items-center">
                 <AnimatedNumber 
                   end={87} 
-                  prefix="" 
+                  prefix="+" 
                   suffix="%" 
                   delay={0}
                   duration={1000}
@@ -459,7 +459,7 @@ function App() {
               <div className="flex flex-col items-center">
                 <AnimatedNumber 
                   end={92} 
-                  prefix="" 
+                  prefix="+" 
                   suffix="%" 
                   delay={0}
                   duration={1000}
