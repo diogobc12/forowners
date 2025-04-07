@@ -11,11 +11,11 @@ interface AnimatedNumberProps {
 
 function AnimatedNumberBase({ 
   end, 
-  duration = 7000, 
+  duration = 2000, 
   label, 
   prefix = '', 
   suffix = '', 
-  delay = 0 
+  delay = 600 
 }: AnimatedNumberProps) {
   const [displayValue, setDisplayValue] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
