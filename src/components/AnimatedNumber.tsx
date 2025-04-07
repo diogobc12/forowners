@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 interface AnimatedNumberProps {
   end: number;
   duration?: number;
-  label: string;
+  label: string | JSX.Element;
   prefix?: string;
   suffix?: string;
 }
@@ -61,11 +61,13 @@ export function AnimatedNumber({ end, duration = 3000, label, prefix = '', suffi
   }, [end, duration, isVisible]);
 
   return (
-    <div ref={elementRef} className="text-center p-8">
-      <div className="lg:text-5xl text-3xl font-bold mb-2 text-white">
-        {prefix}{count}{suffix}
+    <div ref={elementRef} className="text-center">
+      <div className="lg:text-5xl text-3xl font-light text-white flex items-baseline justify-center">
+        <span className="text-white/90">{prefix}</span>
+        <span>{count}</span>
+        <span className="text-white/90">{suffix}</span>
       </div>
-      <div className="text-white/80">{label}</div>
+      <div className="mt-4">{label}</div>
     </div>
   );
 }

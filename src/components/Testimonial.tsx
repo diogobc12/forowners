@@ -1,9 +1,70 @@
 import React, { useState, useEffect } from 'react';
-import { Quote } from 'lucide-react';
-import { testimonials } from '../components/data/testimonials';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Quote, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
-export function Testimonial() {
+interface Testimonial {
+  id: number;
+  text: string;
+  author: string;
+  role: string;
+  rating: number;
+  company: string;
+}
+
+const testimonials: Testimonial[] = [
+  {
+    id: 1,
+    text: "Working with this team was a game-changer for our business. Their attention to detail and creative approach helped us stand out in a crowded market.",
+    author: "Sarah Johnson",
+    role: "Marketing Director",
+    rating: 5,
+    company: "VIVI"
+  },
+  {
+    id: 2,
+    text: "The level of professionalism and expertise they brought to our project was outstanding. They delivered beyond our expectations.",
+    author: "Michael Chen",
+    role: "CEO",
+    rating: 5,
+    company: "French 'G"
+  },
+  {
+    id: 3,
+    text: "Their innovative solutions and dedication to our success made all the difference. We've seen significant growth since working with them.",
+    author: "Emma Rodriguez",
+    role: "Founder",
+    rating: 5,
+    company: "Atlantic Jewels"
+  },
+  {
+    id: 4,
+    text: "The team's ability to understand our vision and translate it into a stunning digital presence was remarkable. They exceeded all our expectations.",
+    author: "David Wilson",
+    role: "CTO",
+    rating: 5,
+    company: "FitKet"
+  },
+  {
+    id: 5,
+    text: "From start to finish, the experience was seamless. Their expertise in web development and design helped us achieve our business goals.",
+    author: "Lisa Anderson",
+    role: "Product Manager",
+    rating: 5,
+    company: "Make it green"
+  },
+  {
+    id: 6,
+    text: "Working with this team transformed our online presence. Their strategic approach and technical expertise were invaluable to our success.",
+    author: "Robert Taylor",
+    role: "Operations Director",
+    rating: 5,
+    company: "Atlantic Jewels"
+  }
+];
+
+export const Testimonial = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -17,72 +78,116 @@ export function Testimonial() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => 
-        prevIndex === (isMobile ? testimonials.flat().length - 1 : testimonials.length - 1) ? 0 : prevIndex + 1
-      );
-    }, 5000);
+  const nextTestimonial = () => {
+    setDirection(1);
+    setCurrentIndex((prev) => {
+      const maxIndex = isMobile ? testimonials.length - 1 : Math.floor(testimonials.length / 3) - 1;
+      return prev === maxIndex ? 0 : prev + 1;
+    });
+  };
 
-    return () => clearInterval(interval);
-  }, [isMobile]);
+  const prevTestimonial = () => {
+    setDirection(-1);
+    setCurrentIndex((prev) => {
+      const maxIndex = isMobile ? testimonials.length - 1 : Math.floor(testimonials.length / 3) - 1;
+      return prev === 0 ? maxIndex : prev - 1;
+    });
+  };
+
+  const getCurrentTestimonials = () => {
+    if (isMobile) {
+      return [testimonials[currentIndex]];
+    }
+    const startIndex = currentIndex * 3;
+    return testimonials.slice(startIndex, startIndex + 3);
+  };
 
   return (
-    <div className="bg-gradient-to-b from-[#000000] to-[#050725] text-white flex flex-col items-center justify-center pb-20 pt-40 lg:py-40">
-      <div className="max-w-7xl mx-8 text-center mb-12">
-        <h2 className="lg:text-5xl text-3xl font-bold mb-4">What Clients Say</h2>
-        <p className="text-gray-300">
-          Don't just take our word for it. Here's what our clients have to say about our work.
-        </p>
-      </div>
+    <div className="py-16 relative">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <span className="px-3 py-1 rounded-full bg-blue-500/5 text-blue-300 text-xs font-medium mb-3 inline-block">
+            TESTIMONIALS
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-3">
+            What Our <span className="text-blue-300">Clients</span> Say
+          </h2>
+          <div className="w-20 h-1 bg-blue-400/20 mx-auto"></div>
+        </div>
 
-      <div className="relative w-full max-w-[90%] overflow-hidden">
-        <div 
-          className="flex transition-transform duration-500 ease-in-out"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-        >
-          {isMobile
-            ? testimonials.flat().map((testimonial, index) => (
-                <div key={index} className="w-full flex-shrink-0 px-4">
-                  <div className="bg-[#050725] p-6 md:p-8 rounded-2xl shadow-2xl">
-                    <Quote className="text-cyan-400 w-6 h-6 mb-4" />
-                    <p className="text-base md:text-lg mb-6">{testimonial.text}</p>
-                    <div>
-                      <p className="font-semibold">{testimonial.author}</p>
-                      <p className="text-cyan-400 text-sm">{testimonial.role}</p>
+        <div className="max-w-7xl mx-auto">
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={currentIndex}
+              custom={direction}
+              initial={{ opacity: 0, x: direction > 0 ? 100 : -100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: direction > 0 ? -100 : 100 }}
+              transition={{ duration: 0.5 }}
+              className="grid lg:grid-cols-3 gap-8"
+            >
+              {getCurrentTestimonials().map((testimonial) => (
+                <div
+                  key={testimonial.id}
+                  className="bg-white/[0.03] backdrop-blur-sm rounded-xl p-6 border border-white/5 hover:border-blue-300/10 transition-colors"
+                >
+                  <div className="flex flex-col gap-4">
+                    <div className="flex gap-1">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 text-blue-300 fill-current" />
+                      ))}
+                    </div>
+                    
+                    <p className="text-base text-gray-400">
+                      "{testimonial.text}"
+                    </p>
+                    
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-blue-400/5 flex items-center justify-center flex-shrink-0">
+                        <Quote className="w-5 h-5 text-blue-300" />
+                      </div>
+                      <div>
+                        <h4 className="text-white font-semibold text-sm">{testimonial.author}</h4>
+                        <p className="text-blue-300 text-xs">{testimonial.role}</p>
+                        <p className="text-gray-500 text-xs">{testimonial.company}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              ))
-            : testimonials.map((slideGroup, slideIndex) => (
-                <div key={slideIndex} className="w-full flex-shrink-0 px-4">
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-                    {slideGroup.map((testimonial, index) => (
-                      <div key={index} className="bg-[#050725] p-6 md:p-8 rounded-2xl shadow-2xl">
-                        <Quote className="text-cyan-400 w-6 h-6 mb-4" />
-                        <p className="text-base md:text-lg mb-6">{testimonial.text}</p>
-                        <div>
-                          <p className="font-semibold">{testimonial.author}</p>
-                          <p className="text-cyan-400 text-sm">{testimonial.role}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
               ))}
-        </div>
+            </motion.div>
+          </AnimatePresence>
 
-        <div className="flex justify-center mt-8 gap-2">
-          {(isMobile ? testimonials.flat() : testimonials).map((_, index) => (
+          <div className="flex justify-center items-center mt-12 gap-4">
             <button
-              key={index}
-              className={`w-3 h-3 rounded-full duration-300 ${
-                currentIndex === index ? 'bg-cyan-400' : 'bg-gray-600'
-              } hover:bg-cyan-300`}
-              onClick={() => setCurrentIndex(index)}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
+              onClick={prevTestimonial}
+              className="w-12 h-12 rounded-full bg-white/[0.03] hover:bg-blue-400/5 border border-white/5 hover:border-blue-300/10 flex items-center justify-center transition-colors"
+            >
+              <ChevronLeft className="w-6 h-6 text-blue-300" />
+            </button>
+            
+            <div className="flex gap-2">
+              {[...Array(isMobile ? testimonials.length : Math.ceil(testimonials.length / 3))].map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setDirection(index > currentIndex ? 1 : -1);
+                    setCurrentIndex(index);
+                  }}
+                  className={`w-3 h-3 rounded-full transition-colors ${
+                    index === currentIndex ? 'bg-blue-300' : 'bg-white/10'
+                  }`}
+                />
+              ))}
+            </div>
+            
+            <button
+              onClick={nextTestimonial}
+              className="w-12 h-12 rounded-full bg-white/[0.03] hover:bg-blue-400/5 border border-white/5 hover:border-blue-300/10 flex items-center justify-center transition-colors"
+            >
+              <ChevronRight className="w-6 h-6 text-blue-300" />
+            </button>
+          </div>
         </div>
       </div>
     </div>

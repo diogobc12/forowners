@@ -37,6 +37,9 @@ export default function ClientCarousel() {
       <div className="absolute top-0 right-0 w-1/4 h-64 bg-gradient-to-l from-[#060623] to-transparent opacity-50 pointer-events-none"></div>
       <div className="absolute top-0 left-0 w-1/4 h-64 bg-gradient-to-r from-[#060623] to-transparent opacity-50 pointer-events-none"></div>
       
+      {/* Bottom gradient overlay for smooth transition */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#040620] to-transparent pointer-events-none"></div>
+      
       <div className="container mx-auto max-w-7xl px-4 py-16 pt-28">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-16">
           <div className="md:w-1/2 mb-10 md:mb-0 md:pr-12">

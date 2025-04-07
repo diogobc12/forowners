@@ -171,7 +171,7 @@ export function Forms() {
                              text-white rounded-lg flex items-center space-x-3 transition-all
                              disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <div className="w-4 h-4 lg:w-6 lg:h-6 rounded-full border-2 border-cyan-400 flex-shrink-0" />
+                    <div className="w-4 h-4 lg:w-6 lg:h-6 rounded-full border-2 border-white flex-shrink-0" />
                     <span className="lg:text-xl text-base">{option.label}</span>
                   </button>
                 ))
