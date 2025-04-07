@@ -10,15 +10,15 @@ const Footer = () => {
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl opacity-20"></div>
       </div>
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col items-center">
-          {/* Logo and Contact Section */}
-          <div className="w-full lg:w-5/12 px-4 flex flex-col items-center text-center">
+        <div className="flex flex-wrap justify-between">
+          {/* Contact Section */}
+          <div className="w-full lg:w-5/12 px-4 flex flex-col items-center lg:items-start text-center lg:text-left">
             <img src={logo} alt="ForOwners Logo" className="h-6 w-auto mb-6" />
             <h4 className="text-2xl font-semibold">Let's keep in touch!</h4>
             <h5 className="text-lg mt-0 mb-2 text-gray-400">
               Find us on any of these platforms, we respond within 24 hours.
             </h5>
-            <div className="mt-6 flex gap-4 mb-8 lg:mb-0">
+            <div className="mt-6 flex gap-4">
               <a 
                 href="mailto:agency@forowners.co" 
                 className="bg-white/[0.03] hover:bg-blue-400/5 border border-white/5 hover:border-blue-300/10 text-blue-300 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none flex transition-colors"
@@ -39,18 +39,18 @@ const Footer = () => {
           </div>
 
           {/* Useful Links Section */}
-          <div className="w-full px-4 mt-8 lg:mt-0">
-            <div className="text-center">
+          <div className="w-full lg:w-3/12 px-4 mt-8 lg:mt-0">
+            <div className="flex flex-col items-center lg:items-end">
               <span className="block uppercase text-sm font-semibold mb-4">Useful Links</span>
-              <ul className="flex justify-center gap-6 flex-wrap">
-                <li>
-                  <a className="text-gray-400 hover:text-blue-300 text-sm" href="#services">Our Services</a>
+              <ul className="flex flex-wrap justify-center lg:block gap-4 lg:gap-0 lg:text-right">
+                <li className="lg:block">
+                  <a className="text-gray-400 hover:text-blue-300 inline-block lg:block pb-2 text-sm px-2 lg:px-0" href="#services">Our Services</a>
                 </li>
-                <li>
-                  <a className="text-gray-400 hover:text-blue-300 text-sm" href="#why-us">Why Choose Us</a>
+                <li className="lg:block">
+                  <a className="text-gray-400 hover:text-blue-300 inline-block lg:block pb-2 text-sm px-2 lg:px-0" href="#why-us">Why Choose Us</a>
                 </li>
-                <li>
-                  <a className="text-gray-400 hover:text-blue-300 text-sm" href="#contact">Contact Us</a>
+                <li className="lg:block">
+                  <a className="text-gray-400 hover:text-blue-300 inline-block lg:block pb-2 text-sm px-2 lg:px-0" href="#contact">Contact Us</a>
                 </li>
               </ul>
             </div>
