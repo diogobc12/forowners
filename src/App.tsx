@@ -163,7 +163,7 @@ function App() {
       {/* Why Choose Us Section */}
       <section id="why-us" className="pb-0 bg-no-repeat bg-cover bg-center justify-center" style={{ backgroundImage: "url('/bg3.jpeg')"}}>
         <div className='bg-gradient-to-b from-black to-[#060623]/80 py-12'>
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 sm:px-6">
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -171,33 +171,33 @@ function App() {
               viewport={{ once: true }}
               className="text-center mb-8"
             >
-              <h2 className="text-4xl font-bold mb-3">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-3 px-2 sm:px-0">
                 Where <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Innovation</span> Meets Execution
               </h2>
-              <div className="w-16 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-6"></div>
+              <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-6"></div>
             </motion.div>
             
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 max-w-5xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 max-w-5xl mx-auto px-3 sm:px-4">
               <motion.div 
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                <div className="grid grid-cols-1 gap-6">
+                <div className="grid grid-cols-1 gap-4 sm:gap-6">
                   {[
                     {
-                      icon: <Zap className="w-8 h-8 text-cyan-400" />,
+                      icon: <Zap className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400" />,
                       title: "Performance-Driven",
                       description: "Optimised for speed, design and user experience — because first impressions are everything"
                     },
                     {
-                      icon: <PenTool className="w-8 h-8 text-cyan-400" />,
+                      icon: <PenTool className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400" />,
                       title: "Creative Process",
                       description: "A blend of strategic thinking with innovation, delivering websites that not only function, they convert"
                     },
                     {
-                      icon: <Lightbulb className="w-8 h-8 text-cyan-400" />,
+                      icon: <Lightbulb className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400" />,
                       title: "Tailored Solutions",
                       description: "Digital solutions that reflect your brand identity and drive measurable results"
                     }
@@ -208,14 +208,14 @@ function App() {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: 0.1 * index }}
                       viewport={{ once: true }}
-                      className="flex items-start bg-white/5 p-5 rounded-xl border border-white/5"
+                      className="flex items-start bg-white/5 p-3 sm:p-5 rounded-xl border border-white/5"
                     >
-                      <div className="mr-4 p-3 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-lg flex-shrink-0">
+                      <div className="mr-3 sm:mr-4 p-2 sm:p-3 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-lg flex-shrink-0">
                         {item.icon}
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                        <p className="text-gray-400 text-sm">{item.description}</p>
+                        <h3 className="text-base sm:text-xl font-semibold mb-1 sm:mb-2">{item.title}</h3>
+                        <p className="text-gray-400 text-xs sm:text-sm">{item.description}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -228,9 +228,9 @@ function App() {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                <div className="space-y-6">
-                  <h3 className="text-2xl font-bold mb-4">Why Trust Us</h3>
-                  <ul className="space-y-6">
+                <div className="space-y-4 sm:space-y-6">
+                  <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Why Trust Us</h3>
+                  <ul className="space-y-4 sm:space-y-6">
                     <motion.li 
                       className="flex items-start" 
                       initial={{ opacity: 0, x: -20 }}
@@ -238,12 +238,12 @@ function App() {
                       transition={{ duration: 0.3, delay: 0.1 }}
                       viewport={{ once: true }}
                     >
-                      <div className="w-6 h-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mr-4 mt-1 flex-shrink-0 flex items-center justify-center">
-                        <ArrowRight className="w-4 h-4 text-white" />
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mr-3 sm:mr-4 mt-1 flex-shrink-0 flex items-center justify-center">
+                        <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                       </div>
                       <div>
-                        <h4 className="text-white font-medium mb-1">Trusted Across Industries</h4>
-                        <p className="text-gray-400 text-sm">From visionary startups to established companies</p>
+                        <h4 className="text-white text-sm sm:text-base font-medium mb-0.5 sm:mb-1">Trusted Across Industries</h4>
+                        <p className="text-gray-400 text-xs sm:text-sm">From visionary startups to established companies</p>
                       </div>
                     </motion.li>
                     <motion.li 
@@ -253,12 +253,12 @@ function App() {
                       transition={{ duration: 0.3, delay: 0.2 }}
                       viewport={{ once: true }}
                     >
-                      <div className="w-6 h-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mr-4 mt-1 flex-shrink-0 flex items-center justify-center">
-                        <ArrowRight className="w-4 h-4 text-white" />
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mr-3 sm:mr-4 mt-1 flex-shrink-0 flex items-center justify-center">
+                        <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                       </div>
                       <div>
-                        <h4 className="text-white font-medium mb-1">Results-Focused Approach</h4>
-                        <p className="text-gray-400 text-sm">We prioritize your goals and create solutions that drive real business outcomes</p>
+                        <h4 className="text-white text-sm sm:text-base font-medium mb-0.5 sm:mb-1">Results-Focused Approach</h4>
+                        <p className="text-gray-400 text-xs sm:text-sm">We prioritize your goals and create solutions that drive real business outcomes</p>
                       </div>
                     </motion.li>
                     <motion.li 
@@ -268,12 +268,12 @@ function App() {
                       transition={{ duration: 0.3, delay: 0.3 }}
                       viewport={{ once: true }}
                     >
-                      <div className="w-6 h-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mr-4 mt-1 flex-shrink-0 flex items-center justify-center">
-                        <ArrowRight className="w-4 h-4 text-white" />
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mr-3 sm:mr-4 mt-1 flex-shrink-0 flex items-center justify-center">
+                        <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                       </div>
                       <div>
-                        <h4 className="text-white font-medium mb-1">Modern Digital Excellence</h4>
-                        <p className="text-gray-400 text-sm">Leveraging the latest technologies to keep your brand ahead of the curve</p>
+                        <h4 className="text-white text-sm sm:text-base font-medium mb-0.5 sm:mb-1">Modern Digital Excellence</h4>
+                        <p className="text-gray-400 text-xs sm:text-sm">Leveraging the latest technologies to keep your brand ahead of the curve</p>
                       </div>
                     </motion.li>
                     <motion.li 
@@ -283,15 +283,15 @@ function App() {
                       transition={{ duration: 0.3, delay: 0.4 }}
                       viewport={{ once: true }}
                     >
-                      <div className="w-6 h-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mr-4 mt-1 flex-shrink-0 flex items-center justify-center">
-                        <ArrowRight className="w-4 h-4 text-white" />
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mr-3 sm:mr-4 mt-1 flex-shrink-0 flex items-center justify-center">
+                        <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                       </div>
-          <div>
-                        <h4 className="text-white font-medium mb-1">Collaborative Partnership</h4>
-                        <p className="text-gray-400 text-sm">We work closely with you at every step, ensuring your vision is realized with precision and care</p>
+                      <div>
+                        <h4 className="text-white text-sm sm:text-base font-medium mb-0.5 sm:mb-1">Collaborative Partnership</h4>
+                        <p className="text-gray-400 text-xs sm:text-sm">We work closely with you at every step, ensuring your vision is realized with precision and care</p>
                       </div>
                     </motion.li>
-            </ul>
+                  </ul>
                 </div>
               </motion.div>
             </div>
@@ -430,7 +430,7 @@ function App() {
                   prefix="+" 
                   suffix="Billion"
                   delay={0}
-                  duration={2000}
+                  duration={3000}
                   label={
                     <div className="text-center mt-3">
                       <div className="text-white/70 text-sm">Daily Google Searches</div>
@@ -445,8 +445,8 @@ function App() {
                   end={87} 
                   prefix="" 
                   suffix="%" 
-                  delay={0}
-                  duration={1000}
+                  delay={500}
+                  duration={3500}
                   label={
                     <div className="text-center mt-3">
                       <div className="text-white/70 text-sm">Website-Driven Sales</div>
@@ -461,8 +461,8 @@ function App() {
                   end={92} 
                   prefix="" 
                   suffix="%" 
-                  delay={300}
-                  duration={1000}
+                  delay={1000}
+                  duration={4000}
                   label={
                     <div className="text-center mt-3">
                       <div className="text-white/70 text-sm">Performance Matters</div>

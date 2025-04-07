@@ -11,17 +11,17 @@ interface AnimatedNumberProps {
 
 function AnimatedNumberBase({ 
   end, 
-  duration = 1000, 
+  duration = 2000, 
   label, 
   prefix = '', 
   suffix = '', 
-  delay = 300 
+  delay = 0 
 }: AnimatedNumberProps) {
   const [displayValue, setDisplayValue] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
-  const stepRef = useRef<number>(0);
-  const timerRef = useRef<number | null>(null);
+  const animationFrameRef = useRef<number | null>(null);
+  const startTimeRef = useRef<number | null>(null);
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -46,42 +46,52 @@ function AnimatedNumberBase({
   useEffect(() => {
     if (!hasStarted) return;
     
-    // Calculate step size based on number size
-    const stepSize = end <= 40 ? 1 : Math.max(1, Math.ceil(end / 40));
-    // Ensure we have at least 10 steps for smooth animation
-    const steps = Math.min(end, Math.max(10, end / stepSize));
-    // Calculate interval time for smooth animation
-    const intervalTime = Math.floor(duration / steps);
-    
-    // Clear any existing timer
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
+    // Cancel any existing animation
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current);
     }
     
     // Reset to start
     setDisplayValue(0);
-    stepRef.current = 0;
+    startTimeRef.current = null;
     
-    // Start the interval for counting
-    timerRef.current = window.setInterval(() => {
-      stepRef.current += stepSize;
-      
-      // If we've reached or exceeded the target, set final value and clear interval
-      if (stepRef.current >= end) {
-        setDisplayValue(end);
-        if (timerRef.current) {
-          clearInterval(timerRef.current);
-          timerRef.current = null;
-        }
-      } else {
-        setDisplayValue(stepRef.current);
+    // Force numbers to increment exactly one by one
+    let currentValue = 0;
+    
+    // Function to animate the counter using individual increments of 1
+    const animateCounter = (timestamp: number) => {
+      if (!startTimeRef.current) {
+        startTimeRef.current = timestamp;
       }
-    }, intervalTime);
+      
+      const elapsed = timestamp - startTimeRef.current;
+      
+      // Calculate how many numbers we should have counted up to by now
+      // This is based on a linear progression through the duration
+      const targetValue = Math.min(
+        end,
+        Math.floor((elapsed / duration) * end)
+      );
+      
+      // If we need to increase the displayed value by exactly 1
+      if (currentValue < targetValue) {
+        currentValue += 1;
+        setDisplayValue(currentValue);
+      }
+      
+      // Continue animation if we haven't reached the end value
+      if (currentValue < end) {
+        animationFrameRef.current = requestAnimationFrame(animateCounter);
+      }
+    };
+    
+    // Start the animation
+    animationFrameRef.current = requestAnimationFrame(animateCounter);
     
     return () => {
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-        timerRef.current = null;
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
       }
     };
   }, [hasStarted, end, duration]);
