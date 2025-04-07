@@ -406,7 +406,7 @@ function App() {
 
       <section className='py-20 bg-gradient-to-b from-[#060623] to-[#050F5A] relative overflow-hidden'>
         {/* Background decorative elements */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0" aria-hidden="true">
           <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl opacity-50"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl opacity-50"></div>
         </div>
@@ -423,13 +423,14 @@ function App() {
               In today's digital landscape, a strong online presence is crucial. Here's why you should invest in your digital future.
             </p>
 
-            <div className="grid lg:grid-cols-3 gap-12 w-full">
+            <div className="grid md:grid-cols-3 gap-8 md:gap-12 w-full">
               <div className="flex flex-col items-center">
                 <AnimatedNumber 
                   end={3} 
                   prefix="+" 
                   suffix="Billion"
                   delay={0}
+                  duration={1500}
                   label={
                     <div className="text-center mt-3">
                       <div className="text-white/70 text-sm">Daily Google Searches</div>
@@ -444,7 +445,8 @@ function App() {
                   end={87} 
                   prefix="" 
                   suffix="%" 
-                  delay={500}
+                  delay={300}
+                  duration={1500}
                   label={
                     <div className="text-center mt-3">
                       <div className="text-white/70 text-sm">Website-Driven Sales</div>
@@ -459,7 +461,8 @@ function App() {
                   end={92} 
                   prefix="" 
                   suffix="%" 
-                  delay={1000}
+                  delay={600}
+                  duration={1500}
                   label={
                     <div className="text-center mt-3">
                       <div className="text-white/70 text-sm">Performance Matters</div>

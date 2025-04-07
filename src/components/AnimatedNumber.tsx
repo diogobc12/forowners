@@ -1,52 +1,39 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useEffect, useState, useRef, memo } from 'react';
 
 interface AnimatedNumberProps {
   end: number;
   duration?: number;
-  label: string | JSX.Element;
+  label: React.ReactNode;
   prefix?: string;
   suffix?: string;
   delay?: number;
 }
 
-export function AnimatedNumber({ end, duration = 3000, label, prefix = '', suffix = '', delay = 0 }: AnimatedNumberProps) {
-  const [count, setCount] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
+function AnimatedNumberBase({ 
+  end, 
+  duration = 2000, 
+  label, 
+  prefix = '', 
+  suffix = '', 
+  delay = 0 
+}: AnimatedNumberProps) {
+  const [displayValue, setDisplayValue] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<number>();
-  const startTimeRef = useRef<number | null>(null);
-
-  const animate = useCallback((timestamp: number) => {
-    if (!startTimeRef.current) {
-      startTimeRef.current = timestamp;
-    }
-
-    const runtime = timestamp - startTimeRef.current;
-    const relativeProgress = runtime / duration;
-
-    if (relativeProgress < 1) {
-      const easeOutQuint = 1 - Math.pow(1 - relativeProgress, 5);
-      const currentValue = Math.min(Math.floor(easeOutQuint * end), end);
-      
-      setCount(currentValue);
-      animationRef.current = requestAnimationFrame(animate);
-    } else {
-      setCount(end);
-    }
-  }, [end, duration]);
-
+  const stepRef = useRef<number>(0);
+  const timerRef = useRef<number | null>(null);
+  
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
+        if (entry.isIntersecting && !hasStarted) {
+          setTimeout(() => {
+            setHasStarted(true);
+          }, delay);
           observer.disconnect();
         }
       },
-      {
-        threshold: 0.1,
-        rootMargin: '50px'
-      }
+      { threshold: 0.1, rootMargin: '50px' }
     );
 
     if (elementRef.current) {
@@ -54,32 +41,66 @@ export function AnimatedNumber({ end, duration = 3000, label, prefix = '', suffi
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [delay, hasStarted]);
 
   useEffect(() => {
-    if (!isVisible) return;
-
-    const timeout = setTimeout(() => {
-      animationRef.current = requestAnimationFrame(animate);
-    }, delay);
-
-    return () => {
-      clearTimeout(timeout);
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
+    if (!hasStarted) return;
+    
+    // Calculate step size based on number size
+    const stepSize = end <= 40 ? 1 : Math.max(1, Math.ceil(end / 40));
+    // Ensure we have at least 10 steps for smooth animation
+    const steps = Math.min(end, Math.max(10, end / stepSize));
+    // Calculate interval time for smooth animation
+    const intervalTime = Math.floor(duration / steps);
+    
+    // Clear any existing timer
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+    
+    // Reset to start
+    setDisplayValue(0);
+    stepRef.current = 0;
+    
+    // Start the interval for counting
+    timerRef.current = window.setInterval(() => {
+      stepRef.current += stepSize;
+      
+      // If we've reached or exceeded the target, set final value and clear interval
+      if (stepRef.current >= end) {
+        setDisplayValue(end);
+        if (timerRef.current) {
+          clearInterval(timerRef.current);
+          timerRef.current = null;
+        }
+      } else {
+        setDisplayValue(stepRef.current);
       }
-      startTimeRef.current = null;
+    }, intervalTime);
+    
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
+      }
     };
-  }, [isVisible, animate, delay]);
-
+  }, [hasStarted, end, duration]);
+  
   return (
-    <div ref={elementRef} className="text-center will-change-[transform,opacity] transform-gpu">
-      <div className="lg:text-5xl text-3xl font-light text-white flex items-baseline justify-center">
+    <div ref={elementRef} className="text-center" aria-live="polite">
+      <div 
+        className="lg:text-5xl text-3xl font-light text-white flex items-baseline justify-center"
+        role="text"
+        aria-label={`${prefix}${displayValue}${suffix}`}
+      >
         <span className="text-white/90">{prefix}</span>
-        <span>{count}</span>
+        <span>{displayValue}</span>
         <span className="text-white/90 ml-0.5">{suffix}</span>
       </div>
       <div className="mt-4">{label}</div>
     </div>
   );
 }
+
+// Memoize component to prevent unnecessary re-renders
+export const AnimatedNumber = memo(AnimatedNumberBase);
