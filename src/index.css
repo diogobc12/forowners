@@ -131,7 +131,7 @@ nav.scrolled {
   padding: 12px 0;
 }
 
-/* Client Carousel Animation */
+/* Client Carousel Animation - Otimizado para mobile */
 @keyframes clientCarouselScroll {
   0% {
     transform: translateX(0);
@@ -141,8 +141,28 @@ nav.scrolled {
   }
 }
 
+/* Versão mobile mais rápida */
+@media (max-width: 768px) {
+  @keyframes clientCarouselScroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-120px * 5 - 4rem));
+    }
+  }
+  
+  .client-carousel-scroll {
+    animation-duration: 20s; /* Mais rápido no mobile */
+  }
+}
+
 .client-carousel-scroll {
   animation: clientCarouselScroll 30s linear infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .client-carousel-container {
@@ -162,4 +182,24 @@ nav.scrolled {
     black 85%,
     transparent 100%
   );
+}
+
+/* Otimização para performance em dispositivos móveis */
+@media (max-width: 768px) {
+  .client-carousel-container {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+  }
 }
