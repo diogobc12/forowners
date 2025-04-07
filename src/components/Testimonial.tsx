@@ -14,19 +14,19 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: 1,
+    text: "The level of professionalism and expertise they brought to our project was outstanding. They delivered beyond our expectations.",
+    author: "Rachid Laceb",
+    role: "Founder",
+    rating: 5,
+    company: "French 'G"
+  },
+  {
+    id: 2,
     text: "Working with this team was a game-changer for our business. Their attention to detail and creative approach helped us stand out in a crowded market.",
     author: "Sarah Johnson",
     role: "Marketing Director",
     rating: 5,
-    company: "VIVI"
-  },
-  {
-    id: 2,
-    text: "The level of professionalism and expertise they brought to our project was outstanding. They delivered beyond our expectations.",
-    author: "Michael Chen",
-    role: "CEO",
-    rating: 5,
-    company: "French 'G"
+    company: "Medal"
   },
   {
     id: 3,
