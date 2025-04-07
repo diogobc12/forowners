@@ -429,6 +429,7 @@ function App() {
                   end={3} 
                   prefix="+" 
                   suffix="Billion"
+                  delay={0}
                   label={
                     <div className="text-center mt-3">
                       <div className="text-white/70 text-sm">Daily Google Searches</div>
@@ -443,6 +444,7 @@ function App() {
                   end={87} 
                   prefix="" 
                   suffix="%" 
+                  delay={500}
                   label={
                     <div className="text-center mt-3">
                       <div className="text-white/70 text-sm">Website-Driven Sales</div>
@@ -457,6 +459,7 @@ function App() {
                   end={92} 
                   prefix="" 
                   suffix="%" 
+                  delay={1000}
                   label={
                     <div className="text-center mt-3">
                       <div className="text-white/70 text-sm">Performance Matters</div>
@@ -465,8 +468,8 @@ function App() {
                   }
                 />
               </div>
-      </div>
-    </div>
+            </div>
+          </div>
         </div>
       </section>
 

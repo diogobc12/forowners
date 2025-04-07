@@ -6,9 +6,10 @@ interface AnimatedNumberProps {
   label: string | JSX.Element;
   prefix?: string;
   suffix?: string;
+  delay?: number;
 }
 
-export function AnimatedNumber({ end, duration = 3000, label, prefix = '', suffix = '' }: AnimatedNumberProps) {
+export function AnimatedNumber({ end, duration = 3000, label, prefix = '', suffix = '', delay = 0 }: AnimatedNumberProps) {
   const [count, setCount] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
@@ -58,15 +59,19 @@ export function AnimatedNumber({ end, duration = 3000, label, prefix = '', suffi
       }
     };
 
-    animationRef.current = requestAnimationFrame(animate);
+    // Add delay before starting animation
+    const timeout = setTimeout(() => {
+      animationRef.current = requestAnimationFrame(animate);
+    }, delay);
 
     return () => {
+      clearTimeout(timeout);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
       startTimeRef.current = null;
     };
-  }, [isVisible, end, duration]);
+  }, [isVisible, end, duration, delay]);
 
   return (
     <div ref={elementRef} className="text-center">
