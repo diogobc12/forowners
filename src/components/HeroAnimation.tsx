@@ -5,17 +5,9 @@ export const HeroAnimation: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const animationFrameRef = useRef<number>();
   const lastMousePosition = useRef({ x: 0, y: 0 });
-  const lastAnimationTime = useRef(0);
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
     if (!containerRef.current) return;
-
-    // Throttling básico usando tempo para limitar os cálculos
-    const now = Date.now();
-    if (now - lastAnimationTime.current < 50) { // 50ms throttle (20fps é suficiente para esta animação)
-      return;
-    }
-    lastAnimationTime.current = now;
 
     const container = containerRef.current;
     const containerRect = container.getBoundingClientRect();
@@ -27,8 +19,8 @@ export const HeroAnimation: React.FC = () => {
     const mouseY = e.clientY - centerY;
 
     // Only update if mouse position changed significantly
-    if (Math.abs(mouseX - lastMousePosition.current.x) < 10 && 
-        Math.abs(mouseY - lastMousePosition.current.y) < 10) {
+    if (Math.abs(mouseX - lastMousePosition.current.x) < 5 && 
+        Math.abs(mouseY - lastMousePosition.current.y) < 5) {
       return;
     }
 
@@ -114,16 +106,28 @@ export const HeroAnimation: React.FC = () => {
         </div>
       </div>
 
-      {/* Floating elements - reduzido para apenas os mais visíveis */}
+      {/* Floating elements */}
       <div className="animated-item" data-speed="0.08" style={{position: 'absolute', top: '25%', left: '15%'}}>
         <div className="w-12 h-12 bg-blue-500/80 rounded-full flex items-center justify-center shadow-lg">
           <Layout className="w-6 h-6 text-white" />
         </div>
       </div>
 
+      <div className="animated-item" data-speed="0.1" style={{position: 'absolute', top: '65%', left: '20%'}}>
+        <div className="w-10 h-10 bg-cyan-400/80 rounded-full flex items-center justify-center shadow-lg">
+          <Palette className="w-5 h-5 text-white" />
+        </div>
+      </div>
+
       <div className="animated-item" data-speed="0.06" style={{position: 'absolute', top: '30%', right: '20%'}}>
         <div className="w-14 h-14 bg-indigo-500/80 rounded-full flex items-center justify-center shadow-lg">
           <Code className="w-7 h-7 text-white" />
+        </div>
+      </div>
+
+      <div className="animated-item" data-speed="0.09" style={{position: 'absolute', top: '70%', right: '15%'}}>
+        <div className="w-10 h-10 bg-purple-500/80 rounded-full flex items-center justify-center shadow-lg">
+          <Eye className="w-5 h-5 text-white" />
         </div>
       </div>
 
@@ -139,10 +143,15 @@ export const HeroAnimation: React.FC = () => {
         </div>
       </div>
 
-      {/* Connection lines (SVG) - simplificado */}
+      {/* Decorative blobs */}
+
+
+      {/* Connection lines (SVG) */}
       <svg className="absolute inset-0 w-full h-full z-5 opacity-40 pointer-events-none" style={{strokeDasharray: '5,5'}}>
         <line x1="35%" y1="30%" x2="45%" y2="15%" className="stroke-cyan-400/50" strokeWidth="1" />
+        <line x1="35%" y1="30%" x2="20%" y2="65%" className="stroke-cyan-400/50" strokeWidth="1" />
         <line x1="35%" y1="30%" x2="70%" y2="30%" className="stroke-blue-400/50" strokeWidth="1" />
+        <line x1="70%" y1="30%" x2="85%" y2="70%" className="stroke-blue-400/50" strokeWidth="1" />
         <line x1="35%" y1="30%" x2="40%" y2="85%" className="stroke-indigo-400/50" strokeWidth="1" />
       </svg>
     </div>

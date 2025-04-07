@@ -14,6 +14,8 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html, body {
@@ -28,18 +30,25 @@ html, body {
 
 body {
   position: relative;
+  font-feature-settings: 'kern';
+  text-rendering: optimizeLegibility;
   -webkit-tap-highlight-color: transparent;
 }
 
 #root {
   width: 100%;
   overflow-x: hidden;
+  isolation: isolate;
 }
 
 /* Otimização de performance para animações */
 @layer utilities {
   .will-change-transform {
     will-change: transform;
+  }
+  
+  .backface-hidden {
+    backface-visibility: hidden;
   }
   
   .transform-gpu {
@@ -52,6 +61,14 @@ body {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Otimização de scroll */
+@supports (scroll-behavior: smooth) {
+  .smooth-scroll {
+    scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
+  }
+}
+
 /* Redução de motion se preferido pelo usuário */
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -60,6 +77,41 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Animações otimizadas */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Classes de utilidade para animações */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+  will-change: transform, opacity;
+}
+
+.animate-gradient {
+  animation: gradient 15s ease infinite;
+  background-size: 200% 200%;
 }
 
 /* Otimização de navegação */
@@ -77,4 +129,77 @@ nav.scrolled {
   background: white;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   padding: 12px 0;
+}
+
+/* Client Carousel Animation - Otimizado para mobile */
+@keyframes clientCarouselScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-160px * 5 - 5rem));
+  }
+}
+
+/* Versão mobile mais rápida */
+@media (max-width: 768px) {
+  @keyframes clientCarouselScroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-120px * 5 - 4rem));
+    }
+  }
+  
+  .client-carousel-scroll {
+    animation-duration: 20s; /* Mais rápido no mobile */
+  }
+}
+
+.client-carousel-scroll {
+  animation: clientCarouselScroll 30s linear infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.client-carousel-container {
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
+}
+
+/* Otimização para performance em dispositivos móveis */
+@media (max-width: 768px) {
+  .client-carousel-container {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+  }
 }

@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { Palette, Code2, Globe2, MapPin, ChevronRight, ArrowRight, ArrowDown, Zap, PenTool, Lightbulb } from 'lucide-react';
+import { Globe2, Palette, Code2, MapPin, ChevronRight, ArrowRight, ArrowDown, Zap, PenTool, Lightbulb, Users, Shield, Award, Clock, Briefcase } from 'lucide-react';
 import { Testimonial } from './components/Testimonial';
 import { ServiceCard } from './components/ServiceCard';
 import { Navigation } from './components/Navigation';
+import { PerformanceAnimation } from './components/PerformanceAnimation';
 import { HeroAnimation } from './components/HeroAnimation';
-import './index.css';
+import './index.css'; // ou o caminho correto para o seu arquivo CSS
 import ClientCarousel from './components/ClientCarousel';
 import Footer from './components/Footer';
 import { Forms } from './components/Forms';
 import { AnimatedNumber } from './components/AnimatedNumber';
 import { ProjectsPage } from './components/ProjectsPage';
 import { motion } from 'framer-motion';
+
+function AppCarousel() {
+  return (
+    <div className="">
+      <ClientCarousel />
+    </div>
+  );
+}
 
 function TypewriterText() {
   const words = ['Brand', 'Presence', 'Design'];
@@ -48,7 +57,7 @@ function TypewriterText() {
 
     const timeout = setTimeout(typeNextCharacter, 100);
     return () => clearTimeout(timeout);
-  }, [currentIndex, isTyping, currentWordIndex, words]);
+  }, [currentIndex, isTyping, currentWordIndex]);
 
   return (
     <span>
@@ -58,7 +67,13 @@ function TypewriterText() {
   );
 }
 
+
 function App() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, [])
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -77,12 +92,6 @@ function App() {
     { icon: <MapPin className="md:w-7 md:h-7 w-6 h-6" />, title: 'Maps Profile', description: 'Boost local visibility' },
   ];
 
-  const motionProps = {
-    initial: { opacity: 0, y: 20 },
-    whileInView: { opacity: 1, y: 0 },
-    transition: { duration: 0.5 },
-    viewport: { once: true }
-  };
 
   return (
     <div className="min-h-screen bg-[#050725] text-white overflow-hidden w-full max-w-[100vw]">
@@ -93,7 +102,7 @@ function App() {
       <section id="hero" className="min-h-screen flex items-center pt-16 sm:pt-20">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <div className="relative z-10">
-            <div className="absolute -top-20 -left-20 w-64 h-64 bg-blue-500/10 rounded-full filter blur-3xl animate-pulse transform-gpu"></div>
+            <div className="absolute -top-20 -left-20 w-64 h-64 bg-blue-500/10 rounded-full filter blur-3xl animate-pulse will-change-[filter,opacity] transform-gpu"></div>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6">
               Empowering Your<br/>
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
@@ -112,7 +121,12 @@ function App() {
           </div>
           {/* Right Column - Hero Animation */}
           <div className="relative h-[500px] flex items-center justify-center hidden md:block">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#1E3A8A]/20 to-[#3B82F6]/20 rounded-3xl blur-3xl transform-gpu"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-[#1E3A8A]/20 to-[#3B82F6]/20 rounded-3xl blur-3xl will-change-[opacity,transform] transform-gpu"
+              style={{
+                opacity: isVisible ? 1 : 0,
+                transition: 'opacity 2s ease-out'
+              }}
+            />
             
             {/* Grid Background */}
             <div className="absolute inset-0 grid grid-cols-6 grid-rows-6 gap-8 opacity-20">
@@ -121,6 +135,7 @@ function App() {
               ))}
             </div>
             
+            {/* Add the new HeroAnimation component */}
             <HeroAnimation />
           </div>
         </div>
@@ -149,7 +164,13 @@ function App() {
       <section id="why-us" className="pb-0 bg-no-repeat bg-cover bg-center justify-center" style={{ backgroundImage: "url('/bg3.jpeg')"}}>
         <div className='bg-gradient-to-b from-black to-[#060623]/80 py-12'>
           <div className="container mx-auto px-4 sm:px-6">
-            <motion.div {...motionProps} className="text-center mb-8">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-center mb-8"
+            >
               <h2 className="text-3xl sm:text-4xl font-bold mb-3 px-2 sm:px-0">
                 Where <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Innovation</span> Meets Execution
               </h2>
@@ -160,7 +181,7 @@ function App() {
               <motion.div 
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
               >
                 <div className="grid grid-cols-1 gap-4 sm:gap-6">
@@ -185,7 +206,7 @@ function App() {
                       key={index}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4 }}
+                      transition={{ duration: 0.4, delay: 0.1 * index }}
                       viewport={{ once: true }}
                       className="flex items-start bg-white/5 p-3 sm:p-5 rounded-xl border border-white/5"
                     >
@@ -204,47 +225,72 @@ function App() {
               <motion.div 
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
                 viewport={{ once: true }}
               >
                 <div className="space-y-4 sm:space-y-6">
                   <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Why Trust Us</h3>
                   <ul className="space-y-4 sm:space-y-6">
-                    {[
-                      {
-                        title: "Trusted Across Industries",
-                        description: "From visionary startups to established companies"
-                      },
-                      {
-                        title: "Results-Focused Approach",
-                        description: "We prioritize your goals and create solutions that drive real business outcomes"
-                      },
-                      {
-                        title: "Modern Digital Excellence",
-                        description: "Leveraging the latest technologies to keep your brand ahead of the curve"
-                      },
-                      {
-                        title: "Collaborative Partnership",
-                        description: "We work closely with you at every step, ensuring your vision is realized with precision and care"
-                      }
-                    ].map((item, index) => (
-                      <motion.li 
-                        key={index}
-                        className="flex items-start"
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.3 }}
-                        viewport={{ once: true }}
-                      >
-                        <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mr-3 sm:mr-4 mt-1 flex-shrink-0 flex items-center justify-center">
-                          <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
-                        </div>
-                        <div>
-                          <h4 className="text-white text-sm sm:text-base font-medium mb-0.5 sm:mb-1">{item.title}</h4>
-                          <p className="text-gray-400 text-xs sm:text-sm">{item.description}</p>
-                        </div>
-                      </motion.li>
-                    ))}
+                    <motion.li 
+                      className="flex items-start" 
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: 0.1 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mr-3 sm:mr-4 mt-1 flex-shrink-0 flex items-center justify-center">
+                        <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="text-white text-sm sm:text-base font-medium mb-0.5 sm:mb-1">Trusted Across Industries</h4>
+                        <p className="text-gray-400 text-xs sm:text-sm">From visionary startups to established companies</p>
+                      </div>
+                    </motion.li>
+                    <motion.li 
+                      className="flex items-start"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: 0.2 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mr-3 sm:mr-4 mt-1 flex-shrink-0 flex items-center justify-center">
+                        <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="text-white text-sm sm:text-base font-medium mb-0.5 sm:mb-1">Results-Focused Approach</h4>
+                        <p className="text-gray-400 text-xs sm:text-sm">We prioritize your goals and create solutions that drive real business outcomes</p>
+                      </div>
+                    </motion.li>
+                    <motion.li 
+                      className="flex items-start"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: 0.3 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mr-3 sm:mr-4 mt-1 flex-shrink-0 flex items-center justify-center">
+                        <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="text-white text-sm sm:text-base font-medium mb-0.5 sm:mb-1">Modern Digital Excellence</h4>
+                        <p className="text-gray-400 text-xs sm:text-sm">Leveraging the latest technologies to keep your brand ahead of the curve</p>
+                      </div>
+                    </motion.li>
+                    <motion.li 
+                      className="flex items-start"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: 0.4 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mr-3 sm:mr-4 mt-1 flex-shrink-0 flex items-center justify-center">
+                        <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="text-white text-sm sm:text-base font-medium mb-0.5 sm:mb-1">Collaborative Partnership</h4>
+                        <p className="text-gray-400 text-xs sm:text-sm">We work closely with you at every step, ensuring your vision is realized with precision and care</p>
+                      </div>
+                    </motion.li>
                   </ul>
                 </div>
               </motion.div>
@@ -253,7 +299,13 @@ function App() {
         
         {/* Technologies We Use Section */}
         <div className="container mx-auto px-4 pt-16">
-          <motion.div {...motionProps} className="text-center mb-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="text-center mb-8"
+          >
             <h3 className="text-2xl font-bold mb-2">
               Professional <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Tools</span> We Use
             </h3>
@@ -293,7 +345,7 @@ function App() {
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 className="flex flex-col items-center p-4"
               >
@@ -334,23 +386,26 @@ function App() {
 
       {/* Our Clients section with smooth gradient transition */}
       <section className="bg-gradient-to-b from-[#060623] via-[#050725] to-[#040620] relative -mt-24">
+        {/* Smooth transition overlay */}
         <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-[#060623]/90 to-transparent z-10"></div>
         
         <div className="container mx-auto relative z-20"> 
-          <ClientCarousel/>
-        </div>
+        <AppCarousel/>
+          </div>
       </section>
 
       {/* Contact Section with improved transition */}
       <section id="contact" className='bg-gradient-to-b from-[#040620] via-[#050725] to-[#060623] relative -mt-20'>
+        {/* Smooth transition overlay */}
         <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-[#040620]/90 to-transparent z-10"></div>
 
         <div className="container mx-auto min-h-screen flex items-center justify-center p-4 relative z-20">
-          <Forms />
+      <Forms />
         </div>
       </section>
 
       <section className='py-20 bg-gradient-to-b from-[#060623] to-[#050F5A] relative overflow-hidden'>
+        {/* Background decorative elements */}
         <div className="absolute inset-0" aria-hidden="true">
           <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl opacity-50"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl opacity-50"></div>
@@ -390,8 +445,8 @@ function App() {
                   end={87} 
                   prefix="" 
                   suffix="%" 
-                  delay={0}
-                  duration={1800}
+                  delay={300}
+                  duration={2000}
                   label={
                     <div className="text-center mt-3">
                       <div className="text-white/70 text-sm">Website-Driven Sales</div>
@@ -406,8 +461,8 @@ function App() {
                   end={92} 
                   prefix="" 
                   suffix="%" 
-                  delay={0}
-                  duration={1800}
+                  delay={600}
+                  duration={2200}
                   label={
                     <div className="text-center mt-3">
                       <div className="text-white/70 text-sm">Performance Matters</div>
@@ -421,19 +476,12 @@ function App() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="bg-gradient-to-b from-[#050F5A] via-[#050F5A] to-[#060623] relative">
-        <div className="relative z-10">
-          <Testimonial />
-        </div>
-      </section>
-
       {/* Footer with smooth transition */}
       <div className="relative">
         <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#060623] to-transparent z-10"></div>
         <footer className="bg-[#060623] relative z-0">
-          <Footer /> 
-        </footer>
+       <Footer /> 
+      </footer>
       </div>
     </div>
   );
