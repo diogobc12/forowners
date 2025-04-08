@@ -20,7 +20,8 @@ function AnimatedNumberBase({
   const [displayValue, setDisplayValue] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
-  const timerRef = useRef<number | null>(null);
+  const animationFrameRef = useRef<number | null>(null);
+  const startTimeRef = useRef<number | null>(null);
   
   // Verifica se é dispositivo móvel
   const isMobile = useMemo(() => {
@@ -74,40 +75,44 @@ function AnimatedNumberBase({
   useEffect(() => {
     if (!hasStarted) return;
     
-    // Limpa timers anteriores
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
+    // Limpa animações anteriores
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current);
     }
     
     // Reset inicial
     setDisplayValue(0);
-    let currentValue = 0;
+    startTimeRef.current = performance.now();
     
-    // Usa setInterval em vez de requestAnimationFrame para melhor controle em mobile
-    timerRef.current = window.setInterval(() => {
-      // Calcula o próximo valor
-      currentValue = Math.min(currentValue + stepSize, end);
+    const animate = (currentTime: number) => {
+      if (!startTimeRef.current) return;
+      
+      const elapsed = currentTime - startTimeRef.current;
+      const progress = Math.min(elapsed / actualDuration, 1);
+      
+      // Usa easing function para suavizar a animação
+      const easedProgress = progress < 0.5 
+        ? 2 * progress * progress 
+        : -1 + (4 - 2 * progress) * progress;
+      
+      const currentValue = Math.floor(easedProgress * end);
       setDisplayValue(currentValue);
       
-      // Verifica se chegamos ao final
-      if (currentValue >= end) {
-        if (timerRef.current) {
-          clearInterval(timerRef.current);
-          timerRef.current = null;
-        }
-        
-        // Garante que o valor final é exatamente o valor esperado
+      if (progress < 1) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+      } else {
         setDisplayValue(end);
       }
-    }, intervalTime);
+    };
+    
+    animationFrameRef.current = requestAnimationFrame(animate);
     
     return () => {
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-        timerRef.current = null;
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [hasStarted, end, stepSize, intervalTime]);
+  }, [hasStarted, end, actualDuration]);
   
   return (
     <div ref={elementRef} className="text-center" aria-live="polite">
