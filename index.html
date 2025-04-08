@@ -1,19 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" style="margin: 0; padding: 0; overflow-x: hidden; width: 100%; background-color: #060623;">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <meta name="theme-color" content="#060623">
-    <!-- iOS specific theme settings -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="mobile-web-app-capable" content="yes">
-    <!-- Web App Manifest -->
-    <link rel="manifest" href="/manifest.json">
-    <!-- Additional colors for browsers -->
-    <meta name="msapplication-TileColor" content="#060623">
-    <meta name="msapplication-navbutton-color" content="#060623">
-    <meta name="apple-mobile-web-app-title" content="ForOwners">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="theme-color" content="#050725">
 
 
 
@@ -25,18 +15,13 @@
     <meta name="author" content="ForOwners" />
     <meta name="robots" content="index, follow" />
     
-    <!-- Google Specific -->
-    <meta itemprop="name" content="ForOwners" />
-    <meta itemprop="description" content="Branding, Web Design & Digital Consultancy Services" />
-    <meta itemprop="image" content="https://forowners.co/logo.png" />
-    
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="./assets/logo.png" />
 
     <!-- Open Graph for Social Media -->
     <meta property="og:title" content="ForOwners - Branding & Web Design Agency" />
     <meta property="og:description" content="Professional branding, web design, and digital consultancy services to elevate your business." />
-    <meta property="og:image" content="https://forowners.co/logo.png" />
+    <meta property="og:image" content="./assets/logo.png" />
     <meta property="og:url" content="https://forowners.co" />
     <meta property="og:type" content="website" />
 
@@ -44,7 +29,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="ForOwners - Digital Consultancy" />
     <meta name="twitter:description" content="We help businesses with branding, web design, and consultancy." />
-    <meta name="twitter:image" content="https://forowners.co/logo.png" />
+    <meta name="twitter:image" content="https://forowners.co/twitter-image.jpg" />
     <!-- Structured Data (Schema.org) -->
     <script type="application/ld+json">
     {
@@ -52,50 +37,22 @@
       "@type": "Organization",
       "name": "ForOwners",
       "url": "https://forowners.co",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://forowners.co/logo.png",
-        "width": "180",
-        "height": "60",
-        "contentUrl": "https://forowners.co/logo.png"
-      },
-      "image": "https://forowners.co/logo.png",
-      "description": "ForOwners helps businesses establish a strong digital presence with expert branding, web design, web development, and consultancy services.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "Portugal"
-      },
+      "logo": "https://forowners.co/logo.png",
       "sameAs": [
         "https://www.linkedin.com/company/forowners/",
         "https://www.instagram.com/forowners"
       ]
     }
     </script>
-    <!-- Second script for WebSite schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "ForOwners",
-      "url": "https://forowners.co",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://forowners.co/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
 
     <!-- Performance & SEO -->
-    <link rel="preload" as="image" href="/favicon.png" />
-    <link rel="preload" as="image" href="/logo.png" />
+    <link rel="preload" as="image" href="/public/favicon.png" />
     <link rel="canonical" href="https://forowners.co" />
 
     <!-- Load main script -->
     <script type="module" src="/src/main.tsx"></script>
   </head>
-  <body style="margin: 0; padding: 0; overflow-x: hidden; width: 100%; background-color: #060623; position: relative;">
-    <div id="root" style="overflow-x: hidden; width: 100%;"></div>
-    <script type="module" src="/src/main.tsx"></script>
+  <body>
+    <div id="root"></div>
   </body>
 </html>
