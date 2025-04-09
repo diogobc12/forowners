@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, memo, useMemo } from 'react';
+import React, { useEffect, useState, useRef, memo } from 'react';
 
 interface AnimatedNumberProps {
   end: number;
@@ -22,28 +22,6 @@ function AnimatedNumberBase({
   const elementRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<number | null>(null);
   
-  // Verifica se é dispositivo móvel
-  const isMobile = useMemo(() => {
-    if (typeof window !== 'undefined') {
-      return window.innerWidth < 768;
-    }
-    return false;
-  }, []);
-  
-  // Ajusta duração com base no dispositivo
-  const actualDuration = useMemo(() => {
-    return isMobile ? Math.min(800, duration / 2) : duration;
-  }, [duration, isMobile]);
-  
-  // Calcula número de steps com base no valor final
-  const totalSteps = useMemo(() => {
-    // Em dispositivos móveis, usamos menos steps para melhor performance
-    if (isMobile) {
-      return end <= 10 ? end : Math.min(15, Math.ceil(end / 3));
-    }
-    return end <= 10 ? end : Math.min(40, Math.ceil(end / 3));
-  }, [end, isMobile]);
-  
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -54,7 +32,7 @@ function AnimatedNumberBase({
           observer.disconnect();
         }
       },
-      { threshold: 0.1, rootMargin: '50px' }
+      { threshold: 0.1 }
     );
 
     if (elementRef.current) {
@@ -75,26 +53,24 @@ function AnimatedNumberBase({
     // Reset inicial
     setDisplayValue(0);
     let currentValue = 0;
-    const stepSize = Math.ceil(end / totalSteps);
-    const intervalTime = actualDuration / totalSteps;
     
-    // Usa setInterval em vez de requestAnimationFrame para melhor controle em mobile
+    // Intervalo fixo de 50ms para garantir suavidade
+    const interval = 50;
+    // Calcula o incremento baseado na duração total
+    const increment = Math.max(1, Math.ceil(end / (duration / interval)));
+    
     timerRef.current = window.setInterval(() => {
-      // Calcula o próximo valor
-      currentValue = Math.min(currentValue + stepSize, end);
+      currentValue = Math.min(currentValue + increment, end);
       setDisplayValue(currentValue);
       
-      // Verifica se chegamos ao final
       if (currentValue >= end) {
         if (timerRef.current) {
           clearInterval(timerRef.current);
           timerRef.current = null;
         }
-        
-        // Garante que o valor final é exatamente o valor esperado
         setDisplayValue(end);
       }
-    }, intervalTime);
+    }, interval);
     
     return () => {
       if (timerRef.current) {
@@ -102,7 +78,7 @@ function AnimatedNumberBase({
         timerRef.current = null;
       }
     };
-  }, [hasStarted, end, totalSteps, actualDuration]);
+  }, [hasStarted, end, duration]);
   
   return (
     <div ref={elementRef} className="text-center" aria-live="polite">
