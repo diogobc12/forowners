@@ -45,13 +45,6 @@ function AnimatedNumberBase({
     return end <= 10 ? end : Math.min(40, Math.ceil(end / 3));
   }, [end, isMobile]);
   
-  // Calcula o valor de incremento e o intervalo
-  const { stepSize, intervalTime } = useMemo(() => {
-    const stepSize = Math.ceil(end / totalSteps);
-    const intervalTime = actualDuration / totalSteps;
-    return { stepSize, intervalTime };
-  }, [end, totalSteps, actualDuration]);
-  
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -121,9 +114,9 @@ function AnimatedNumberBase({
         role="text"
         aria-label={`${prefix}${displayValue}${suffix}`}
       >
-        <span className="text-white/90">{prefix}</span>
-        <span>{displayValue}</span>
-        <span className="text-white/90 ml-0.5">{suffix}</span>
+        <span className="text-white/90 font-bold">{prefix}</span>
+        <span className="font-bold">{displayValue}</span>
+        <span className="text-white/90 ml-0.5 font-bold">{suffix}</span>
       </div>
       <div className="mt-4">{label}</div>
     </div>
