@@ -430,7 +430,7 @@ function App() {
                   prefix="+" 
                   suffix="Billion"
                   delay={0}
-                  duration={1800}
+                  duration={2500}
                   label={
                     <div className="text-center mt-3">
                       <div className="text-white/70 text-sm">Daily Google Searches</div>
@@ -446,7 +446,7 @@ function App() {
                   prefix="+" 
                   suffix="%" 
                   delay={0}
-                  duration={1000}
+                  duration={1800}
                   label={
                     <div className="text-center mt-3">
                       <div className="text-white/70 text-sm">Website-Driven Sales</div>
@@ -462,7 +462,7 @@ function App() {
                   prefix="+" 
                   suffix="%" 
                   delay={0}
-                  duration={1000}
+                  duration={1800}
                   label={
                     <div className="text-center mt-3">
                       <div className="text-white/70 text-sm">Performance Matters</div>
