@@ -20,8 +20,7 @@ function AnimatedNumberBase({
   const [displayValue, setDisplayValue] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
-  const animationFrameRef = useRef<number | null>(null);
-  const startTimeRef = useRef<number | null>(null);
+  const timerRef = useRef<number | null>(null);
   
   // Verifica se é dispositivo móvel
   const isMobile = useMemo(() => {
@@ -33,14 +32,14 @@ function AnimatedNumberBase({
   
   // Ajusta duração com base no dispositivo
   const actualDuration = useMemo(() => {
-    return isMobile ? Math.min(1000, duration / 2.5) : duration;
+    return isMobile ? Math.min(800, duration / 2) : duration;
   }, [duration, isMobile]);
   
   // Calcula número de steps com base no valor final
   const totalSteps = useMemo(() => {
     // Em dispositivos móveis, usamos menos steps para melhor performance
     if (isMobile) {
-      return end <= 10 ? end : Math.min(20, Math.ceil(end / 5));
+      return end <= 10 ? end : Math.min(15, Math.ceil(end / 3));
     }
     return end <= 10 ? end : Math.min(40, Math.ceil(end / 3));
   }, [end, isMobile]);
@@ -68,44 +67,42 @@ function AnimatedNumberBase({
   useEffect(() => {
     if (!hasStarted) return;
     
-    // Limpa animações anteriores
-    if (animationFrameRef.current) {
-      cancelAnimationFrame(animationFrameRef.current);
+    // Limpa timers anteriores
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
     }
     
     // Reset inicial
     setDisplayValue(0);
-    startTimeRef.current = performance.now();
+    let currentValue = 0;
+    const stepSize = Math.ceil(end / totalSteps);
+    const intervalTime = actualDuration / totalSteps;
     
-    const animate = (currentTime: number) => {
-      if (!startTimeRef.current) return;
-      
-      const elapsed = currentTime - startTimeRef.current;
-      const progress = Math.min(elapsed / actualDuration, 1);
-      
-      // Usa easing function para suavizar a animação
-      const easedProgress = progress < 0.5 
-        ? 2 * progress * progress 
-        : -1 + (4 - 2 * progress) * progress;
-      
-      const currentValue = Math.floor(easedProgress * end);
+    // Usa setInterval em vez de requestAnimationFrame para melhor controle em mobile
+    timerRef.current = window.setInterval(() => {
+      // Calcula o próximo valor
+      currentValue = Math.min(currentValue + stepSize, end);
       setDisplayValue(currentValue);
       
-      if (progress < 1) {
-        animationFrameRef.current = requestAnimationFrame(animate);
-      } else {
+      // Verifica se chegamos ao final
+      if (currentValue >= end) {
+        if (timerRef.current) {
+          clearInterval(timerRef.current);
+          timerRef.current = null;
+        }
+        
+        // Garante que o valor final é exatamente o valor esperado
         setDisplayValue(end);
       }
-    };
-    
-    animationFrameRef.current = requestAnimationFrame(animate);
+    }, intervalTime);
     
     return () => {
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
       }
     };
-  }, [hasStarted, end, actualDuration]);
+  }, [hasStarted, end, totalSteps, actualDuration]);
   
   return (
     <div ref={elementRef} className="text-center" aria-live="polite">
