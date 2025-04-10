@@ -52,7 +52,7 @@ export function Navigation({ scrolled }: NavigationProps) {
             isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
-          <div className="px-4 py-4 bg-slate-900/95 backdrop-blur-sm rounded-b-lg space-y-4">
+          <div className={`px-4 py-4 rounded-b-lg space-y-4 ${scrolled ? 'bg-none' : 'bg-slate-900/95 backdrop-blur-sm'}`}>
             <a 
               href="#services" 
               className="block text-white hover:text-blue-300 transition-colors py-2"
