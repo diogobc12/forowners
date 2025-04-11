@@ -17,7 +17,7 @@ export function Navigation({ scrolled }: NavigationProps) {
     <nav className="fixed z-50 transition-all duration-300 sm:p-5 mt-3 flex justify-center w-full transform-gpu will-change-transform">
       <div 
         className={`transition-all duration-300 flex flex-col justify-between items-center transform-gpu backface-hidden ${
-          scrolled ? 'bg-slate-900/90 backdrop-blur-sm shadow-lg w-[95%] sm:w-[80%] sm:py-1 py-0 px-6 sm:px-8 rounded-lg scale-100 origin-center' : 'bg-transparent w-[90%] sm:w-[70%] scale-95 origin-center' 
+          scrolled || isOpen ? 'bg-slate-900/90 backdrop-blur-sm shadow-lg w-[95%] sm:w-[80%] sm:py-1 py-0 px-6 sm:px-8 rounded-lg scale-100 origin-center' : 'bg-transparent w-[90%] sm:w-[70%] scale-95 origin-center' 
         }`}
       >
         <div className="container mx-auto px-2 sm:px-4 flex justify-between items-center h-16 sm:h-20 relative w-full">
@@ -52,7 +52,7 @@ export function Navigation({ scrolled }: NavigationProps) {
             isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
-          <div className={`px-4 py-4 rounded-b-lg space-y-4 ${scrolled ? 'bg-none' : 'bg-slate-900/95 backdrop-blur-sm'}`}>
+          <div className="px-4 py-4 rounded-b-lg space-y-4">
             <a 
               href="#services" 
               className="block text-white hover:text-blue-300 transition-colors py-2"
