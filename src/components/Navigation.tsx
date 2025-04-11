@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import logo from "/src/assets/logo.png";
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface NavigationProps {
   scrolled: boolean;
@@ -8,6 +9,7 @@ interface NavigationProps {
 
 export function Navigation({ scrolled }: NavigationProps) {
   const [isOpen, setIsOpen] = React.useState(false);
+  const { t, toggleLanguage, language } = useLanguage();
 
   const toggleMenu = useCallback(() => {
     setIsOpen(prev => !prev);
@@ -26,22 +28,40 @@ export function Navigation({ scrolled }: NavigationProps) {
           </a>
           
           {/* Mobile menu button */}
-          <button
-            onClick={toggleMenu}
-            className="md:hidden text-white focus:outline-none transform-gpu"
-            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-            title={isOpen ? "Close Menu" : "Open Menu"}
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className="flex items-center gap-4 md:hidden">
+            <button
+              onClick={toggleLanguage}
+              className="text-white focus:outline-none transform-gpu p-2 hover:bg-white/10 rounded-lg transition-colors"
+              aria-label="Toggle language"
+              title={language === 'en' ? 'Mudar para Português' : 'Change to English'}
+            >
+              <Globe className="w-5 h-5" />
+            </button>
+            <button
+              onClick={toggleMenu}
+              className="text-white focus:outline-none transform-gpu"
+              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+              title={isOpen ? "Close Menu" : "Open Menu"}
+            >
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
 
           {/* Desktop menu */}
           <div className="hidden md:flex space-x-8 items-center">
-            <a href="#services" className="text-white hover:text-blue-300 transition-colors">Services</a>
-            <a href="#why-us" className="text-white hover:text-blue-300 transition-colors">Why Us</a>
-            <a href="#contact" className="text-white hover:text-blue-300 transition-colors">Contact</a>
+            <a href="#services" className="text-white hover:text-blue-300 transition-colors">{t('navigation.services')}</a>
+            <a href="#why-us" className="text-white hover:text-blue-300 transition-colors">{t('navigation.whyUs')}</a>
+            <a href="#contact" className="text-white hover:text-blue-300 transition-colors">{t('navigation.contact')}</a>
+            <button
+              onClick={toggleLanguage}
+              className="text-white focus:outline-none transform-gpu p-2 hover:bg-white/10 rounded-lg transition-colors"
+              aria-label="Toggle language"
+              title={language === 'en' ? 'Mudar para Português' : 'Change to English'}
+            >
+              <Globe className="w-5 h-5" />
+            </button>
             <a href="#contact" className="px-4 py-2 bg-blue-500 hover:bg-blue-600 transition-colors rounded-lg transform-gpu">
-              Get in Touch
+              {t('navigation.getInTouch')}
             </a>
           </div>
         </div>
@@ -58,28 +78,28 @@ export function Navigation({ scrolled }: NavigationProps) {
               className="block text-white hover:text-blue-300 transition-colors py-2"
               onClick={toggleMenu}
             >
-              Services
+              {t('navigation.services')}
             </a>
             <a 
               href="#why-us" 
               className="block text-white hover:text-blue-300 transition-colors py-2"
               onClick={toggleMenu}
             >
-              Why Us
+              {t('navigation.whyUs')}
             </a>
             <a 
               href="#contact" 
               className="block text-white hover:text-blue-300 transition-colors py-2"
               onClick={toggleMenu}
             >
-              Contact
+              {t('navigation.contact')}
             </a>
             <a 
               href="#contact" 
               className="block px-4 py-2 bg-blue-500 hover:bg-blue-600 transition-colors rounded-lg text-center transform-gpu"
               onClick={toggleMenu}
             >
-              Get in Touch
+              {t('navigation.getInTouch')}
             </a>
           </div>
         </div>

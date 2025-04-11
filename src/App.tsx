@@ -12,6 +12,7 @@ import { Forms } from './components/Forms';
 import { AnimatedNumber } from './components/AnimatedNumber';
 import { ProjectsPage } from './components/ProjectsPage';
 import { motion } from 'framer-motion';
+import { useLanguage } from './contexts/LanguageContext';
 
 function AppCarousel() {
   return (
@@ -22,7 +23,8 @@ function AppCarousel() {
 }
 
 function TypewriterText() {
-  const words = ['Brand', 'Presence', 'Design'];
+  const { t } = useLanguage();
+  const words = t('hero.words');
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isTyping, setIsTyping] = useState(true);
@@ -57,7 +59,7 @@ function TypewriterText() {
 
     const timeout = setTimeout(typeNextCharacter, 100);
     return () => clearTimeout(timeout);
-  }, [currentIndex, isTyping, currentWordIndex]);
+  }, [currentIndex, isTyping, currentWordIndex, words]);
 
   return (
     <span>
@@ -69,6 +71,7 @@ function TypewriterText() {
 
 
 function App() {
+  const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -86,9 +89,9 @@ function App() {
   }, []);
 
   const services = [
-    { icon: <Palette className="md:w-7 md:h-7 w-6 h-6" />, title: 'Branding', description: 'Unique identity for your business' },
-    { icon: <Code2 className="md:w-7 md:h-7 w-6 h-6" />, title: 'Web Design', description: 'Sleek, intuitive interfaces' },
-    { icon: <Globe2 className="md:w-7 md:h-7 w-6 h-6" />, title: 'Web Development', description: 'High-performance solutions' },
+    { icon: <Palette className="md:w-7 md:h-7 w-6 h-6" />, title: t('services.branding.title'), description: t('services.branding.description') },
+    { icon: <Code2 className="md:w-7 md:h-7 w-6 h-6" />, title: t('services.webDesign.title'), description: t('services.webDesign.description') },
+    { icon: <Globe2 className="md:w-7 md:h-7 w-6 h-6" />, title: t('services.development.title'), description: t('services.development.description') },
     { icon: <MapPin className="md:w-7 md:h-7 w-6 h-6" />, title: 'Maps Profile', description: 'Boost local visibility' },
   ];
 
@@ -104,18 +107,18 @@ function App() {
           <div className="relative z-10">
             <div className="absolute -top-20 -left-20 w-64 h-64 bg-blue-500/10 rounded-full filter blur-3xl animate-pulse will-change-[filter,opacity] transform-gpu"></div>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6">
-              Empowering Your<br/>
+              {t('hero.title')}<br/>
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                 <TypewriterText />
               </span>
             </h1>
-            <p className="text-lg sm:text-xl text-slate-300 mb-8 max-w-md">Your brand, refined. Your website, perfected. Transform your digital identity today.</p>
+            <p className="text-lg sm:text-xl text-slate-300 mb-8 max-w-md">{t('hero.subtitle')}</p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a href="#contact" className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 rounded-lg text-white font-semibold shadow-lg shadow-blue-500/20">
-                Let's Talk <ChevronRight className="ml-2 w-5 h-5" />
+                {t('hero.cta.talk')} <ChevronRight className="ml-2 w-5 h-5" />
               </a>
               <a href="#services" className="inline-flex items-center justify-center px-6 py-3 bg-transparent border border-cyan-500/30 hover:bg-cyan-500/10 transition-all duration-300 rounded-lg text-white font-semibold">
-                Our Services <ArrowDown className="ml-2 w-5 h-5" />
+                {t('hero.cta.services')} <ArrowDown className="ml-2 w-5 h-5" />
               </a>
             </div>
           </div>
@@ -145,10 +148,12 @@ function App() {
       <section id="services" className="py-10 sm:py-16 bg-cover bg-gradient-to-t from-[#000000] to-[#050725]/50">
         <div className="container mx-auto">
           <div className="text-center mb-6 sm:mb-10">
-            <span className="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs sm:text-sm font-medium mb-2 sm:mb-3 inline-block">WHAT WE OFFER</span>
-            <h2 className="text-3xl md:text-5xl font-bold text-center mb-2 sm:mb-3">Our Services</h2>
+            <span className="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs sm:text-sm font-medium mb-2 sm:mb-3 inline-block">
+              {t('services.title').toUpperCase()}
+            </span>
+            <h2 className="text-3xl md:text-5xl font-bold text-center mb-2 sm:mb-3">{t('services.title')}</h2>
             <p className="text-slate-300 text-center mb-3 max-w-2xl mx-auto text-sm sm:text-base px-4">
-              We provide comprehensive digital solutions to elevate your brand and online presence.
+              {t('services.subtitle')}
             </p>
             <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto"></div>
           </div>
@@ -172,7 +177,7 @@ function App() {
               className="text-center mb-8"
             >
               <h2 className="text-3xl sm:text-4xl font-bold mb-3 px-2 sm:px-0">
-                Where <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Innovation</span> Meets Execution
+                {t('whyUs.title')}
               </h2>
               <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-6"></div>
             </motion.div>
@@ -188,18 +193,18 @@ function App() {
                   {[
                     {
                       icon: <Zap className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400" />,
-                      title: "Performance-Driven",
-                      description: "Optimised for speed, design and user experience — because first impressions are everything"
+                      title: t('whyUs.features.performance.title'),
+                      description: t('whyUs.features.performance.description')
                     },
                     {
                       icon: <PenTool className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400" />,
-                      title: "Creative Process",
-                      description: "A blend of strategic thinking with innovation, delivering websites that not only function, they convert"
+                      title: t('whyUs.features.creative.title'),
+                      description: t('whyUs.features.creative.description')
                     },
                     {
                       icon: <Lightbulb className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400" />,
-                      title: "Tailored Solutions",
-                      description: "Digital solutions that reflect your brand identity and drive measurable results"
+                      title: t('whyUs.features.tailored.title'),
+                      description: t('whyUs.features.tailored.description')
                     }
                   ].map((item, index) => (
                     <motion.div 
@@ -229,7 +234,7 @@ function App() {
                 viewport={{ once: true }}
               >
                 <div className="space-y-4 sm:space-y-6">
-                  <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Why Trust Us</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">{t('whyUs.trust.title')}</h3>
                   <ul className="space-y-4 sm:space-y-6">
                     <motion.li 
                       className="flex items-start" 
@@ -242,8 +247,8 @@ function App() {
                         <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                       </div>
                       <div>
-                        <h4 className="text-white text-sm sm:text-base font-medium mb-0.5 sm:mb-1">Trusted Across Industries</h4>
-                        <p className="text-gray-400 text-xs sm:text-sm">From visionary startups to established companies</p>
+                        <h4 className="text-white text-sm sm:text-base font-medium mb-0.5 sm:mb-1">{t('whyUs.trust.points.industries.title')}</h4>
+                        <p className="text-gray-400 text-xs sm:text-sm">{t('whyUs.trust.points.industries.description')}</p>
                       </div>
                     </motion.li>
                     <motion.li 
@@ -257,8 +262,8 @@ function App() {
                         <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                       </div>
                       <div>
-                        <h4 className="text-white text-sm sm:text-base font-medium mb-0.5 sm:mb-1">Results-Focused Approach</h4>
-                        <p className="text-gray-400 text-xs sm:text-sm">We prioritize your goals and create solutions that drive real business outcomes</p>
+                        <h4 className="text-white text-sm sm:text-base font-medium mb-0.5 sm:mb-1">{t('whyUs.trust.points.results.title')}</h4>
+                        <p className="text-gray-400 text-xs sm:text-sm">{t('whyUs.trust.points.results.description')}</p>
                       </div>
                     </motion.li>
                     <motion.li 
@@ -272,8 +277,8 @@ function App() {
                         <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                       </div>
                       <div>
-                        <h4 className="text-white text-sm sm:text-base font-medium mb-0.5 sm:mb-1">Modern Digital Excellence</h4>
-                        <p className="text-gray-400 text-xs sm:text-sm">Leveraging the latest technologies to keep your brand ahead of the curve</p>
+                        <h4 className="text-white text-sm sm:text-base font-medium mb-0.5 sm:mb-1">{t('whyUs.trust.points.excellence.title')}</h4>
+                        <p className="text-gray-400 text-xs sm:text-sm">{t('whyUs.trust.points.excellence.description')}</p>
                       </div>
                     </motion.li>
                     <motion.li 
@@ -287,8 +292,8 @@ function App() {
                         <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                       </div>
                       <div>
-                        <h4 className="text-white text-sm sm:text-base font-medium mb-0.5 sm:mb-1">Collaborative Partnership</h4>
-                        <p className="text-gray-400 text-xs sm:text-sm">We work closely with you at every step, ensuring your vision is realized with precision and care</p>
+                        <h4 className="text-white text-sm sm:text-base font-medium mb-0.5 sm:mb-1">{t('whyUs.trust.points.partnership.title')}</h4>
+                        <p className="text-gray-400 text-xs sm:text-sm">{t('whyUs.trust.points.partnership.description')}</p>
                       </div>
                     </motion.li>
                   </ul>
@@ -428,15 +433,9 @@ function App() {
                 <AnimatedNumber 
                   end={3} 
                   prefix="+" 
-                  suffix="Billion"
                   delay={0}
                   duration={2500}
-                  label={
-                    <div className="text-center mt-3">
-                      <div className="text-white/70 text-sm">Daily Google Searches</div>
-                      <div className="text-cyan-400/70 text-xs mt-1">Opportunity for visibility</div>
-                    </div>
-                  }
+                  translationKey="stats.searches"
                 />
               </div>
 
@@ -444,15 +443,9 @@ function App() {
                 <AnimatedNumber 
                   end={87} 
                   prefix="+" 
-                  suffix="%" 
                   delay={0}
                   duration={1800}
-                  label={
-                    <div className="text-center mt-3">
-                      <div className="text-white/70 text-sm">Website-Driven Sales</div>
-                      <div className="text-cyan-400/70 text-xs mt-1">Revenue through web presence</div>
-                    </div>
-                  }
+                  translationKey="stats.sales"
                 />
               </div>
 
@@ -460,15 +453,9 @@ function App() {
                 <AnimatedNumber 
                   end={92} 
                   prefix="+" 
-                  suffix="%" 
                   delay={0}
                   duration={1800}
-                  label={
-                    <div className="text-center mt-3">
-                      <div className="text-white/70 text-sm">Performance Matters</div>
-                      <div className="text-cyan-400/70 text-xs mt-1">Users leave slow websites</div>
-                    </div>
-                  }
+                  translationKey="stats.performance"
                 />
               </div>
             </div>
