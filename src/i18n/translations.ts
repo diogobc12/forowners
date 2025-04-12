@@ -153,14 +153,14 @@ export const translations = {
         },
         sales: {
           prefix: "+",
-          value: "75",
+          value: "89",
           suffix: "%",
           title: "Website-Driven Sales",
           subtitle: "Revenue through web presence"
         },
         performance: {
           prefix: "+",
-          value: "75",
+          value: "92",
           suffix: "%",
           title: "Performance Matters",
           subtitle: "Users leave slow websites"
