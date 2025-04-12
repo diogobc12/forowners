@@ -19,11 +19,6 @@ html {
 }
 
 html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  width: 100%;
-  background-color: #060623;
   color: #ffffff;
   min-height: 100vh;
 }
@@ -36,12 +31,10 @@ body {
 }
 
 #root {
-  width: 100%;
-  overflow-x: hidden;
   isolation: isolate;
 }
 
-/* Otimização de performance para animações */
+/* Performance optimization utilities */
 @layer utilities {
   .will-change-transform {
     will-change: transform;
@@ -56,12 +49,12 @@ body {
   }
 }
 
-/* Transições suaves */
+/* Transitions */
 .transition-all {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Otimização de scroll */
+/* Scroll optimization */
 @supports (scroll-behavior: smooth) {
   .smooth-scroll {
     scroll-behavior: smooth;
@@ -69,7 +62,7 @@ body {
   }
 }
 
-/* Redução de motion se preferido pelo usuário */
+/* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -79,23 +72,18 @@ body {
   }
 }
 
-/* Animações otimizadas */
+/* Optimized animations */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Classes de utilidade para animações */
 .animate-fade-in {
   animation: fadeIn 0.5s ease-out forwards;
   will-change: opacity;
 }
 
-/* Otimização de navegação */
+/* Navigation optimization */
 nav {
   position: fixed;
   width: 100%;
@@ -108,40 +96,46 @@ nav {
 
 nav.scrolled {
   background: white;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   padding: 12px 0;
 }
 
-/* Client Carousel Animation - Otimizado para mobile */
+/* Client Carousel Animation */
 @keyframes clientCarouselScroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-160px * 5 - 5rem));
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-160px * 5 - 5rem)); }
 }
 
-/* Versão mobile mais rápida */
 @media (max-width: 768px) {
   @keyframes clientCarouselScroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(calc(-120px * 5 - 4rem));
-    }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-120px * 5 - 4rem)); }
   }
   
   .client-carousel-scroll {
-    animation-duration: 20s; /* Mais rápido no mobile */
+    animation-duration: 20s;
+  }
+  
+  .client-carousel-container {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
   }
 }
 
 .client-carousel-scroll {
   animation: clientCarouselScroll 30s linear infinite;
-  animation-fill-mode: forwards;
-  animation-timing-function: linear;
   will-change: transform;
   transform: translateZ(0);
 }
@@ -163,24 +157,4 @@ nav.scrolled {
     black 85%,
     transparent 100%
   );
-}
-
-/* Otimização para performance em dispositivos móveis */
-@media (max-width: 768px) {
-  .client-carousel-container {
-    mask-image: linear-gradient(
-      to right,
-      transparent,
-      black 10%,
-      black 90%,
-      transparent 100%
-    );
-    -webkit-mask-image: linear-gradient(
-      to right,
-      transparent,
-      black 10%,
-      black 90%,
-      transparent 100%
-    );
-  }
 }

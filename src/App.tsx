@@ -500,14 +500,173 @@ function App() {
         </div>
       </section>
 
+      {/* Lisbon Section - Portuguese Identity */}
+      <section className="py-16 bg-gradient-to-b from-[#050F5A] to-[#060623] relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0" aria-hidden="true">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl opacity-50"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl opacity-50"></div>
+          
+          {/* Pattern overlay - simulating traditional Portuguese azulejos */}
+          <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48cGF0aCBkPSJNMzAsMzBNMTUsMTVMMTUsNDVMNDUsNDVMNDUsMTVaIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMSIvPjxwYXRoIGQ9Ik0zMCwzMEMzMCwxOCAyMCwxNSAxNSwxNUMxNSw0NSA0NSw0NSA0NSwxNUM0MCwxNSAzMCwxOCAzMCwzMFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+')]"></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          {/* Minimal Header */}
+          <motion.div 
+            className="flex flex-col items-center mb-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
+            <div className="inline-flex items-center mb-2">
+              <div className="h-px w-8 bg-gradient-to-r from-green-500 to-green-500/0 mr-3"></div>
+              <span className="text-sm font-light tracking-wider text-cyan-400 uppercase">
+                {t('lisbon.label')}
+              </span>
+              <div className="h-px w-8 bg-gradient-to-l from-red-500 to-red-500/0 ml-3"></div>
+            </div>
+            <h2 className="text-2xl md:text-4xl font-light text-white mb-2 tracking-wide">
+              {t('lisbon.title')}
+            </h2>
+          </motion.div>
+          
+          {/* Main Content with Image */}
+          <div className="max-w-5xl mx-auto">
+            <div className="relative overflow-hidden rounded-xl shadow-xl">
+              {/* Image Container */}
+              <div className="relative h-[50vh] min-h-[400px]">
+                {/* Overlay Gradients */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#060623] via-[#060623]/70 to-transparent z-10"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#060623]/50 via-transparent to-[#060623]/50 z-10"></div>
+                
+                <motion.div
+                  className="absolute inset-0 z-0"
+                  initial={{ scale: 1.1 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ duration: 10, ease: "easeOut" }}
+                  viewport={{ once: true }}
+                >
+                  <img 
+                    src="https://images.unsplash.com/photo-1580323956656-26bbb1206e34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80" 
+                    alt="Lisbon Waterfront" 
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                </motion.div>
+                
+                {/* Portugal Flag-inspired Thin Line */}
+                <div className="absolute top-0 left-0 right-0 h-0.5 flex z-20">
+                  <div className="w-2/5 h-full bg-green-600"></div>
+                  <div className="w-3/5 h-full bg-red-600"></div>
+                </div>
+                
+                {/* Content Overlay */}
+                <div className="absolute inset-0 flex flex-col justify-end z-20 p-6 md:p-8">
+                  <div className="max-w-3xl">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="flex items-center mb-4">
+                        <div className="h-8 w-0.5 bg-gradient-to-b from-green-500 to-red-500 mr-3"></div>
+                        <h3 className="text-2xl md:text-3xl text-white font-light tracking-wide">Lisboa</h3>
+                        <motion.div 
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 0.8, x: 0 }}
+                          transition={{ duration: 0.5, delay: 0.3 }}
+                          viewport={{ once: true }}
+                          className="ml-3 px-2 py-0.5 text-xs rounded-full bg-white/10 backdrop-blur-sm"
+                        >
+                          PORTUGAL
+                        </motion.div>
+                      </div>
+                      
+                      <p className="text-white/80 text-base md:text-lg font-light mb-4 max-w-2xl leading-relaxed">
+                        {t('lisbon.subtitle')}
+                      </p>
+                      
+                      <div className="flex flex-wrap gap-3">
+                        {[0, 1, 2].map((index) => (
+                          <motion.div 
+                            key={index}
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4, delay: 0.1 * index }}
+                            viewport={{ once: true }}
+                            className="group"
+                          >
+                            <div className="flex items-center gap-2 border border-white/10 bg-white/5 backdrop-blur-sm rounded-lg px-3 py-2 transition-colors hover:bg-white/10">
+                              <div className={`w-6 h-6 rounded-full flex items-center justify-center bg-gradient-to-br ${
+                                index === 0 ? 'from-green-500/30 to-green-500/10 group-hover:from-green-500/50 group-hover:to-green-500/30' :
+                                index === 1 ? 'from-red-500/30 to-red-500/10 group-hover:from-red-500/50 group-hover:to-red-500/30' :
+                                'from-cyan-500/30 to-cyan-500/10 group-hover:from-cyan-500/50 group-hover:to-cyan-500/30'
+                              } transition-all`}>
+                                <div className={`${
+                                  index === 0 ? 'text-green-500' : 
+                                  index === 1 ? 'text-red-500' : 
+                                  'text-cyan-500'
+                                } group-hover:scale-110 transition-transform text-xs`}>●</div>
+                              </div>
+                              <span className="text-white/70 text-xs font-light">{t(`lisbon.facts.${index}.title`)}</span>
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  </div>
+                </div>
+                
+                {/* Animated Wave Overlay */}
+                <div className="absolute bottom-0 left-0 right-0 h-10 overflow-hidden z-10">
+                  <div className="wave-animation"></div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Bottom Quote Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="mt-6 text-center max-w-2xl mx-auto"
+            >
+              <blockquote className="italic text-white/60 text-sm md:text-base font-light">
+                "{t('lisbon.description')}"
+              </blockquote>
+              <div className="flex justify-center mt-4">
+                <div className="w-12 h-px bg-gradient-to-r from-green-500/0 via-red-500 to-green-500/0"></div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+        
+        {/* Transition Elements to Testimonials */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#060623] to-transparent"></div>
+        <div className="absolute bottom-6 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-600/20 to-transparent"></div>
+        
+        {/* Decorative Dots Transition */}
+        <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex space-x-3">
+          <div className="w-2 h-2 rounded-full bg-green-500/40"></div>
+          <div className="w-2 h-2 rounded-full bg-red-500/40"></div>
+          <div className="w-2 h-2 rounded-full bg-blue-500/40"></div>
+        </div>
+      </section>
+
       {/* Testimonials Section */}
-      <section className="bg-gradient-to-b from-[#050F5A] via-[#050F5A] to-[#060623] relative">
+      <section className="bg-gradient-to-b from-[#060623] via-[#050F5A] to-[#060623] relative">
+        {/* Smooth Gradient Transition from Lisbon Section */}
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#060623] via-[#060623] to-transparent z-0"></div>
+        
         <div className="absolute inset-0 bg-gradient-to-b from-[#050F5A]/30 via-transparent to-[#060623]/30"></div>
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl opacity-30"></div>
+          <div className="absolute top-20 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl opacity-30"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl opacity-30"></div>
         </div>
-        <div className="relative z-10">
+        <div className="relative z-10 pt-16">
               <Testimonial />
           </div>
 </section>

@@ -167,6 +167,26 @@ export const translations = {
         }
       }
     },
+    lisbon: {
+      label: "OUR HOME",
+      title: "Born in Lisbon, Portugal",
+      subtitle: "Rooted in the heart of Lisbon, we blend Portuguese creativity and innovation to deliver exceptional digital experiences worldwide.",
+      description: "From the colorful streets of Alfama to the innovation districts of Parque das Nações, our Portuguese heritage inspires our work. We bring the warmth, creativity, and dedication of Lisbon to every project.",
+      facts: [
+        {
+          title: "Local Expertise",
+          description: "Deep knowledge of the Portuguese market with a global vision"
+        },
+        {
+          title: "Cultural Heritage",
+          description: "Portuguese tradition of craftsmanship and attention to detail"
+        },
+        {
+          title: "Innovation Hub",
+          description: "Based in one of Europe's most vibrant tech centers"
+        }
+      ]
+    },
     testimonials: {
       label: "TESTIMONIALS",
       title: "What Our Clients Say",
@@ -368,6 +388,26 @@ export const translations = {
           subtitle: "Utilizadores abandonam sites lentos"
         }
       }
+    },
+    lisbon: {
+      label: "NOSSA CASA",
+      title: "Nascida em Lisboa, Portugal",
+      subtitle: "Enraizados no coração de Lisboa, combinamos a criatividade e inovação portuguesa para entregar experiências digitais excepcionais em todo o mundo.",
+      description: "Desde as ruas coloridas da Alfama até aos distritos de inovação do Parque das Nações, o nosso património português inspira o nosso trabalho. Trazemos o calor, criatividade e dedicação de Lisboa para cada projeto.",
+      facts: [
+        {
+          title: "Expertise Local",
+          description: "Conhecimento profundo do mercado português com visão global"
+        },
+        {
+          title: "Património Cultural",
+          description: "Tradição portuguesa de artesanato e atenção aos detalhes"
+        },
+        {
+          title: "Centro de Inovação",
+          description: "Sediados num dos centros tecnológicos mais vibrantes da Europa"
+        }
+      ]
     },
     testimonials: {
       label: "TESTEMUNHOS",

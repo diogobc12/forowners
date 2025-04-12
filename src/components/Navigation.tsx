@@ -31,11 +31,12 @@ export function Navigation({ scrolled }: NavigationProps) {
           <div className="flex items-center gap-4 md:hidden">
             <button
               onClick={toggleLanguage}
-              className="text-white focus:outline-none transform-gpu p-2 hover:bg-white/10 rounded-lg transition-colors"
+              className="text-white focus:outline-none transform-gpu p-2 hover:bg-white/10 rounded-lg transition-colors flex items-center gap-1"
               aria-label="Toggle language"
               title={language === 'en' ? 'Mudar para Português' : 'Change to English'}
             >
-              <Globe className="w-5 h-5" />
+              <Globe className="w-4 h-4" />
+              <span className="text-xs font-medium">{language === 'en' ? 'EN' : 'PT'}</span>
             </button>
             <button
               onClick={toggleMenu}
@@ -54,11 +55,12 @@ export function Navigation({ scrolled }: NavigationProps) {
             <a href="#contact" className="text-white hover:text-blue-300 transition-colors">{t('navigation.contact')}</a>
             <button
               onClick={toggleLanguage}
-              className="text-white focus:outline-none transform-gpu p-2 hover:bg-white/10 rounded-lg transition-colors"
+              className="text-white focus:outline-none transform-gpu px-3 py-2 hover:bg-white/10 rounded-lg transition-colors flex items-center gap-1.5"
               aria-label="Toggle language"
               title={language === 'en' ? 'Mudar para Português' : 'Change to English'}
             >
-              <Globe className="w-5 h-5" />
+              <Globe className="w-4 h-4" />
+              <span className="text-sm font-medium">{language === 'en' ? 'EN' : 'PT'}</span>
             </button>
             <a href="#contact" className="px-4 py-2 bg-blue-500 hover:bg-blue-600 transition-colors rounded-lg transform-gpu">
               {t('navigation.getInTouch')}
