@@ -105,7 +105,7 @@ function App() {
       <section id="hero" className="min-h-screen flex items-center pt-16 sm:pt-20">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <div className="relative z-10">
-            <div className="absolute -top-20 -left-20 w-64 h-64 bg-blue-500/10 rounded-full filter blur-3xl animate-pulse will-change-[filter,opacity] transform-gpu"></div>
+            <div className="absolute -top-20 -left-20 w-64 h-64 bg-blue-500/10 rounded-full filter blur-3xl animate-pulse"></div>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6">
               {t('hero.title')}<br/>
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
@@ -124,7 +124,7 @@ function App() {
           </div>
           {/* Right Column - Hero Animation */}
           <div className="relative h-[500px] flex items-center justify-center hidden md:block">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#1E3A8A]/20 to-[#3B82F6]/20 rounded-3xl blur-3xl will-change-[opacity,transform] transform-gpu"
+            <div className="absolute inset-0 bg-gradient-to-br from-[#1E3A8A]/20 to-[#3B82F6]/20 rounded-3xl blur-3xl"
               style={{
                 opacity: isVisible ? 1 : 0,
                 transition: 'opacity 2s ease-out'
@@ -171,7 +171,7 @@ function App() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3 }}
               className="text-center mb-8"
             >
               <h2 className="text-3xl sm:text-4xl font-bold mb-3 px-2 sm:px-0">
@@ -192,7 +192,7 @@ function App() {
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.3 }}
               >
                 <div className="grid grid-cols-1 gap-4 sm:gap-6">
                   {[
@@ -217,7 +217,7 @@ function App() {
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: 0.1 * index }}
-                      viewport={{ once: true }}
+                      viewport={{ once: true, amount: 0.3 }}
                       className="flex items-start bg-white/5 p-3 sm:p-5 rounded-xl border border-white/5"
                     >
                       <div className="mr-3 sm:mr-4 p-2 sm:p-3 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-lg flex-shrink-0">
@@ -236,7 +236,7 @@ function App() {
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.3 }}
               >
                 <div className="space-y-4 sm:space-y-6">
                   <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">{t('whyUs.trust.title')}</h3>
@@ -246,7 +246,7 @@ function App() {
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: 0.1 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: true, amount: 0.3 }}
                     >
                       <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mr-3 sm:mr-4 mt-1 flex-shrink-0 flex items-center justify-center">
                         <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
@@ -261,7 +261,7 @@ function App() {
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: 0.2 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: true, amount: 0.3 }}
                     >
                       <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mr-3 sm:mr-4 mt-1 flex-shrink-0 flex items-center justify-center">
                         <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
@@ -276,7 +276,7 @@ function App() {
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: 0.3 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: true, amount: 0.3 }}
                     >
                       <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mr-3 sm:mr-4 mt-1 flex-shrink-0 flex items-center justify-center">
                         <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
@@ -291,7 +291,7 @@ function App() {
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: 0.4 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: true, amount: 0.3 }}
                     >
                       <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 mr-3 sm:mr-4 mt-1 flex-shrink-0 flex items-center justify-center">
                         <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
@@ -313,7 +313,7 @@ function App() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.3 }}
             className="text-center mb-8"
           >
             <h3 className="text-2xl font-bold mb-2">
@@ -362,8 +362,8 @@ function App() {
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                viewport={{ once: true, amount: 0.3 }}
                 className="flex flex-col items-center p-4"
               >
                 <div className={`w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br ${tool.color} flex items-center justify-center mb-3 shadow-lg`}>
@@ -513,13 +513,7 @@ function App() {
 
         <div className="container mx-auto px-4 relative z-10">
           {/* Minimal Header */}
-          <motion.div 
-            className="flex flex-col items-center mb-8"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-          >
+          <div className="flex flex-col items-center mb-8">
             <div className="inline-flex items-center mb-2">
               <div className="h-px w-8 bg-gradient-to-r from-green-500 to-green-500/0 mr-3"></div>
               <span className="text-sm font-light tracking-wider text-cyan-400 uppercase">
@@ -530,7 +524,7 @@ function App() {
             <h2 className="text-2xl md:text-4xl font-light text-white mb-2 tracking-wide">
               {t('lisbon.title')}
             </h2>
-          </motion.div>
+          </div>
           
           {/* Main Content with Image */}
           <div className="max-w-5xl mx-auto">
@@ -541,19 +535,16 @@ function App() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#060623] via-[#060623]/70 to-transparent z-10"></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-[#060623]/50 via-transparent to-[#060623]/50 z-10"></div>
                 
-                <motion.div
-                  className="absolute inset-0 z-0"
-                  initial={{ scale: 1.1 }}
-                  whileInView={{ scale: 1 }}
-                  transition={{ duration: 10, ease: "easeOut" }}
-                  viewport={{ once: true }}
-                >
+                <div className="absolute inset-0 z-0">
                   <img 
                     src="https://images.unsplash.com/photo-1580323956656-26bbb1206e34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80" 
                     alt="Lisbon Waterfront" 
                     className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
                   />
-                </motion.div>
+                </div>
                 
                 {/* Portugal Flag-inspired Thin Line */}
                 <div className="absolute top-0 left-0 right-0 h-0.5 flex z-20">
@@ -564,24 +555,13 @@ function App() {
                 {/* Content Overlay */}
                 <div className="absolute inset-0 flex flex-col justify-end z-20 p-6 md:p-8">
                   <div className="max-w-3xl">
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8 }}
-                      viewport={{ once: true }}
-                    >
+                    <div>
                       <div className="flex items-center mb-4">
                         <div className="h-8 w-0.5 bg-gradient-to-b from-green-500 to-red-500 mr-3"></div>
                         <h3 className="text-2xl md:text-3xl text-white font-light tracking-wide">Lisboa</h3>
-                        <motion.div 
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 0.8, x: 0 }}
-                          transition={{ duration: 0.5, delay: 0.3 }}
-                          viewport={{ once: true }}
-                          className="ml-3 px-2 py-0.5 text-xs rounded-full bg-white/10 backdrop-blur-sm"
-                        >
+                        <div className="ml-3 px-2 py-0.5 text-xs rounded-full bg-white/10 backdrop-blur-sm">
                           PORTUGAL
-                        </motion.div>
+                        </div>
                       </div>
                       
                       <p className="text-white/80 text-base md:text-lg font-light mb-4 max-w-2xl leading-relaxed">
@@ -590,12 +570,8 @@ function App() {
                       
                       <div className="flex flex-wrap gap-3">
                         {[0, 1, 2].map((index) => (
-                          <motion.div 
+                          <div 
                             key={index}
-                            initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.4, delay: 0.1 * index }}
-                            viewport={{ once: true }}
                             className="group"
                           >
                             <div className="flex items-center gap-2 border border-white/10 bg-white/5 backdrop-blur-sm rounded-lg px-3 py-2 transition-colors hover:bg-white/10">
@@ -612,35 +588,24 @@ function App() {
                               </div>
                               <span className="text-white/70 text-xs font-light">{t(`lisbon.facts.${index}.title`)}</span>
                             </div>
-                          </motion.div>
+                          </div>
                         ))}
                       </div>
-                    </motion.div>
+                    </div>
                   </div>
-                </div>
-                
-                {/* Animated Wave Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 h-10 overflow-hidden z-10">
-                  <div className="wave-animation"></div>
                 </div>
               </div>
             </div>
             
             {/* Bottom Quote Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="mt-6 text-center max-w-2xl mx-auto"
-            >
+            <div className="mt-6 text-center max-w-2xl mx-auto">
               <blockquote className="italic text-white/60 text-sm md:text-base font-light">
                 "{t('lisbon.description')}"
               </blockquote>
               <div className="flex justify-center mt-4">
                 <div className="w-12 h-px bg-gradient-to-r from-green-500/0 via-red-500 to-green-500/0"></div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
         

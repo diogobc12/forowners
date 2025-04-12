@@ -16,14 +16,14 @@ export function Navigation({ scrolled }: NavigationProps) {
   }, []);
 
   return (
-    <nav className="fixed z-50 transition-all duration-300 sm:p-5 mt-3 flex justify-center w-full transform-gpu will-change-transform">
+    <nav className="fixed z-50 transition-all duration-300 sm:p-5 mt-3 flex justify-center w-full">
       <div 
-        className={`transition-all duration-300 flex flex-col justify-between items-center transform-gpu backface-hidden ${
+        className={`transition-all duration-300 flex flex-col justify-between items-center ${
           scrolled || isOpen ? 'bg-slate-900/90 backdrop-blur-sm shadow-lg w-[95%] sm:w-[80%] sm:py-1 py-0 px-6 sm:px-8 rounded-lg scale-100 origin-center' : 'bg-transparent w-[90%] sm:w-[70%] scale-95 origin-center' 
         }`}
       >
         <div className="container mx-auto px-2 sm:px-4 flex justify-between items-center h-16 sm:h-20 relative w-full">
-          <a href="#hero" className="flex items-center transform-gpu">
+          <a href="#hero" className="flex items-center">
             <img src={logo} alt="ForOwners Logo" className="h-5 sm:h-7 w-auto" />
           </a>
           
@@ -31,16 +31,16 @@ export function Navigation({ scrolled }: NavigationProps) {
           <div className="flex items-center gap-4 md:hidden">
             <button
               onClick={toggleLanguage}
-              className="text-white focus:outline-none transform-gpu p-2 hover:bg-white/10 rounded-lg transition-colors flex items-center gap-1"
+              className="text-white focus:outline-none p-2 hover:bg-white/10 rounded-lg transition-colors flex items-center gap-1"
               aria-label="Toggle language"
               title={language === 'en' ? 'Mudar para Português' : 'Change to English'}
             >
               <Globe className="w-4 h-4" />
-              <span className="text-xs font-medium">{language === 'en' ? 'EN' : 'PT'}</span>
+              <span className="text-xs font-medium">{language === 'en' ? 'PT' : 'EN'}</span>
             </button>
             <button
               onClick={toggleMenu}
-              className="text-white focus:outline-none transform-gpu"
+              className="text-white focus:outline-none"
               aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
               title={isOpen ? "Close Menu" : "Open Menu"}
             >
@@ -55,14 +55,14 @@ export function Navigation({ scrolled }: NavigationProps) {
             <a href="#contact" className="text-white hover:text-blue-300 transition-colors">{t('navigation.contact')}</a>
             <button
               onClick={toggleLanguage}
-              className="text-white focus:outline-none transform-gpu px-3 py-2 hover:bg-white/10 rounded-lg transition-colors flex items-center gap-1.5"
+              className="text-white focus:outline-none px-3 py-2 hover:bg-white/10 rounded-lg transition-colors flex items-center gap-1.5"
               aria-label="Toggle language"
               title={language === 'en' ? 'Mudar para Português' : 'Change to English'}
             >
               <Globe className="w-4 h-4" />
-              <span className="text-sm font-medium">{language === 'en' ? 'EN' : 'PT'}</span>
+              <span className="text-sm font-medium">{language === 'en' ? 'PT' : 'EN'}</span>
             </button>
-            <a href="#contact" className="px-4 py-2 bg-blue-500 hover:bg-blue-600 transition-colors rounded-lg transform-gpu">
+            <a href="#contact" className="px-4 py-2 bg-blue-500 hover:bg-blue-600 transition-colors rounded-lg">
               {t('navigation.getInTouch')}
             </a>
           </div>
@@ -70,7 +70,7 @@ export function Navigation({ scrolled }: NavigationProps) {
 
         {/* Mobile menu */}
         <div 
-          className={`md:hidden w-full overflow-hidden transition-all duration-300 transform-gpu ${
+          className={`md:hidden w-full overflow-hidden transition-all duration-300 ${
             isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
@@ -98,7 +98,7 @@ export function Navigation({ scrolled }: NavigationProps) {
             </a>
             <a 
               href="#contact" 
-              className="block px-4 py-2 bg-blue-500 hover:bg-blue-600 transition-colors rounded-lg text-center transform-gpu"
+              className="block px-4 py-2 bg-blue-500 hover:bg-blue-600 transition-colors rounded-lg text-center"
               onClick={toggleMenu}
             >
               {t('navigation.getInTouch')}

@@ -21,6 +21,7 @@ function AnimatedNumberBase({
   const [hasStarted, setHasStarted] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<number | null>(null);
+  const animationRef = useRef<{ startTime: number; endTime: number; }>({ startTime: 0, endTime: 0 });
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -47,34 +48,44 @@ function AnimatedNumberBase({
     
     // Limpa timers anteriores
     if (timerRef.current) {
-      clearInterval(timerRef.current);
+      cancelAnimationFrame(timerRef.current);
+      timerRef.current = null;
     }
     
     // Reset inicial
     setDisplayValue(0);
-    let currentValue = 0;
     
-    // Intervalo fixo de 50ms para garantir suavidade
-    const interval = 50;
-    // Calcula o incremento baseado na duração total
-    const increment = Math.max(1, Math.ceil(end / (duration / interval)));
+    // Usa timestamp para melhor performance
+    animationRef.current.startTime = performance.now();
+    animationRef.current.endTime = animationRef.current.startTime + duration;
     
-    timerRef.current = window.setInterval(() => {
-      currentValue = Math.min(currentValue + increment, end);
-      setDisplayValue(currentValue);
+    const animate = (timestamp: number) => {
+      const { startTime, endTime } = animationRef.current;
       
-      if (currentValue >= end) {
-        if (timerRef.current) {
-          clearInterval(timerRef.current);
-          timerRef.current = null;
-        }
+      // Calcula progresso baseado no tempo decorrido
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Função de easing para suavizar a animação no final
+      const easedProgress = progress === 1 ? 1 : 1 - Math.pow(1 - progress, 3);
+      
+      // Calcula e atualiza valor
+      const value = Math.floor(easedProgress * end);
+      setDisplayValue(value);
+      
+      // Continua animação se não concluída
+      if (progress < 1) {
+        timerRef.current = requestAnimationFrame(animate);
+      } else {
         setDisplayValue(end);
       }
-    }, interval);
+    };
+    
+    timerRef.current = requestAnimationFrame(animate);
     
     return () => {
       if (timerRef.current) {
-        clearInterval(timerRef.current);
+        cancelAnimationFrame(timerRef.current);
         timerRef.current = null;
       }
     };

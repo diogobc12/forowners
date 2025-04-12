@@ -5,8 +5,14 @@ export const HeroAnimation: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const animationFrameRef = useRef<number>();
   const lastMousePosition = useRef({ x: 0, y: 0 });
+  const lastUpdateTime = useRef(0);
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
+    // Throttle updates to max 30fps (approximately 33ms between frames)
+    const now = Date.now();
+    if (now - lastUpdateTime.current < 33) return;
+    lastUpdateTime.current = now;
+    
     if (!containerRef.current) return;
 
     const container = containerRef.current;
@@ -19,8 +25,8 @@ export const HeroAnimation: React.FC = () => {
     const mouseY = e.clientY - centerY;
 
     // Only update if mouse position changed significantly
-    if (Math.abs(mouseX - lastMousePosition.current.x) < 5 && 
-        Math.abs(mouseY - lastMousePosition.current.y) < 5) {
+    if (Math.abs(mouseX - lastMousePosition.current.x) < 8 && 
+        Math.abs(mouseY - lastMousePosition.current.y) < 8) {
       return;
     }
 
@@ -58,11 +64,11 @@ export const HeroAnimation: React.FC = () => {
   return (
     <div 
       ref={containerRef}
-      className="relative w-full h-full overflow-hidden will-change-transform"
+      className="relative w-full h-full overflow-hidden"
     >
       {/* Website mockup in the center */}
       <div 
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 animated-item will-change-transform"
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 animated-item"
         data-speed="0.02"
         style={{ transform: 'translate3d(0, 0, 0)' }}
       >
