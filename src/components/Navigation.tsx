@@ -36,7 +36,7 @@ export function Navigation({ scrolled }: NavigationProps) {
               title={language === 'en' ? 'Mudar para Português' : 'Change to English'}
             >
               <Globe className="w-4 h-4" />
-              <span className="text-xs font-medium">{language === 'en' ? 'PT' : 'EN'}</span>
+              <span className="text-xs font-medium">{language === 'en' ? 'EN' : 'PT'}</span>
             </button>
             <button
               onClick={toggleMenu}
@@ -60,7 +60,7 @@ export function Navigation({ scrolled }: NavigationProps) {
               title={language === 'en' ? 'Mudar para Português' : 'Change to English'}
             >
               <Globe className="w-4 h-4" />
-              <span className="text-sm font-medium">{language === 'en' ? 'PT' : 'EN'}</span>
+              <span className="text-sm font-medium">{language === 'en' ? 'EN' : 'PT'}</span>
             </button>
             <a href="#contact" className="px-4 py-2 bg-blue-500 hover:bg-blue-600 transition-colors rounded-lg">
               {t('navigation.getInTouch')}
