@@ -375,14 +375,14 @@ export const translations = {
         },
         sales: {
           prefix: "+",
-          value: "75",
+          value: "89",
           suffix: "%",
           title: "Vendas Impulsionadas por Websites",
           subtitle: "Receita através da presença web"
         },
         performance: {
           prefix: "+",
-          value: "75",
+          value: "92",
           suffix: "%",
           title: "A Performance Importa",
           subtitle: "Utilizadores abandonam sites lentos"
@@ -391,7 +391,7 @@ export const translations = {
     },
     lisbon: {
       label: "NOSSA CASA",
-      title: "Nascida em Lisboa, Portugal",
+      title: "Nascemos em Lisboa, Portugal",
       subtitle: "Enraizados no coração de Lisboa, combinamos a criatividade e inovação portuguesa para entregar experiências digitais excepcionais em todo o mundo.",
       description: "Desde as ruas coloridas da Alfama até aos distritos de inovação do Parque das Nações, o nosso património português inspira o nosso trabalho. Trazemos o calor, criatividade e dedicação de Lisboa para cada projeto.",
       facts: [
