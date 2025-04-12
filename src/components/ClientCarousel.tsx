@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const clients = [
   {
@@ -48,6 +49,7 @@ const ClientItem = memo(({ client }: { client: typeof clients[0] }) => (
 ));
 
 function ClientCarousel() {
+  const { t } = useLanguage();
   // Duplicamos os clientes para criar o efeito de loop infinito
   const allClients = [...clients, ...clients, ...clients];
   
@@ -62,10 +64,17 @@ function ClientCarousel() {
       <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="text-center mb-10">
           <span className="px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-xs font-medium mb-3 inline-block">
-            TRUSTED PARTNERS
+            {t('clients.trustedPartners')}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mb-3">
-            Our <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Clients</span>
+            {t('clients.title').split(/(?:Clients|Clientes)/).map((part, i, arr) => (
+              <React.Fragment key={i}>
+                {part}
+                {i < arr.length - 1 && <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                  {t('clients.title').match(/(?:Clients|Clientes)/)?.[0]}
+                </span>}
+              </React.Fragment>
+            ))}
           </h2>
           <div className="w-20 h-1 bg-blue-400/20 mx-auto"></div>
         </div>

@@ -17,18 +17,23 @@ export const translations = {
     },
     services: {
       title: 'Our Services',
-      subtitle: 'Transform your digital presence with our comprehensive solutions',
+      subtitle: 'We provide comprehensive digital solutions to elevate your brand and online presence.',
+      requestService: 'Request Service',
       branding: {
         title: 'Branding',
-        description: 'Create a powerful and memorable brand identity'
+        description: 'Unique identity for your business'
       },
       webDesign: {
         title: 'Web Design',
-        description: 'Beautiful, responsive websites that convert'
+        description: 'Sleek, intuitive interfaces'
       },
       development: {
-        title: 'Development',
-        description: 'Custom solutions with cutting-edge technology'
+        title: 'Web Development',
+        description: 'High-performance solutions'
+      },
+      maps: {
+        title: 'Maps Profile',
+        description: 'Boost local visibility'
       }
     },
     stats: {
@@ -92,6 +97,127 @@ export const translations = {
     contact: {
       title: 'Get in Touch',
       subtitle: 'Transform your digital presence today'
+    },
+    tools: {
+      title: "Professional Tools We Use",
+      subtitle: "Leveraging industry-leading software to deliver exceptional quality"
+    },
+    projects: {
+      title: "Projects made by ForOwners",
+      subtitle: "A showcase of successful collaborations and projects developed with passion and expertise.",
+      visitProject: "Visit project"
+    },
+    clients: {
+      trustedPartners: "TRUSTED PARTNERS",
+      title: "Our Clients"
+    },
+    contactForm: {
+      title: "WHAT'S THE OCCASION?",
+      subtitle: "Contact us!",
+      services: {
+        branding: "Branding",
+        webDesign: "Web Design",
+        webDevelopment: "Web Development",
+        mapsProfile: "Google Maps Profile",
+        other: "Other"
+      },
+      name: {
+        title: "WHAT'S YOUR NAME?",
+        subtitle: "Nice to meet you!",
+        placeholder: "Type your name"
+      },
+      email: {
+        title: "YOUR EMAIL ADDRESS?",
+        subtitle: "We'll keep in touch",
+        placeholder: "Enter your email"
+      },
+      message: {
+        title: "YOUR MESSAGE",
+        subtitle: "Tell us everything",
+        placeholder: "Type your message here"
+      },
+      next: "next",
+      sent: "Sent!"
+    },
+    impactMetrics: {
+      label: "IMPACT METRICS",
+      title: "Transform Your Digital Presence",
+      subtitle: "In today's digital landscape, a strong online presence is crucial. Here's why you should invest in your digital future.",
+      stats: {
+        searches: {
+          prefix: "+",
+          value: "3",
+          suffix: "Billion",
+          title: "Daily Google Searches",
+          subtitle: "Opportunity for visibility"
+        },
+        sales: {
+          prefix: "+",
+          value: "75",
+          suffix: "%",
+          title: "Website-Driven Sales",
+          subtitle: "Revenue through web presence"
+        },
+        performance: {
+          prefix: "+",
+          value: "75",
+          suffix: "%",
+          title: "Performance Matters",
+          subtitle: "Users leave slow websites"
+        }
+      }
+    },
+    testimonials: {
+      label: "TESTIMONIALS",
+      title: "What Our Clients Say",
+      items: [
+        {
+          text: "The level of professionalism and expertise they brought to our project was outstanding. They delivered beyond our expectations.",
+          author: "Raden Torti",
+          role: "Founder",
+          company: "French 'G"
+        },
+        {
+          text: "Working with this team was a game-changer for our business. Their attention to detail and creative approach helped us stand out in a crowded market.",
+          author: "Sarah Johnson",
+          role: "Marketing Director",
+          company: "Medal"
+        },
+        {
+          text: "Their innovative solutions and dedication to our success made all the difference. We've seen significant growth since working with them.",
+          author: "Emma Rodriguez",
+          role: "Founder",
+          company: "Atlantic Jewels"
+        },
+        {
+          text: "The team's ability to understand our vision and translate it into a stunning digital presence was remarkable. They exceeded all our expectations.",
+          author: "David Wilson",
+          role: "CTO",
+          company: "FitKet"
+        },
+        {
+          text: "From start to finish, the experience was seamless. Their expertise in web development and design helped us achieve our business goals.",
+          author: "Lisa Anderson",
+          role: "Product Manager",
+          company: "Make it green"
+        },
+        {
+          text: "Working with this team transformed our online presence. Their strategic approach and technical expertise were invaluable to our success.",
+          author: "Robert Taylor",
+          role: "Operations Director",
+          company: "Atlantic Jewels"
+        }
+      ],
+      controls: {
+        prev: "Previous testimonial",
+        next: "Next testimonial"
+      }
+    },
+    footer: {
+      keepInTouch: "Let's keep in touch!",
+      findUs: "Find us on any of these platforms, we respond within 24 hours.",
+      usefulLinks: "USEFUL LINKS",
+      copyright: "Copyright © 2025 by ForOwners"
     }
   },
   pt: {
@@ -102,8 +228,8 @@ export const translations = {
       getInTouch: 'Fale Conosco'
     },
     hero: {
-      title: 'Potencializando Sua',
-      words: ['Marca', 'Presença', 'Design'],
+      title: 'Impulsionar a Sua',
+      words: ['Marca', 'Presença', 'Estética'],
       subtitle: 'Sua marca, refinada. Seu site, aperfeiçoado. Transforme sua identidade digital hoje.',
       cta: {
         talk: 'Fale Conosco',
@@ -111,39 +237,25 @@ export const translations = {
       }
     },
     services: {
+      label: 'O QUE OFERECEMOS',
       title: 'Nossos Serviços',
-      subtitle: 'Transforme sua presença digital com nossas soluções completas',
+      subtitle: 'Fornecemos soluções digitais abrangentes para elevar sua marca e presença online.',
+      requestService: 'Solicitar Serviço',
       branding: {
         title: 'Branding',
-        description: 'Crie uma identidade de marca poderosa e memorável'
+        description: 'Identidade única para seu negócio'
       },
       webDesign: {
         title: 'Web Design',
-        description: 'Sites bonitos e responsivos que convertem'
+        description: 'Interfaces elegantes e intuitivas'
       },
       development: {
-        title: 'Desenvolvimento',
-        description: 'Soluções personalizadas com tecnologia de ponta'
-      }
-    },
-    stats: {
-      searches: {
-        value: '3',
-        suffix: 'Bilhões',
-        title: 'Buscas Diárias no Google',
-        subtitle: 'Oportunidade de visibilidade'
+        title: 'Desenvolvimento Web',
+        description: 'Soluções de alta performance'
       },
-      sales: {
-        value: '87',
-        suffix: '%',
-        title: 'Vendas via Website',
-        subtitle: 'Receita através da presença web'
-      },
-      performance: {
-        value: '92',
-        suffix: '%',
-        title: 'Performance Importa',
-        subtitle: 'Usuários abandonam sites lentos'
+      maps: {
+        title: 'Perfil no Maps',
+        description: 'Aumente sua visibilidade local'
       }
     },
     whyUs: {
@@ -187,6 +299,127 @@ export const translations = {
     contact: {
       title: 'Fale Conosco',
       subtitle: 'Transforme sua presença digital hoje'
+    },
+    tools: {
+      title: "Ferramentas Profissionais que Utilizamos",
+      subtitle: "Utilizando softwares líderes do mercado para entregar qualidade excepcional"
+    },
+    projects: {
+      title: "Projetos feitos pela ForOwners",
+      subtitle: "Uma vitrine de colaborações bem-sucedidas e projetos desenvolvidos com paixão e expertise.",
+      visitProject: "Visitar projeto"
+    },
+    clients: {
+      trustedPartners: "PARCEIROS CONFIÁVEIS",
+      title: "Nossos Clientes"
+    },
+    contactForm: {
+      title: "QUAL É A OCASIÃO?",
+      subtitle: "Entre em contato!",
+      services: {
+        branding: "Branding",
+        webDesign: "Web Design",
+        webDevelopment: "Desenvolvimento Web",
+        mapsProfile: "Perfil do Google Maps",
+        other: "Outro"
+      },
+      name: {
+        title: "QUAL É O SEU NOME?",
+        subtitle: "Prazer em conhecê-lo!",
+        placeholder: "Digite seu nome"
+      },
+      email: {
+        title: "SEU ENDEREÇO DE EMAIL?",
+        subtitle: "Manteremos contato",
+        placeholder: "Digite seu email"
+      },
+      message: {
+        title: "SUA MENSAGEM",
+        subtitle: "Conte-nos tudo",
+        placeholder: "Digite sua mensagem aqui"
+      },
+      next: "Próximo",
+      sent: "Enviado!"
+    },
+    impactMetrics: {
+      label: "MÉTRICAS DE IMPACTO",
+      title: "Transforme a Sua Presença Digital",
+      subtitle: "No panorama digital atual, uma forte presença online é crucial. Eis porque deve investir no seu futuro digital.",
+      stats: {
+        searches: {
+          prefix: "+",
+          value: "3",
+          suffix: "Biliões",
+          title: "Pesquisas Diárias no Google",
+          subtitle: "Oportunidade de visibilidade"
+        },
+        sales: {
+          prefix: "+",
+          value: "75",
+          suffix: "%",
+          title: "Vendas Impulsionadas por Websites",
+          subtitle: "Receita através da presença web"
+        },
+        performance: {
+          prefix: "+",
+          value: "75",
+          suffix: "%",
+          title: "A Performance Importa",
+          subtitle: "Utilizadores abandonam sites lentos"
+        }
+      }
+    },
+    testimonials: {
+      label: "TESTEMUNHOS",
+      title: "O Que Dizem os Nossos Clientes",
+      items: [
+        {
+          text: "O nível de profissionalismo e experiência que trouxeram ao nosso projeto foi extraordinário. Superaram as nossas expectativas.",
+          author: "Raden Torti",
+          role: "Fundador",
+          company: "French 'G"
+        },
+        {
+          text: "Trabalhar com esta equipa foi um ponto de viragem para o nosso negócio. A sua atenção ao detalhe e abordagem criativa ajudaram-nos a destacar num mercado saturado.",
+          author: "Sarah Johnson",
+          role: "Diretora de Marketing",
+          company: "Medal"
+        },
+        {
+          text: "As suas soluções inovadoras e dedicação ao nosso sucesso fizeram toda a diferença. Temos visto um crescimento significativo desde que começámos a trabalhar com eles.",
+          author: "Emma Rodriguez",
+          role: "Fundadora",
+          company: "Atlantic Jewels"
+        },
+        {
+          text: "A capacidade da equipa para compreender a nossa visão e traduzi-la numa presença digital impressionante foi notável. Excederam todas as nossas expectativas.",
+          author: "David Wilson",
+          role: "CTO",
+          company: "FitKet"
+        },
+        {
+          text: "Do início ao fim, a experiência foi perfeita. A sua experiência em desenvolvimento web e design ajudou-nos a atingir os nossos objetivos empresariais.",
+          author: "Lisa Anderson",
+          role: "Gestora de Produto",
+          company: "Make it green"
+        },
+        {
+          text: "Trabalhar com esta equipa transformou a nossa presença online. A sua abordagem estratégica e conhecimento técnico foram inestimáveis para o nosso sucesso.",
+          author: "Robert Taylor",
+          role: "Diretor de Operações",
+          company: "Atlantic Jewels"
+        }
+      ],
+      controls: {
+        prev: "Testemunho anterior",
+        next: "Próximo testemunho"
+      }
+    },
+    footer: {
+      keepInTouch: "Vamos manter contacto!",
+      findUs: "Encontre-nos em qualquer destas plataformas, respondemos dentro de 24 horas.",
+      usefulLinks: "LIGAÇÕES ÚTEIS",
+      copyright: "Direitos de autor © 2025 por ForOwners"
     }
   }
 }; 

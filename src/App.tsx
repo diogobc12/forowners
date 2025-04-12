@@ -71,13 +71,13 @@ function TypewriterText() {
 
 
 function App() {
-  const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useLanguage();
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, [])
-  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -89,10 +89,10 @@ function App() {
   }, []);
 
   const services = [
-    { icon: <Palette className="md:w-7 md:h-7 w-6 h-6" />, title: t('services.branding.title'), description: t('services.branding.description') },
-    { icon: <Code2 className="md:w-7 md:h-7 w-6 h-6" />, title: t('services.webDesign.title'), description: t('services.webDesign.description') },
-    { icon: <Globe2 className="md:w-7 md:h-7 w-6 h-6" />, title: t('services.development.title'), description: t('services.development.description') },
-    { icon: <MapPin className="md:w-7 md:h-7 w-6 h-6" />, title: 'Maps Profile', description: 'Boost local visibility' },
+    { icon: <Palette className="md:w-7 md:h-7 w-6 h-6" />, translationKey: 'branding' },
+    { icon: <Code2 className="md:w-7 md:h-7 w-6 h-6" />, translationKey: 'webDesign' },
+    { icon: <Globe2 className="md:w-7 md:h-7 w-6 h-6" />, translationKey: 'development' },
+    { icon: <MapPin className="md:w-7 md:h-7 w-6 h-6" />, translationKey: 'maps' }
   ];
 
 
@@ -148,9 +148,7 @@ function App() {
       <section id="services" className="py-10 sm:py-16 bg-cover bg-gradient-to-t from-[#000000] to-[#050725]/50">
         <div className="container mx-auto">
           <div className="text-center mb-6 sm:mb-10">
-            <span className="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs sm:text-sm font-medium mb-2 sm:mb-3 inline-block">
-              {t('services.title').toUpperCase()}
-            </span>
+            <span className="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs sm:text-sm font-medium mb-2 sm:mb-3 inline-block">{t('services.label')}</span>
             <h2 className="text-3xl md:text-5xl font-bold text-center mb-2 sm:mb-3">{t('services.title')}</h2>
             <p className="text-slate-300 text-center mb-3 max-w-2xl mx-auto text-sm sm:text-base px-4">
               {t('services.subtitle')}
@@ -177,7 +175,14 @@ function App() {
               className="text-center mb-8"
             >
               <h2 className="text-3xl sm:text-4xl font-bold mb-3 px-2 sm:px-0">
-                {t('whyUs.title')}
+                {t('whyUs.title').split(/(?:Innovation|Inovação)/).map((part, i, arr) => (
+                  <React.Fragment key={i}>
+                    {part}
+                    {i < arr.length - 1 && <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                      {t('whyUs.title').match(/(?:Innovation|Inovação)/)?.[0]}
+                    </span>}
+                  </React.Fragment>
+                ))}
               </h2>
               <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-6"></div>
             </motion.div>
@@ -312,10 +317,17 @@ function App() {
             className="text-center mb-8"
           >
             <h3 className="text-2xl font-bold mb-2">
-              Professional <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Tools</span> We Use
+              {t('tools.title').split(/(?:Tools|Ferramentas)/).map((part, i, arr) => (
+                <React.Fragment key={i}>
+                  {part}
+                  {i < arr.length - 1 && <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                    {t('tools.title').match(/(?:Tools|Ferramentas)/)?.[0]}
+                  </span>}
+                </React.Fragment>
+              ))}
             </h3>
             <p className="text-gray-400 max-w-xl mx-auto text-sm">
-              Leveraging industry-leading software to deliver exceptional quality
+              {t('tools.subtitle')}
             </p>
           </motion.div>
           
@@ -419,43 +431,68 @@ function App() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col items-center justify-center max-w-3xl mx-auto">
             <span className="px-3 py-1 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 text-cyan-400 text-xs font-medium mb-6">
-              IMPACT METRICS
+              {t('impactMetrics.label')}
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-3">
-              Transform Your Digital <span className='bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent'>Presence</span>
+              {t('impactMetrics.title').split(/(?:Presence|Presença)/).map((part, i, arr) => (
+                <React.Fragment key={i}>
+                  {part}
+                  {i < arr.length - 1 && <span className='bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent'>
+                    {t('impactMetrics.title').match(/(?:Presence|Presença)/)?.[0]}
+                  </span>}
+                </React.Fragment>
+              ))}
             </h2>
             <p className="text-gray-400 text-center mb-12 max-w-xl text-sm">
-              In today's digital landscape, a strong online presence is crucial. Here's why you should invest in your digital future.
+              {t('impactMetrics.subtitle')}
             </p>
 
             <div className="grid md:grid-cols-3 gap-8 md:gap-12 w-full">
               <div className="flex flex-col items-center">
                 <AnimatedNumber 
-                  end={3} 
-                  prefix="+" 
+                  end={parseInt(t('impactMetrics.stats.searches.value'))} 
+                  prefix={t('impactMetrics.stats.searches.prefix')} 
+                  suffix={t('impactMetrics.stats.searches.suffix')}
                   delay={0}
                   duration={2500}
-                  translationKey="stats.searches"
+                  label={
+                    <div className="text-center mt-3">
+                      <div className="text-white/70 text-sm">{t('impactMetrics.stats.searches.title')}</div>
+                      <div className="text-cyan-400/70 text-xs mt-1">{t('impactMetrics.stats.searches.subtitle')}</div>
+                    </div>
+                  }
                 />
               </div>
 
               <div className="flex flex-col items-center">
                 <AnimatedNumber 
-                  end={87} 
-                  prefix="+" 
+                  end={parseInt(t('impactMetrics.stats.sales.value'))} 
+                  prefix={t('impactMetrics.stats.sales.prefix')} 
+                  suffix={t('impactMetrics.stats.sales.suffix')} 
                   delay={0}
                   duration={1800}
-                  translationKey="stats.sales"
+                  label={
+                    <div className="text-center mt-3">
+                      <div className="text-white/70 text-sm">{t('impactMetrics.stats.sales.title')}</div>
+                      <div className="text-cyan-400/70 text-xs mt-1">{t('impactMetrics.stats.sales.subtitle')}</div>
+                    </div>
+                  }
                 />
               </div>
 
               <div className="flex flex-col items-center">
                 <AnimatedNumber 
-                  end={92} 
-                  prefix="+" 
+                  end={parseInt(t('impactMetrics.stats.performance.value'))} 
+                  prefix={t('impactMetrics.stats.performance.prefix')} 
+                  suffix={t('impactMetrics.stats.performance.suffix')} 
                   delay={0}
                   duration={1800}
-                  translationKey="stats.performance"
+                  label={
+                    <div className="text-center mt-3">
+                      <div className="text-white/70 text-sm">{t('impactMetrics.stats.performance.title')}</div>
+                      <div className="text-cyan-400/70 text-xs mt-1">{t('impactMetrics.stats.performance.subtitle')}</div>
+                    </div>
+                  }
                 />
               </div>
             </div>

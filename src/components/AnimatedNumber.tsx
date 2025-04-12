@@ -1,14 +1,12 @@
 import React, { useEffect, useState, useRef, memo } from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
 
 interface AnimatedNumberProps {
   end: number;
   duration?: number;
-  label?: React.ReactNode;
+  label: React.ReactNode;
   prefix?: string;
   suffix?: string;
   delay?: number;
-  translationKey: string;
 }
 
 function AnimatedNumberBase({ 
@@ -17,14 +15,12 @@ function AnimatedNumberBase({
   label, 
   prefix = '', 
   suffix = '', 
-  delay = 0,
-  translationKey 
+  delay = 0 
 }: AnimatedNumberProps) {
   const [displayValue, setDisplayValue] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<number | null>(null);
-  const { t } = useLanguage();
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -93,13 +89,9 @@ function AnimatedNumberBase({
       >
         <span className="text-white/90 font-bold">{prefix}</span>
         <span className="font-bold">{displayValue}</span>
-        <span className="text-white/90 ml-0.5 font-bold">{t(`${translationKey}.suffix`)}</span>
+        <span className="text-white/90 ml-0.5 font-bold">{suffix}</span>
       </div>
-      <div className="mt-4">
-        <div className="text-white/70 text-sm">{t(`${translationKey}.title`)}</div>
-        <div className="text-cyan-400/70 text-xs mt-1">{t(`${translationKey}.subtitle`)}</div>
-      </div>
-      {label && <div className="mt-4">{label}</div>}
+      <div className="mt-4">{label}</div>
     </div>
   );
 }

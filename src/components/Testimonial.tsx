@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Quote, Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface Testimonial {
   id: number;
@@ -91,9 +92,98 @@ const TestimonialCard = memo(({ testimonial }: { testimonial: Testimonial }) => 
 ));
 
 export const Testimonial = () => {
+  const { t, language } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [translatedTestimonials, setTranslatedTestimonials] = useState<Testimonial[]>([
+    {
+      id: 1,
+      text: "",
+      author: "",
+      role: "",
+      rating: 5,
+      company: ""
+    },
+    {
+      id: 2,
+      text: "",
+      author: "",
+      role: "",
+      rating: 5,
+      company: ""
+    },
+    {
+      id: 3,
+      text: "",
+      author: "",
+      role: "",
+      rating: 5,
+      company: ""
+    }
+  ]);
+
+  // Update testimonials when language changes
+  useEffect(() => {
+    const items = [
+      {
+        id: 1,
+        text: t('testimonials.items.0.text'),
+        author: t('testimonials.items.0.author'),
+        role: t('testimonials.items.0.role'),
+        rating: 5,
+        company: t('testimonials.items.0.company')
+      },
+      {
+        id: 2,
+        text: t('testimonials.items.1.text'),
+        author: t('testimonials.items.1.author'),
+        role: t('testimonials.items.1.role'),
+        rating: 5,
+        company: t('testimonials.items.1.company')
+      },
+      {
+        id: 3,
+        text: t('testimonials.items.2.text'),
+        author: t('testimonials.items.2.author'),
+        role: t('testimonials.items.2.role'),
+        rating: 5,
+        company: t('testimonials.items.2.company')
+      },
+      {
+        id: 4,
+        text: t('testimonials.items.3.text'),
+        author: t('testimonials.items.3.author'),
+        role: t('testimonials.items.3.role'),
+        rating: 5,
+        company: t('testimonials.items.3.company')
+      },
+      {
+        id: 5,
+        text: t('testimonials.items.4.text'),
+        author: t('testimonials.items.4.author'),
+        role: t('testimonials.items.4.role'),
+        rating: 5,
+        company: t('testimonials.items.4.company')
+      },
+      {
+        id: 6,
+        text: t('testimonials.items.5.text'),
+        author: t('testimonials.items.5.author'),
+        role: t('testimonials.items.5.role'),
+        rating: 5,
+        company: t('testimonials.items.5.company')
+      }
+    ];
+    
+    setTranslatedTestimonials(items);
+  }, [t, language]);
+
+  // Define testimonials array based on translations - Removed this static definition and replaced with state
+  // const translatedItems = [...]; - This code is now moved to the useEffect above
+  
+  // Use the testimonials from state
+  const testimonials: Testimonial[] = translatedTestimonials;
 
   // Otimização: usando useCallback para funções
   const handleResize = useCallback(() => {
@@ -106,29 +196,35 @@ export const Testimonial = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [handleResize]);
 
-  const nextTestimonial = useCallback(() => {
-    setDirection(1);
-    setCurrentIndex((prev) => {
-      const maxIndex = isMobile ? testimonials.length - 1 : Math.floor(testimonials.length / 3) - 1;
-      return prev === maxIndex ? 0 : prev + 1;
-    });
-  }, [isMobile]);
-
-  const prevTestimonial = useCallback(() => {
-    setDirection(-1);
-    setCurrentIndex((prev) => {
-      const maxIndex = isMobile ? testimonials.length - 1 : Math.floor(testimonials.length / 3) - 1;
-      return prev === 0 ? maxIndex : prev - 1;
-    });
-  }, [isMobile]);
-
   const getCurrentTestimonials = useCallback(() => {
+    if (testimonials.length === 0) return [];
+    
     if (isMobile) {
       return [testimonials[currentIndex]];
     }
     const startIndex = currentIndex * 3;
     return testimonials.slice(startIndex, startIndex + 3);
-  }, [currentIndex, isMobile]);
+  }, [currentIndex, isMobile, testimonials]);
+
+  const nextTestimonial = useCallback(() => {
+    if (testimonials.length === 0) return;
+    
+    setDirection(1);
+    setCurrentIndex((prev) => {
+      const maxIndex = isMobile ? testimonials.length - 1 : Math.floor(testimonials.length / 3) - 1;
+      return prev === maxIndex ? 0 : prev + 1;
+    });
+  }, [isMobile, testimonials]);
+
+  const prevTestimonial = useCallback(() => {
+    if (testimonials.length === 0) return;
+    
+    setDirection(-1);
+    setCurrentIndex((prev) => {
+      const maxIndex = isMobile ? testimonials.length - 1 : Math.floor(testimonials.length / 3) - 1;
+      return prev === 0 ? maxIndex : prev - 1;
+    });
+  }, [isMobile, testimonials]);
 
   // Variaveis de animação com configurações mais leves para mobile
   const animationVariants = {
@@ -163,10 +259,17 @@ export const Testimonial = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <span className="px-3 py-1 rounded-full bg-blue-500/5 text-blue-300 text-xs font-medium mb-3 inline-block">
-            TESTIMONIALS
+            {t('testimonials.label')}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mb-3">
-            What Our <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Clients</span> Say
+            {t('testimonials.title').split(/(?:Clients|Clientes)/).map((part, i, arr) => (
+              <React.Fragment key={i}>
+                {part}
+                {i < arr.length - 1 && <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                  {t('testimonials.title').match(/(?:Clients|Clientes)/)?.[0]}
+                </span>}
+              </React.Fragment>
+            ))}
           </h2>
           <div className="w-20 h-1 bg-blue-400/20 mx-auto"></div>
         </div>
@@ -193,7 +296,7 @@ export const Testimonial = () => {
             <button
               onClick={prevTestimonial}
               className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/[0.03] hover:bg-blue-400/5 border border-white/5 hover:border-blue-300/10 flex items-center justify-center transition-colors"
-              aria-label="Previous testimonial"
+              aria-label={t('testimonials.controls.prev')}
             >
               <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-blue-300" />
             </button>
@@ -217,7 +320,7 @@ export const Testimonial = () => {
             <button
               onClick={nextTestimonial}
               className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/[0.03] hover:bg-blue-400/5 border border-white/5 hover:border-blue-300/10 flex items-center justify-center transition-colors"
-              aria-label="Next testimonial"
+              aria-label={t('testimonials.controls.next')}
             >
               <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-blue-300" />
             </button>

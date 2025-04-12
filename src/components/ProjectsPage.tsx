@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowUpRight, Building2, Factory, Warehouse } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface ProjectCardProps {
   category: string;
@@ -10,6 +11,8 @@ interface ProjectCardProps {
 }
 
 function ProjectCard({ category, imageUrl, link, objectPosition }: ProjectCardProps) {
+  const { t } = useLanguage();
+  
   const content = (
     <motion.div 
       className="group relative overflow-hidden rounded-lg"
@@ -35,7 +38,7 @@ function ProjectCard({ category, imageUrl, link, objectPosition }: ProjectCardPr
               transition={{ delay: 0.1 }}
               className="flex items-center text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             >
-              <span>Visit project</span>
+              <span>{t('projects.visitProject')}</span>
               <ArrowUpRight className="ml-1 h-4 w-4" />
             </motion.div>
           )}
@@ -76,6 +79,8 @@ const projects = [
 
 
 export const ProjectsPage = () => {
+  const { t } = useLanguage();
+  
   return (
     <div className="overflow-hidden relative">
       <div className="mx-auto max-w-7xl px-4 py-16 pb-32 sm:px-6 lg:px-8">
@@ -88,10 +93,15 @@ export const ProjectsPage = () => {
         >
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl text-center">
-              Projects made by <span className='bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent'>ForOwners</span>
+              {t('projects.title').split('ForOwners').map((part, i, arr) => (
+                <React.Fragment key={i}>
+                  {part}
+                  {i < arr.length - 1 && <span className='bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent'>ForOwners</span>}
+                </React.Fragment>
+              ))}
             </h2>
             <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
-              A showcase of successful collaborations and projects developed with passion and expertise.
+              {t('projects.subtitle')}
             </p>
           </div>
         </motion.div>

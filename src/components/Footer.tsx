@@ -1,8 +1,11 @@
 import React from 'react';
 import { Mail, Instagram } from 'lucide-react';
 import logo from "/src/assets/logo.png"; 
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Footer = () => {
+  const { t } = useLanguage();
+  
   return (
     <footer className="relative pt-24 pb-6 overflow-hidden">
       <div className="absolute inset-0">
@@ -14,9 +17,9 @@ const Footer = () => {
           {/* Contact Section */}
           <div className="w-full lg:w-5/12 px-4 flex flex-col items-center lg:items-start text-center lg:text-left">
             <img src={logo} alt="ForOwners Logo" className="h-6 w-auto mb-6" />
-            <h4 className="text-2xl font-semibold">Let's keep in touch!</h4>
+            <h4 className="text-2xl font-semibold">{t('footer.keepInTouch')}</h4>
             <h5 className="text-lg mt-0 mb-2 text-gray-400">
-              Find us on any of these platforms, we respond within 24 hours.
+              {t('footer.findUs')}
             </h5>
             <div className="mt-6 flex gap-4">
               <a 
@@ -41,16 +44,16 @@ const Footer = () => {
           {/* Useful Links Section */}
           <div className="w-full lg:w-3/12 px-4 mt-8 lg:mt-0">
             <div className="flex flex-col items-center lg:items-end">
-              <span className="block uppercase text-sm font-semibold mb-4">Useful Links</span>
+              <span className="block uppercase text-sm font-semibold mb-4">{t('footer.usefulLinks')}</span>
               <ul className="flex flex-wrap justify-center lg:block gap-4 lg:gap-0 lg:text-right">
                 <li className="lg:block">
-                  <a className="text-gray-400 hover:text-blue-300 inline-block lg:block pb-2 text-sm px-2 lg:px-0" href="#services">Our Services</a>
+                  <a className="text-gray-400 hover:text-blue-300 inline-block lg:block pb-2 text-sm px-2 lg:px-0" href="#services">{t('navigation.services')}</a>
                 </li>
                 <li className="lg:block">
-                  <a className="text-gray-400 hover:text-blue-300 inline-block lg:block pb-2 text-sm px-2 lg:px-0" href="#why-us">Why Choose Us</a>
+                  <a className="text-gray-400 hover:text-blue-300 inline-block lg:block pb-2 text-sm px-2 lg:px-0" href="#why-us">{t('navigation.whyUs')}</a>
                 </li>
                 <li className="lg:block">
-                  <a className="text-gray-400 hover:text-blue-300 inline-block lg:block pb-2 text-sm px-2 lg:px-0" href="#contact">Contact Us</a>
+                  <a className="text-gray-400 hover:text-blue-300 inline-block lg:block pb-2 text-sm px-2 lg:px-0" href="#contact">{t('navigation.contact')}</a>
                 </li>
               </ul>
             </div>
@@ -61,8 +64,7 @@ const Footer = () => {
         <div className="flex flex-wrap items-center justify-center">
           <div className="w-full md:w-4/12 px-4 mx-auto text-center">
             <div className="text-sm text-gray-400 py-1">
-              Copyright © {new Date().getFullYear()} by{" "}
-              <a href="#" className="text-blue-300 hover:text-blue-400">ForOwners</a>
+              {t('footer.copyright')}
             </div>
           </div>
         </div>

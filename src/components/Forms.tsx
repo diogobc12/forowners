@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, RotateCcw } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface Option {
   id: string;
@@ -20,48 +21,49 @@ interface Answers {
   [key: string]: string;
 }
 
-const questions: Question[] = [
-  {
-    id: 'occasion',
-    title: "WHAT'S THE OCCASION?",
-    subtitle: "Contact us!",
-    options: [
-      { id: 'branding', label: 'Branding' },
-      { id: 'webdesign', label: 'Web Design' }, 
-      { id: 'webdevelopment', label: 'Web Development' }, 
-      { id: 'googlemapsprofile', label: 'Google Maps Profile' }, 
-      { id: 'other', label: 'Other' }
-    ]
-  },
-  {
-    id: 'name',
-    title: "WHAT'S YOUR NAME?", 
-    subtitle: "Nice to meet you!",
-    type: 'text',
-    placeholder: 'Type your name'
-  },
-  {
-    id: 'email',
-    title: 'YOUR EMAIL ADDRESS?',
-    subtitle: "We'll keep in touch",
-    type: 'email',
-    placeholder: 'Enter your email'
-  },
-  {
-    id: 'message',
-    title: 'YOUR MESSAGE',
-    subtitle: "Tell us everything",
-    type: 'textarea',
-    placeholder: 'Type your message here'
-  }
-];
-
 export function Forms() {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { t } = useLanguage();
+
+  const questions: Question[] = [
+    {
+      id: 'occasion',
+      title: t('contactForm.title'),
+      subtitle: t('contactForm.subtitle'),
+      options: [
+        { id: 'branding', label: t('contactForm.services.branding') },
+        { id: 'webdesign', label: t('contactForm.services.webDesign') }, 
+        { id: 'webdevelopment', label: t('contactForm.services.webDevelopment') }, 
+        { id: 'googlemapsprofile', label: t('contactForm.services.mapsProfile') }, 
+        { id: 'other', label: t('contactForm.services.other') }
+      ]
+    },
+    {
+      id: 'name',
+      title: t('contactForm.name.title'),
+      subtitle: t('contactForm.name.subtitle'),
+      type: 'text',
+      placeholder: t('contactForm.name.placeholder')
+    },
+    {
+      id: 'email',
+      title: t('contactForm.email.title'),
+      subtitle: t('contactForm.email.subtitle'),
+      type: 'email',
+      placeholder: t('contactForm.email.placeholder')
+    },
+    {
+      id: 'message',
+      title: t('contactForm.message.title'),
+      subtitle: t('contactForm.message.subtitle'),
+      type: 'textarea',
+      placeholder: t('contactForm.message.placeholder')
+    }
+  ];
 
   const handleNext = async (answer: string) => {
     const newAnswers = { ...answers, [questions[currentStep].id]: answer };
@@ -118,6 +120,23 @@ export function Forms() {
   const currentQuestion = questions[currentStep];
 
   const highlightText = (text: string, highlight: string) => {
+    if (highlight === 'OCCASION') {
+      const parts = text.split(/(?:OCCASION|OCASIÃO)/);
+      const matchedWord = text.match(/(?:OCCASION|OCASIÃO)/)?.[0];
+      return parts.map((part, index) => (
+        <React.Fragment key={index}>
+          {index > 0 && (
+            <span
+              className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500"
+              style={{ backgroundClip: 'text' }}
+            >
+              {matchedWord}
+            </span>
+          )}
+          {part}
+        </React.Fragment>
+      ));
+    }
     const parts = text.split(highlight);
     return parts.map((part, index) => (
       <React.Fragment key={index}>
@@ -148,7 +167,20 @@ export function Forms() {
         >
           <div className="space-y-4">
             <h1 className="lg:text-6xl text-4xl font-bold text-center lg:text-left text-white">
-              {highlightText(currentQuestion.title, 'OCCASION')}
+              {currentStep === 0 ? (
+                <>
+                  {t('contactForm.title').split(/(?:OCCASION|OCASIÃO)/).map((part, i, arr) => (
+                    <React.Fragment key={i}>
+                      {part}
+                      {i < arr.length - 1 && <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                        {t('contactForm.title').match(/(?:OCCASION|OCASIÃO)/)?.[0]}
+                      </span>}
+                    </React.Fragment>
+                  ))}
+                </>
+              ) : (
+                highlightText(currentQuestion.title, 'OCCASION')
+              )}
             </h1>
             <p className="text-white text-xl opacity-80 text-center lg:text-left">{currentQuestion.subtitle}</p>
           </div>
@@ -233,10 +265,10 @@ export function Forms() {
                   {isSubmitting ? (
                     <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
                   ) : isSuccess ? (
-                    <span className="text-green-400">Sent!</span>
+                    <span className="text-green-400">{t('contactForm.sent')}</span>
                   ) : (
                     <>
-                      <span>next</span>
+                      <span>{t('contactForm.next')}</span>
                       <Send className="w-6 h-6" />
                     </>
                   )}
