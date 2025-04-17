@@ -16,7 +16,7 @@ export function Navigation({ scrolled }: NavigationProps) {
   }, []);
 
   return (
-    <nav className="fixed z-50 transition-all duration-300 sm:p-5 mt-3 flex justify-center w-full">
+    <nav className="fixed z-50 transition-all duration-300  mt-3 flex justify-center w-full">
       <div 
         className={`transition-all duration-300 flex flex-col justify-between items-center ${
           scrolled || isOpen ? 'bg-slate-900/90 backdrop-blur-sm shadow-lg w-[95%] sm:w-[80%] sm:py-1 py-0 px-6 sm:px-8 rounded-lg scale-100 origin-center' : 'bg-transparent w-[90%] sm:w-[70%] scale-95 origin-center' 

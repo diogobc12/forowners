@@ -19,6 +19,7 @@ export const translations = {
       title: 'Our Services',
       subtitle: 'We provide comprehensive digital solutions to elevate your brand and online presence.',
       requestService: 'Request Service',
+      label: 'SERVICES',
       branding: {
         title: 'Branding',
         description: 'Unique identity for your business'
@@ -257,13 +258,13 @@ export const translations = {
       }
     },
     services: {
-      label: 'O QUE OFERECEMOS',
       title: 'Nossos Serviços',
-      subtitle: 'Fornecemos soluções digitais abrangentes para elevar sua marca e presença online.',
+      subtitle: 'Fornecemos soluções digitais completas para elevar sua marca e presença online.',
       requestService: 'Solicitar Serviço',
+      label: 'O QUE OFERECEMOS',
       branding: {
         title: 'Branding',
-        description: 'Identidade única para seu negócio'
+        description: 'Identidade única para o seu negócio'
       },
       webDesign: {
         title: 'Web Design',
